@@ -1,0 +1,31 @@
+version: 0.2
+phases:
+    install:
+        commands:
+            - cd front
+            - sudo apt-get update -y
+            - npm install -g @angular/cli@6.0.8
+            - npm install
+
+    build:
+        commands:
+            - cd ${CODEBUILD_SRC_DIR}/front
+            - echo "---------------UBICACION DEL ARCHIVO----------------"
+            - pwd 
+            - echo "--------------- build ----------------"
+            - ng build --prod
+            # - echo "--------------- buscarndo archivos ----------------"
+            # - ls -la
+            # - cd dist
+            # - ls -la
+            # - cd base-front
+            # - ls -la
+
+    post_build:
+        commands:
+            - aws s3 cp dist/base-front s3://${S3_BUCKET}/tmp --recursive --acl public-read
+artifacts:
+    files:
+        - '**/*'
+    discard-paths: yes
+    base-directory: 'dist*'
