@@ -3,17 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  cognito: {
-    authorizeURL: 'https://autentica-dev.tegere.info/oauth2/authorize',
-    logoutURL: 'http://localhost/logout',
-    clientId: '5dfcab1kvqba570pcqmvho8fpk',
-    redirectUri: 'https://localhost/login',
-    logoutUri: 'http://localhost/logout',
-    jwtCookieName: 'tgr-jwt',
-    expCookieName: 'exp',
-    allowCookies: true,
-  }
+  production: false
 };
 
 /*

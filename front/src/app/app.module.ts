@@ -1,29 +1,38 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { MainComponent } from './components/main/main.component';
 import { AppRoutingModule } from './app-routing.module';
-
-import { CookieService } from 'ngx-cookie-service';
-import { InicioComponent } from './components/inicio/inicio.component';
-
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MaterialModule} from './MaterialModule';
+import { InicioComponent } from './componentes/inicio/inicio.component';
+import { HeaderComponent } from './componentes/header/header.component';
+import { Ng2Rut } from 'ng2-rut';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { PrincipalComponent } from './componentes/principal/principal.component';
+registerLocaleData(localeEs, 'es');
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    MainComponent,
-    InicioComponent
+    InicioComponent,
+    HeaderComponent,
+    PrincipalComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    Ng2Rut,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
-    CookieService
-  ],
+     { provide: LOCALE_ID, useValue: 'es' },
+     ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
