@@ -4,8 +4,7 @@
   <mat-form-field class="example-full-width">
     <input matInput placeholder="RUT" name = rut formControlName ="identificacion" formatRut required validateRut required >
     <mat-error *ngIf="forma?.get('identificacion').hasError('required')">Debe Ingresar un Rut</mat-error>
-     <mat-error *ngIf="forma?.get('identificacion').hasError()">Debe Ingresar un Rut Valido</mat-error>
-    
+   
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Formulario" formControlName ="formulario">
