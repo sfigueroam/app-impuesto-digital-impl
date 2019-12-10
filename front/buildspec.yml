@@ -26,7 +26,7 @@ phases:
 
     post_build:
         commands:
-            - aws s3 cp dist/base-front s3://${S3_BUCKET}/tmp --recursive --acl public-read
+            - aws s3 cp dist/front s3://${S3_BUCKET}/tmp --recursive --acl public-read
 artifacts:
     files:
         - '**/*'
