@@ -12,6 +12,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { PrincipalComponent } from './componentes/principal/principal.component';
+import { TablaDatosComponent } from './componentes/tabla-datos/tabla-datos.component';
+import { MatTableModule } from '@angular/material';
+import { TablaMovimientoComponent } from './componentes/tabla-movimiento/tabla-movimiento.component';
+import { VerItemComponent } from './componentes/ver-item/ver-item.component'
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -19,7 +23,11 @@ registerLocaleData(localeEs, 'es');
     AppComponent,
     InicioComponent,
     HeaderComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    TablaDatosComponent,
+    TablaMovimientoComponent,
+    VerItemComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -29,6 +37,7 @@ registerLocaleData(localeEs, 'es');
     Ng2Rut,
     FormsModule,
     ReactiveFormsModule,
+    MatTableModule,
   ],
   providers: [
      { provide: LOCALE_ID, useValue: 'es' },

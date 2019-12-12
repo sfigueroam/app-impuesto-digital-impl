@@ -2,7 +2,29 @@
     <app-header></app-header>
     
       <main class="mdl-layout__content">
-        <app-inicio></app-inicio>
+        <div *ngIf="!ocultarForm && !verTablaDatos && !verMov && !verDetalleItem">
+        <app-inicio (mostrarTabla) = "estadoMostrarTabla($event)" (datosForm) = "getDatosForm($event)"></app-inicio>
+        </div>
+        
+        <div *ngIf = "ocultarForm && !verTablaDatos && !verMov && !verDetalleItem">
+          <app-tabla-datos [objetoForm] = "objetoForm"  (fila) ="getDatosTable($event)"  (volverForm) = "volverForm($event)"> </app-tabla-datos>
+        </div>
+        
+        
+        <div *ngIf = "!ocultarForm && verTablaDatos && !verMov  && !verDetalleItem ">
+          <app-tabla-movimiento [filaTabla] = "objetoTabla" (volverTablaDatos) = "volverTablaDatos($event)" (movimientoSeleccionado) = "getMovimientoSeleccionado($event)"  ></app-tabla-movimiento>
+        </div>
+        
+          <div *ngIf ="verDetalleItem ">
+          <app-ver-item [movConsultado] = "movSeleccionado" (volverSeleccioMov) = "volverTablaMovimientos($event)"></app-ver-item>
+        </div>
+        
+
+        
+        <!--<div *ngIf = "!cargaDatosFinalizada && ocultarForm">-->
+        <!--  cargando datos espere-->
+        <!--</div>-->
+        
     </main>
     
     

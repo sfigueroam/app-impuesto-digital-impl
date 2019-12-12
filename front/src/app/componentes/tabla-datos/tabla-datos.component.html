@@ -1,0 +1,81 @@
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar en la Tabla">
+  <button mat-button (click) = volver()> Volver</button>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selectRow($event, row) :null"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="folio">
+    <th mat-header-cell *matHeaderCellDef> Folio </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="formulario">
+    <th mat-header-cell *matHeaderCellDef> Formulario </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="moneda">
+    <th mat-header-cell *matHeaderCellDef> Moneda </th>
+    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="saldo-neto">
+    <th mat-header-cell *matHeaderCellDef> Saldo Neto </th>
+    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+  </ng-container>
+  
+   <!-- Symbol Column -->
+  <ng-container matColumnDef="fecha-venc">
+    <th mat-header-cell *matHeaderCellDef> Fecha Venc. </th>
+    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+  </ng-container>
+  
+    <!-- Symbol Column -->
+  <ng-container matColumnDef="fecha-giro">
+    <th mat-header-cell *matHeaderCellDef> Fecha Giro </th>
+    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+  </ng-container>
+  
+<!--  <ng-container matColumnDef="action" (click)="$event.stopPropagation()">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Fecha Giro </th>-->
+<!--    <td mat-cell *matCellDef="let element"> <button mat-button  (click) = "verMovimiento()" >Ver Movimiento</button> </td>-->
+<!--</ng-container>-->
+
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()"  >
+            <button mat-button (click)="verMovimiento(element)">Ver Movimiento</button> </td>
+    </ng-container>
+  
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="selection.toggle(row)">
+  </tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

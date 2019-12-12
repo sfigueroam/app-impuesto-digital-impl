@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output  } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder, FormGroupDirective, NgForm} from '@angular/forms';
 import { RutValidator } from 'ng2-rut/dist/rut.validator';
 import * as moment from 'moment';
@@ -22,7 +22,11 @@ export class InicioComponent implements OnInit {
    formaFolio: FormGroup;
    botonBuscar:boolean;
    matcher = new MyErrorStateMatcher();
-   selected;
+   @Output()
+   mostrarTabla= new EventEmitter<boolean>();
+  
+   @Output()
+   datosForm = new EventEmitter<{}>();
   
 
   constructor(rutValidator: RutValidator, fb: FormBuilder) {
@@ -77,7 +81,9 @@ export class InicioComponent implements OnInit {
     data.fechaHasta = moment(data.fechaHasta).locale('en-ca').format('L');
     data.fechaDesde = data.fechaDesde.replace(/\//g , "-");
     data.fechaHasta = data.fechaHasta.replace(/\//g , "-");
-    console.log(data);
+    this.mostrarTabla.emit(true);
+    this.datosForm.emit(data);
+  
 
   }
   
@@ -87,8 +93,8 @@ export class InicioComponent implements OnInit {
     data.fechaHasta = moment(data.fechaHasta).locale('en-ca').format('L');
     data.fechaDesde = data.fechaDesde.replace(/\//g , "-");
     data.fechaHasta = data.fechaHasta.replace(/\//g , "-");
-    console.log(data);
-
+    this.mostrarTabla.emit(true);
+    this.datosForm.emit(data);
   }
 
 
