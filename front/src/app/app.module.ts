@@ -15,7 +15,8 @@ import { PrincipalComponent } from './componentes/principal/principal.component'
 import { TablaDatosComponent } from './componentes/tabla-datos/tabla-datos.component';
 import { MatTableModule } from '@angular/material';
 import { TablaMovimientoComponent } from './componentes/tabla-movimiento/tabla-movimiento.component';
-import { VerItemComponent } from './componentes/ver-item/ver-item.component'
+import { VerItemComponent } from './componentes/ver-item/ver-item.component';
+import { FooterComponent } from './componentes/footer/footer.component'
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -27,6 +28,7 @@ registerLocaleData(localeEs, 'es');
     TablaDatosComponent,
     TablaMovimientoComponent,
     VerItemComponent,
+    FooterComponent,
     
   ],
   imports: [

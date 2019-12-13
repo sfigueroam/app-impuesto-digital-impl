@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource, MatPaginator} from '@angular/material';
+import { ChangeDetectorRef } from '@angular/core';
 
 export interface PeriodicElement {
   name: string;
@@ -9,7 +10,15 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
+@Component({
+  selector: 'app-tabla-datos',
+  templateUrl: './tabla-datos.component.html',
+  styleUrls: ['./tabla-datos.component.scss']
+})
+export class TablaDatosComponent implements OnInit {
+  
+  
+  ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
@@ -22,32 +31,41 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
 ];
 
-
-
-@Component({
-  selector: 'app-tabla-datos',
-  templateUrl: './tabla-datos.component.html',
-  styleUrls: ['./tabla-datos.component.scss']
-})
-export class TablaDatosComponent implements OnInit {
   
   displayedColumns: string[] = ['select','folio', 'formulario', 'moneda', 'saldo-neto', 'fecha-venc', 'fecha-giro', 'action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   selection = new SelectionModel<PeriodicElement>(true, []);
   dataMov = {};
+  elementosCheck = {};
+  siguiente: boolean;
+  datosFooter;
+  numeroSelec;
   
-  constructor() { }
+  constructor(private cdRef:ChangeDetectorRef) { }
   @Input() objetoForm:{};
   @Output()
   fila = new EventEmitter<{}>();
   @Output()
   volverForm = new EventEmitter<boolean>();
+  cantidadSeleccionada:any;
   
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     console.log(this.objetoForm);
+    // console.log(this.ELEMENT_DATA.length);
+    
   }
+  
+  ngAfterViewChecked()
+{
+  this.datosFooter = this.cantidadSeleccionada;
+  this.numeroSelec = this.cantidadSeleccionada.length;
+  console.log('numero seleccionado desde afterchange', this.numeroSelec)
+  this.cdRef.detectChanges();
+}
+  
+  
   
     /**  Aplica los filtros sobre la tabla */
   applyFilter(filterValue: string) {
@@ -66,25 +84,37 @@ export class TablaDatosComponent implements OnInit {
     this.isAllSelected() ?
         this.selection.clear() :
         this.dataSource.data.forEach(row => this.selection.select(row));
+        
+     this.actualizarSeleccionados();
   }
 
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: PeriodicElement): string {
+    this.cantidadSeleccionada = this.selection.selected;
     if (!row) {
+   
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
+ 
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    
+  }
+  
+  
+    actualizarSeleccionados() {
+    this.cantidadSeleccionada = this.selection.selected;
+    this.numeroSelec = this.cantidadSeleccionada - 1;
+      console.log('cantidad desde actualizar selec', this.numeroSelec.length);
   }
   
    private selectRow($event, dataSource) {
-   console.log($event.checked);
-    if ($event.checked) {
+    if ($event.cheked) {
+      console.log($event.checked)
       this.dataMov = dataSource;
     }
   }
   
   verMovimiento(element){
-    // console.log('voy a ver los datos de esto',element)
     this.fila.emit(element);
   }
   
