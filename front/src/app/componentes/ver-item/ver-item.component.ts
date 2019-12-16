@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-ver-item',
@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class VerItemComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cdRef:ChangeDetectorRef) { }
  @Input() movConsultado:{}
  @Output()
  volverSeleccioMov = new EventEmitter<boolean>()
@@ -16,6 +16,14 @@ export class VerItemComponent implements OnInit {
   ngOnInit() {
 
   }
+  
+  
+  ngAfterViewChecked(){
+  
+    this.cdRef.detectChanges();
+    console.log('item a ver en ver item', this.movConsultado);
+
+}
   
   volver(){
     console.log('emitiendo el true')

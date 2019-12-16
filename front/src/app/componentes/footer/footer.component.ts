@@ -1,5 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+export interface DialogData {
+  montoSwift;
+  fechaOrdenPago;
+  fechaDeposito;
+  descripcion;
+  bancoCorresponsal;
+  nOrdenPago;
+}
 
 @Component({
   selector: 'app-footer',
@@ -14,9 +25,15 @@ export class FooterComponent implements OnInit {
   @Input() Ngiros:number;
   botonGiros;
   arregloFinal;
-  
+  montoSwift;
+  fechaOrdenPago;
+  fechaDeposito;
+  descripcion;
+  bancoCorresponsal;
+  nOrdenPago;
+  datosModal:{};
 
-  constructor(private cdRef:ChangeDetectorRef) { }
+  constructor(private cdRef:ChangeDetectorRef, public dialog: MatDialog) { }
 
   ngOnInit() {
 
@@ -38,6 +55,7 @@ export class FooterComponent implements OnInit {
   aplicarGiro(){
     this.arregloFinal = this.cleanArray(this.idGiros)
     console.log('array limpio', this.arregloFinal);
+    this.openDialog();
   }
   
   
@@ -51,5 +69,54 @@ export class FooterComponent implements OnInit {
   }
   return newArray;
 }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: {montoSwift: this.montoSwift, fechaOrdenPago: this.fechaOrdenPago, fechaDeposito: this.fechaDeposito,
+       descripcion: this.descripcion, bancocorresponsal: this.bancoCorresponsal, nOrdenPago: this.nOrdenPago}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+          
+      this.datosModal = result;
+    });
+  }
+
+}
+
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
+export class DialogOverviewExampleDialog {
+  formGiro: FormGroup;
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    public formDialog: FormBuilder,) {
+      
+      this.formGiro = formDialog.group({
+        montoSwift : [''],
+        fechaOrdenPago: [{disable:true, value: ''}],
+        fechaDeposito: [{disable:true, value: ''}],
+        descripcionRemesa: [''],
+        bancoCorresponsal: [''],
+        nOrdenPago:['']
+      })
+      
+    }
+
+  onNoClick(): void {
+
+    this.dialogRef.close();
+  }
+  
+  getDatosForm(){
+    console.log(this.formGiro.value);
+    this.dialogRef.close();
+  }
 
 }

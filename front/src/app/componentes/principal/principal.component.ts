@@ -72,7 +72,7 @@ export class PrincipalComponent implements OnInit {
   this.movSeleccionado = mov;
   this.verDetalleItem = true
      this.verMov = true;
-    console.log('despues de apretar ver item ocultaform,verTablaDatos,verMov', this.ocultarForm,this.verTablaDatos,this.verMov)
+    //console.log('despues de apretar ver item ocultaform,verTablaDatos,verMov', this.ocultarForm,this.verTablaDatos,this.verMov)
     
     console.log('movimiento recibido de tabla movimiento', this.movSeleccionado);
  

@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>Aplicar Giro</h1>
+<div mat-dialog-content>
+  
+ 
+   <form [formGroup] = "formGiro" (ngSubmit) = "getDatosForm()" novalidate = "novalidate">
+    <mat-form-field>
+      <input matInput placeholder="Monto Swift" formControlName="montoSwift">
+    </mat-form-field>
+  
+   <mat-form-field>
+  <input matInput readonly [matDatepicker]="pickerdesdefolio" placeholder="Desde" formControlName = "fechaDeposito" data-date-format="DD MMMM YYYY" >
+  <mat-error *ngIf="formaFolio?.get('fechaDesde').hasError('required')">Debe Ingresar una fecha</mat-error>
+  <mat-datepicker-toggle matSuffix [for]="pickerdesdefolio"></mat-datepicker-toggle>
+  <mat-datepicker #pickerdesdefolio></mat-datepicker>
+</mat-form-field>
+
+ <mat-form-field>
+  <input matInput readonly [matDatepicker]="pickerhastafolio" placeholder="hasta" formControlName = "fechaOrdenPago">
+  <mat-error *ngIf="forma?.get('fechaHasta').hasError('required')">Debe Ingresar una fecha</mat-error>
+  <mat-datepicker-toggle matSuffix [for]="pickerhastafolio"></mat-datepicker-toggle>
+  <mat-datepicker #pickerhastafolio></mat-datepicker>
+</mat-form-field>
+    
+     <mat-form-field class="tgr-edit-campos">
+      <input matInput placeholder="Descripcion Remesa" formControlName="descripcionRemesa">
+    </mat-form-field>
+    
+    <mat-form-field class="tgr-edit-campos">
+      <input matInput placeholder="Banco Corresponsal" formControlName="bancoCorresponsal">
+    </mat-form-field>
+    
+        <mat-form-field class="tgr-edit-campos">
+      <input matInput placeholder="N° Orden Pago" formControlName="nOrdenPago">
+    </mat-form-field>
+    
+    <button class="mdl-button mdl-js-button mdl-button--colored tgr_float-right tgr-buttom-azul" type="submit" (click)="getDatosForm()" [disabled]="formGiro.invalid"  >Confirmar </button>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+  </form>
+    
+  
+
+<!--</div>-->
+<!--<div mat-dialog-actions>-->
+<!--  <button mat-button (click)="onNoClick()">No Thanks</button>-->
+<!--  <button mat-button [mat-dialog-close]="data.datosModal" cdkFocusInitial>Ok</button>-->
+<!--</div>-->

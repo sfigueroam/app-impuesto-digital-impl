@@ -17,6 +17,8 @@ import { MatTableModule } from '@angular/material';
 import { TablaMovimientoComponent } from './componentes/tabla-movimiento/tabla-movimiento.component';
 import { VerItemComponent } from './componentes/ver-item/ver-item.component';
 import { FooterComponent } from './componentes/footer/footer.component'
+import {DialogOverviewExampleDialog} from './componentes/footer/footer.component';
+import {MatDialogModule} from '@angular/material';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -29,8 +31,13 @@ registerLocaleData(localeEs, 'es');
     TablaMovimientoComponent,
     VerItemComponent,
     FooterComponent,
+    DialogOverviewExampleDialog,
     
   ],
+  
+    entryComponents: [ 
+    DialogOverviewExampleDialog, 
+  ], 
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -40,6 +47,7 @@ registerLocaleData(localeEs, 'es');
     FormsModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatDialogModule
   ],
   providers: [
      { provide: LOCALE_ID, useValue: 'es' },

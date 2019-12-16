@@ -61,7 +61,6 @@ export class TablaDatosComponent implements OnInit {
 {
   this.datosFooter = this.cantidadSeleccionada;
   this.numeroSelec = this.cantidadSeleccionada.length;
-  console.log('numero seleccionado desde afterchange', this.numeroSelec)
   this.cdRef.detectChanges();
 }
   
@@ -103,7 +102,7 @@ export class TablaDatosComponent implements OnInit {
   
     actualizarSeleccionados() {
     this.cantidadSeleccionada = this.selection.selected;
-    this.numeroSelec = this.cantidadSeleccionada - 1;
+    this.numeroSelec = this.cantidadSeleccionada;
       console.log('cantidad desde actualizar selec', this.numeroSelec.length);
   }
   
