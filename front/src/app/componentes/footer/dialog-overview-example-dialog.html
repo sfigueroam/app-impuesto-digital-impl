@@ -9,14 +9,14 @@
   
    <mat-form-field>
   <input matInput readonly [matDatepicker]="pickerdesdefolio" placeholder="Desde" formControlName = "fechaDeposito" data-date-format="DD MMMM YYYY" >
-  <mat-error *ngIf="formaFolio?.get('fechaDesde').hasError('required')">Debe Ingresar una fecha</mat-error>
+  <mat-error *ngIf="formGiro?.get('fechaDeposito').hasError('required')">Debe Ingresar una fecha</mat-error>
   <mat-datepicker-toggle matSuffix [for]="pickerdesdefolio"></mat-datepicker-toggle>
   <mat-datepicker #pickerdesdefolio></mat-datepicker>
 </mat-form-field>
 
  <mat-form-field>
   <input matInput readonly [matDatepicker]="pickerhastafolio" placeholder="hasta" formControlName = "fechaOrdenPago">
-  <mat-error *ngIf="forma?.get('fechaHasta').hasError('required')">Debe Ingresar una fecha</mat-error>
+  <mat-error *ngIf="formGiro?.get('fechaOrdenPago').hasError('required')">Debe Ingresar una fecha</mat-error>
   <mat-datepicker-toggle matSuffix [for]="pickerhastafolio"></mat-datepicker-toggle>
   <mat-datepicker #pickerhastafolio></mat-datepicker>
 </mat-form-field>
