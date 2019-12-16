@@ -18,8 +18,9 @@
 </mat-form-field>
 
  <mat-form-field>
-  <input matInput readonly [matDatepicker]="pickerhasta" placeholder="hasta" formControlName = "fechaHasta">
+  <input matInput readonly [matDatepicker]="pickerhasta" placeholder="hasta" formControlName = "fechaHasta" (dateChange) = "pruebainputRut()">
   <mat-error *ngIf="forma?.get('fechaHasta').hasError('required')">Debe Ingresar una fecha</mat-error>
+   <mat-error *ngIf="forma?.get('fechaHasta').hasError('incorrect')">Debe Ingresar una fecha Valida</mat-error>
   <mat-datepicker-toggle matSuffix [for]="pickerhasta"></mat-datepicker-toggle>
   <mat-datepicker #pickerhasta></mat-datepicker>
 </mat-form-field>
@@ -59,10 +60,11 @@
 </mat-form-field>
 
  <mat-form-field>
-  <input matInput readonly [matDatepicker]="pickerhastafolio" placeholder="hasta" formControlName = "fechaHasta">
+  <input matInput readonly [matDatepicker]="pickerhastafolio" placeholder="hasta" formControlName = "fechaHasta" (dateChange) = "pruebainput()" >
   <mat-error *ngIf="forma?.get('fechaHasta').hasError('required')">Debe Ingresar una fecha</mat-error>
-  <mat-datepicker-toggle matSuffix [for]="pickerhastafolio"></mat-datepicker-toggle>
-  <mat-datepicker #pickerhastafolio></mat-datepicker>
+  <mat-error *ngIf="formaFolio?.get('fechaHasta').hasError('incorrect')">Debe Ingresar una fecha Valida</mat-error>
+  <mat-datepicker-toggle matSuffix [for]="pickerhastafolio" ></mat-datepicker-toggle>
+  <mat-datepicker #pickerhastafolio ></mat-datepicker>
 </mat-form-field>
 
 <mat-form-field>

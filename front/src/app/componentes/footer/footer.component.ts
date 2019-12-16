@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import * as moment from 'moment';
 
 export interface DialogData {
   montoSwift;
@@ -118,5 +119,33 @@ export class DialogOverviewExampleDialog {
     console.log(this.formGiro.value);
     this.dialogRef.close();
   }
+  
+    validate_fechaMayorQue(fechaInicial,fechaFinal){
+            
+      const valuesStart=fechaInicial.split("-");
+      const valuesEnd=fechaFinal.split("-");
+      console.log('valores Start End', valuesStart,valuesEnd)
+            // Verificamos que la fecha no sea posterior a la actual
+            var dateStart=new Date(valuesStart[2],(valuesStart[1]-1),valuesStart[0]);
+            var dateEnd=new Date(valuesEnd[2],(valuesEnd[1]-1),valuesEnd[0]);
+            if(dateStart>=dateEnd)
+            {
+              console.log('la fecha de inicio es mayor');
+                return 0;
+            }
+            return 1;
+        }
+
+pruebainput(){
+  let data = this.formGiro.value
+  data.fechaDesde = moment(data.fechaDesde).locale('en-ca').format('L');
+  data.fechaHasta = moment(data.fechaHasta).locale('en-ca').format('L');
+      if(!this.validate_fechaMayorQue(data.fechaDesde, data.fechaHasta)){
+      console.log('entre a poner el boton en false');
+      this.formGiro.controls['fechaHasta'].setErrors({'incorrect' : true})
+    };
+  
+}
+  
 
 }
