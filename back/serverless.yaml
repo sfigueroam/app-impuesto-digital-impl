@@ -1,0 +1,47 @@
+service: app-impuesto-digital
+
+custom: ${file(./config.yml)}
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-1
+  stage: ${self:custom.stage}
+  role: ${self:custom.role}
+  stackName: tgr-${self:custom.env}-${self:service}
+  stackTags:
+    Application: ${self:service}
+    Env: ${self:custom.stage}
+  apiGateway:
+    restApiId: ${self:custom.apiId}
+    restApiRootResourceId: ${self:custom.apiRootId}
+  environment:
+    # REST_TOKEN_GRANT_TYPE: ${self:custom.wsTierra.wsGrantType}
+    # REST_TOKEN_SCOPE: ${self:custom.wsTierra.wsScope}
+    # REST_TOKEN_CLIENT_ID: ${self:custom.wsTierra.wsClientId}
+    # REST_TOKEN_CLIENT_SECRET: ${self:custom.wsTierra.wsClientSecret}
+    # HOST: ${self:custom.wsTierra.wsHost}
+    # ENV: ${self:custom.env}
+    # apiHostnameVerifyCaptcha: ${self:custom.apiHostnameVerifyCaptcha}
+    # apipathVerifyCaptcha: ${self:custom.apipathVerifyCaptcha}
+    # idAppRecaptcha3: ${self:custom.idAppRecaptcha3}
+    # idAppRecaptcha2: ${self:custom.idAppRecaptcha2}
+    # threshold: ${self:custom.threshold}
+    # hostNube:  ${self:custom.wsTierra.wsHostNube}
+
+   
+package:
+  exclude:
+  - package-lock.json
+  - package.json
+
+functions:
+  getDeuda:
+    name: tgr-${self:custom.env}-${self:service}-presentaCuentasME
+    handler: consultaCuentasMonex.handler
+    timeout: 30
+    events:
+    - http:
+        path: impdigital/presentaCuentasME
+        method: post
+        cors: true
