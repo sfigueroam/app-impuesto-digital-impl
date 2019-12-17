@@ -36,7 +36,7 @@ package:
   - package.json
 
 functions:
-  consultaCuentaMonex:
+  cuentasMonex:
     name: tgr-${self:custom.env}-${self:service}-presentaCuentasME
     handler: consultaCuentaMonex.handler
     timeout: 30
@@ -45,3 +45,4 @@ functions:
         path: impdigital/presentaCuentasME
         method: post
         cors: true
+  
