@@ -38,7 +38,7 @@ package:
 functions:
   getDeuda:
     name: tgr-${self:custom.env}-${self:service}-presentaCuentasME
-    handler: consultaCuentasMonex.handler
+    handler: consultaCuentaMonex.handler
     timeout: 30
     events:
     - http:
