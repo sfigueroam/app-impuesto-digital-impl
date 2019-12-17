@@ -27,7 +27,7 @@ module.exports.handler = async (event, context, callback) => {
     // console.log("Resultado Final:", salida);
     // console.log("[FIN PROCESO]");
     
-    let salida;
+    let salida = 'hola';
     
 
     const response = {

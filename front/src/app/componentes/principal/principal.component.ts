@@ -33,7 +33,7 @@ export class PrincipalComponent implements OnInit {
     this.cargaDatosFinalizada = true;
     this.objetoForm = objeto;
     console.log('datos en principal', this.objetoForm)
-    console.log('despues de apretar get items form ocultaform,verTablaDatos,verMov', this.ocultarForm,this.verTablaDatos,this.verMov)
+    // console.log('despues de apretar get items form ocultaform,verTablaDatos,verMov', this.ocultarForm,this.verTablaDatos,this.verMov)
   }
   
   getDatosTable(objeto:{}){

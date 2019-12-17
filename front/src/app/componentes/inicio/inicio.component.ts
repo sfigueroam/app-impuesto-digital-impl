@@ -88,6 +88,7 @@ export class InicioComponent implements OnInit {
     data.fechaHasta = moment(data.fechaHasta).locale('en-ca').format('L');
     data.fechaDesde = data.fechaDesde.replace(/\//g , "-");
     data.fechaHasta = data.fechaHasta.replace(/\//g , "-");
+    data['IdSistema'] = '3';
     this.mostrarTabla.emit(true);
     this.datosForm.emit(data);
   
@@ -96,6 +97,7 @@ export class InicioComponent implements OnInit {
   
    setDataFolio(){
     let data = this.formaFolio.value;
+    data['IdSistema'] = '3';
     data.fechaDesde = moment(data.fechaDesde).locale('en-ca').format('L');
     data.fechaHasta = moment(data.fechaHasta).locale('en-ca').format('L');
     data.fechaDesde = data.fechaDesde.replace(/\//g , "-");
