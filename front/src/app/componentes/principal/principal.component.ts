@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {environment} from '../../../environments/environment';
+import {DetalleCuentasService} from '../../servicios/detalle-cuentas.service';
 
 @Component({
   selector: 'app-principal',
@@ -14,8 +16,9 @@ export class PrincipalComponent implements OnInit {
   verMov:boolean;
   verDetalleItem:boolean;
   movSeleccionado:{};
+  movParaTabla;
   
-  constructor() { }
+  constructor(private detalleCuentas: DetalleCuentasService) { }
 
   
   ngOnInit() {
@@ -33,6 +36,11 @@ export class PrincipalComponent implements OnInit {
     this.cargaDatosFinalizada = true;
     this.objetoForm = objeto;
     console.log('datos en principal', this.objetoForm)
+    this.detalleCuentas.presentaCuentasME(this.objetoForm).subscribe(
+      data => {
+        this.movParaTabla = data;
+        console.log(this.movParaTabla);
+      })
     // console.log('despues de apretar get items form ocultaform,verTablaDatos,verMov', this.ocultarForm,this.verTablaDatos,this.verMov)
   }
   

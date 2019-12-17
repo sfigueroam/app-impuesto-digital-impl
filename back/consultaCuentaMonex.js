@@ -26,8 +26,30 @@ module.exports.handler = async (event, context, callback) => {
     // let salida = await servAmazon.crearCertificado(In,token);
     // console.log("Resultado Final:", salida);
     // console.log("[FIN PROCESO]");
+    let data = [{
+        "idCta" : '1234',
+        "rutCta": 18365,
+        "DvRutCta": 7,
+        "FormaCta" : 21,
+        "FolioCta": 12548,
+        "MonedaCta": 3,
+        "FechaVctoCta": '2019-11-21',
+        "SaldoCta": 300,
+        "FechaGiroCta": '2019-10-12',
+        "NombreContrib": 'Importadora Smith'
+    },
+    { "idCta" : '789',
+        "rutCta": 987,
+        "DvRutCta": 4,
+        "FormaCta" : 3,
+        "FolioCta": 487,
+        "MonedaCta": 3,
+        "FechaVctoCta": '2019-11-14',
+        "SaldoCta": 9788,
+        "FechaGiroCta": '2019-10-18',
+        "NombreContrib": 'Importadora Smith'}]
     
-    let salida = 'hola';
+    let salida = data;
     
 
     const response = {

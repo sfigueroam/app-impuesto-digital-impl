@@ -10,7 +10,7 @@ export class DetalleCuentasService {
   constructor(private http : HttpClient) { }
   
 
-   postCertificate(dataJson): Observable <any> {
+   presentaCuentasME(dataJson): Observable <any> {
       const urlTramite = environment.apiNube + 'impdigital/presentaCuentasME';
       return this.http.post(urlTramite, JSON.stringify(dataJson));
     }
