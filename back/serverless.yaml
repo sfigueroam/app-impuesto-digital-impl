@@ -36,7 +36,7 @@ package:
   - package.json
 
 functions:
-  getDeuda:
+  consultaCuentaMonex:
     name: tgr-${self:custom.env}-${self:service}-presentaCuentasME
     handler: consultaCuentaMonex.handler
     timeout: 30
