@@ -14,4 +14,10 @@ export class DetalleCuentasService {
       const urlTramite = environment.apiNube + 'impdigital/presentaCuentasME';
       return this.http.post(urlTramite, JSON.stringify(dataJson));
     }
+    
+    
+     getMovimientos(idMov): Observable <any> {
+      const urlTramite = environment.apiNube + 'impdigital/presentaMovsME/' + idMov;
+      return this.http.get(urlTramite);
+    }
 }

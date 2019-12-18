@@ -4,8 +4,8 @@ const genToken = require('./genToken');
 
 module.exports.handler = async (event, context, callback) => {
 
-    // var In = JSON.parse(event.body);
-    // console.log('tgr-certificado-api crearCertificado. JSON de Entrada:' , In);
+    var In = event.pathParameters.idMov
+    console.log('idmov:' , In);
     
 
     console.log("[INICIO PROCESO] Iniciando consulta a servicios");
