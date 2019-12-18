@@ -45,3 +45,13 @@ functions:
         path: impdigital/presentaCuentasME
         method: post
         cors: true
+        
+  getMovimiento:
+    name: tgr-${self:custom.env}-${self:service}-getMovimiento
+    handler: consultaMovimiento.handler
+    timeout: 30
+    events:
+    - http:
+        path: impdigital/presentaMovsME/{mov}
+        method: get
+        cors: true
