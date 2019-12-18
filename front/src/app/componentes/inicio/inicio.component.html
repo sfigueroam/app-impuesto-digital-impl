@@ -2,7 +2,7 @@
   <mat-tab label="RUT">
   <form class="example-form" [formGroup] = "forma" (ngSubmit) = "setDataRut()" novalidate = "novalidate">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="RUT" name = rut formControlName ="identificacion" formatRut required validateRut required >
+    <input matInput placeholder="RUT2" name = rut formControlName ="identificacion" formatRut required validateRut required >
     <mat-error *ngIf="forma?.get('identificacion').hasError('required')">Debe Ingresar un Rut</mat-error>
    
   </mat-form-field>
