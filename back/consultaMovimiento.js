@@ -27,27 +27,33 @@ module.exports.handler = async (event, context, callback) => {
     // console.log("Resultado Final:", salida);
     // console.log("[FIN PROCESO]");
     let data = [{
-        "idCta" : 1234,
-        "rutCta": 18365,
-        "DvRutCta": '7',
-        "FormaCta" : 21,
-        "FolioCta": 12548,
-        "MonedaCta": 3,
-        "FechaVctoCta": '2019-11-21',
-        "SaldoCta": 300,
-        "FechaGiroCta": '2019-10-12',
-        "NombreContrib": 'Importadora Smith'
+             "idCta": 30566879,
+           "idMov": 5432267,
+           "TipoMov": "cargo",
+           "EstadoMov": "vigente",
+           "FechaMov": 2019-11-20,
+           "FormTipo": 21,
+           "Folio": 3456784,
+           "MonedaOrigen": "USD",
+           "MontoMov": 300,
+           "MonedaPago": '3' ,
+           "PeriodoContab": 201911,
+           "comuna": "Santiago",
+           "MovOrigen": 0
     },
-    { "idCta" : '789',
-        "rutCta": 987,
-        "DvRutCta": 4,
-        "FormaCta" : 3,
-        "FolioCta": 487,
-        "MonedaCta": 3,
-        "FechaVctoCta": '2019-11-14',
-        "SaldoCta": 9788,
-        "FechaGiroCta": '2019-10-18',
-        "NombreContrib": 'Importadora Smith'}]
+    {       "idCta": 30566879,
+           "idMov": 5432267,
+           "TipoMov": "cargo",
+           "EstadoMov": "vigente",
+           "FechaMov": 2019-11-20,
+           "FormTipo": 21,
+           "Folio": 3456784,
+           "MonedaOrigen": "USD",
+           "MontoMov": 300,
+           "MonedaPago":  '2',
+           "PeriodoContab": 201911,
+           "comuna": "Santiago",
+           "MovOrigen": 0}]
     
     let salida = data;
     
