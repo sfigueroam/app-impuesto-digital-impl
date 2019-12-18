@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ChangeDetectorRef } from '@angular/core';
 
 export interface PeriodicElement {
   name: string;
@@ -32,7 +32,7 @@ export class TablaMovimientoComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
   dataSource = this.ELEMENT_DATA;
 
-  constructor() { }
+  constructor(private cdRef:ChangeDetectorRef) { }
   
   @Input() filaTabla:{}
   @Output() 
@@ -45,6 +45,14 @@ export class TablaMovimientoComponent implements OnInit {
     //aca va la llamada al servicio que trae los datos saco el largo
   }
   
+  
+    ngAfterViewChecked()
+{
+  //Aca tengo que poner una condicion de si viene vacia y el tema del lenght tabla para desplegar los datos que me llegaron del back
+  console.log('recibi los datos en tabla movimiento para hacer la tabla', this.filaTabla);
+
+  this.cdRef.detectChanges();
+}
   
   verItem(element){
     this.itemConsultado = element;

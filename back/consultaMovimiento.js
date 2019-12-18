@@ -4,7 +4,7 @@ const genToken = require('./genToken');
 
 module.exports.handler = async (event, context, callback) => {
 
-    var In = event.pathParameters.idMov
+    var In = event.pathParameters.mov
     console.log('idmov:' , In);
     
 

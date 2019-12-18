@@ -12,7 +12,7 @@
         
         
         <div *ngIf = "!ocultarForm && verTablaDatos && !verMov  && !verDetalleItem && !cargaDatos ">
-          <app-tabla-movimiento [filaTabla] = "objetoTabla" (volverTablaDatos) = "volverTablaDatos($event)" (movimientoSeleccionado) = "getMovimientoSeleccionado($event)"  ></app-tabla-movimiento>
+          <app-tabla-movimiento [filaTabla] = "detalleMovParaTabla" (volverTablaDatos) = "volverTablaDatos($event)" (movimientoSeleccionado) = "getMovimientoSeleccionado($event)"  ></app-tabla-movimiento>
         </div>
         
           <div *ngIf ="verDetalleItem && !cargaDatos ">

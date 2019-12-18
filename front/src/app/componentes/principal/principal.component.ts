@@ -20,6 +20,7 @@ export class PrincipalComponent implements OnInit {
   detalleMovParaTabla;
   
   
+  
   constructor(private detalleCuentas: DetalleCuentasService, private cdRef:ChangeDetectorRef) { }
 
   
@@ -62,12 +63,14 @@ export class PrincipalComponent implements OnInit {
     this.detalleCuentas.getMovimientos(this.objetoTabla['idCta']).subscribe(
       data => {
         this.detalleMovParaTabla = data
-        console.log('estos datos se van para desplegar detalle de mov', this.detalleMovParaTabla)
-        
+        console.log('estos datos se van para desplegar detalle de mov',this.detalleMovParaTabla)
+            this.verTablaDatos = true;
+            this.ocultarForm = false;
         
       })
-    this.verTablaDatos = true;
-    this.ocultarForm = false;
+      
+      this.detalleMovParaTabla;
+
     console.log('despues de apretar get filatabla ocultaform,verTablaDatos,verMov', this.ocultarForm,this.verTablaDatos,this.verMov)
     
   }
