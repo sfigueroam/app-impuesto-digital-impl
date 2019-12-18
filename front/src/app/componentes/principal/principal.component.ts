@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {DetalleCuentasService} from '../../servicios/detalle-cuentas.service';
 
@@ -9,7 +9,7 @@ import {DetalleCuentasService} from '../../servicios/detalle-cuentas.service';
 })
 export class PrincipalComponent implements OnInit {
   ocultarForm:boolean;
-  cargaDatosFinalizada:boolean = false;
+  cargaDatos:boolean;
   objetoForm:{};
   objetoTabla:{};
   verTablaDatos:boolean;
@@ -18,7 +18,8 @@ export class PrincipalComponent implements OnInit {
   movSeleccionado:{};
   movParaTabla;
   
-  constructor(private detalleCuentas: DetalleCuentasService) { }
+  
+  constructor(private detalleCuentas: DetalleCuentasService, private cdRef:ChangeDetectorRef) { }
 
   
   ngOnInit() {
@@ -26,22 +27,32 @@ export class PrincipalComponent implements OnInit {
   }
   
   estadoMostrarTabla(mostrarpantalla:boolean){
-    this.ocultarForm = mostrarpantalla
+    this.ocultarForm = !mostrarpantalla;
+    this.cargaDatos = true
     console.log('este booleano viene de inicio', mostrarpantalla)
   }
   
-  getDatosForm(objeto:{}){
+    ngAfterViewChecked()
+{
+  this.cdRef.detectChanges();
+}
   
+  getDatosForm(objeto:{}){
+    
     //aca va la llamada al servicio para cargar los datos de la tabla  
-    this.cargaDatosFinalizada = true;
     this.objetoForm = objeto;
-    console.log('datos en principal', this.objetoForm)
+    console.log('despues de apretar get items form ocultaform,verTablaDatos,verMov, cargadatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
+    // console.log('datos en principal', this.objetoForm)
     this.detalleCuentas.presentaCuentasME(this.objetoForm).subscribe(
       data => {
         this.movParaTabla = data;
         console.log(this.movParaTabla);
+        this.ocultarForm = true;
+        this.cargaDatos = false;
       })
-    // console.log('despues de apretar get items form ocultaform,verTablaDatos,verMov', this.ocultarForm,this.verTablaDatos,this.verMov)
+   
+      this.movParaTabla;
+    console.log('despues de apretar get items form ocultaform,verTablaDatos,verMov, CargaDatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
   }
   
   getDatosTable(objeto:{}){
@@ -79,12 +90,24 @@ export class PrincipalComponent implements OnInit {
   //   this.verTablaDatos = false;
   this.movSeleccionado = mov;
   this.verDetalleItem = true
-     this.verMov = true;
+  this.verMov = true;
     //console.log('despues de apretar ver item ocultaform,verTablaDatos,verMov', this.ocultarForm,this.verTablaDatos,this.verMov)
     
     console.log('movimiento recibido de tabla movimiento', this.movSeleccionado);
  
   }
+  
+  
+  // datosCargadosPrimeraTabla(booleano: boolean){
+   
+  //   // this.cargaDatos = false;
+  //   console.log('datosCargadosPrimeraTabla ocultaform,verTablaDatos,verMov, cargadatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
+  //   console.log('cargaron los datos en la tabla', booleano);
+ 
+  //   // this.verTablaDatos = false
+  //   // this.verMov = false;
+  //   // this.cargaDatos = !booleano;
+  // }
   
 
 }

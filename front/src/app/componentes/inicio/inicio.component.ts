@@ -91,6 +91,8 @@ export class InicioComponent implements OnInit {
     data['IdSistema'] = '3';
     this.mostrarTabla.emit(true);
     this.datosForm.emit(data);
+    
+   
   
 
   }
@@ -104,6 +106,8 @@ export class InicioComponent implements OnInit {
     data.fechaHasta = data.fechaHasta.replace(/\//g , "-");
     this.mostrarTabla.emit(true);
     this.datosForm.emit(data);
+    
+
   }
   
   

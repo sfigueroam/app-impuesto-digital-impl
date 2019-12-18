@@ -3,11 +3,18 @@ import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource, MatPaginator} from '@angular/material';
 import { ChangeDetectorRef } from '@angular/core';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface CuentasME {
+        position: number
+        idCta : number,
+        rutCta: number,
+        DvRutCta: string,
+        FormaCta : number,
+        FolioCta: number,
+        MonedaCta: number,
+        FechaVctoCta: Date,
+        SaldoCta: number,
+        FechaGiroCta: Date,
+        NombreContrib: string
 }
 
 @Component({
@@ -18,32 +25,23 @@ export interface PeriodicElement {
 export class TablaDatosComponent implements OnInit {
   
   
-  ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+  ELEMENT_DATA: CuentasME[] = [];
 
   
-  displayedColumns: string[] = ['select','folio', 'formulario', 'moneda', 'saldo-neto', 'fecha-venc', 'fecha-giro', 'action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
+  displayedColumns: string[] = ['select','Folio', 'Formulario', 'Moneda', 'Saldo-Neto', 'Fecha-Venc', 'Fecha-Giro', 'action'];
+  dataSource = new MatTableDataSource<CuentasME>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  selection = new SelectionModel<PeriodicElement>(true, []);
+  selection = new SelectionModel<CuentasME>(true, []);
   dataMov = {};
   elementosCheck = {};
   siguiente: boolean;
   datosFooter;
-  numeroSelec;
+  numeroSelec = '0';
   
   constructor(private cdRef:ChangeDetectorRef) { }
-  @Input() objetoForm:{};
+  @Input() datosPrincipal:{};
+  // @Output()
+  // datosPrimeraTabla = new EventEmitter<boolean>();
   @Output()
   fila = new EventEmitter<{}>();
   @Output()
@@ -52,7 +50,7 @@ export class TablaDatosComponent implements OnInit {
   
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
-    console.log(this.objetoForm);
+    console.log(this.datosPrincipal);
     // console.log(this.ELEMENT_DATA.length);
     
   }
@@ -60,11 +58,33 @@ export class TablaDatosComponent implements OnInit {
   ngAfterViewChecked()
 {
   this.datosFooter = this.cantidadSeleccionada;
+  
+  if(this.datosPrincipal != 'undefined' && (this.ELEMENT_DATA.length == 0 || this.ELEMENT_DATA.length == undefined)){
+    console.log(this.datosPrincipal);
+    this.llenarTablaMov(this.datosPrincipal);
+    console.log('llegaron los datos a la tabla 1');
+  }
+  // if(this.datosPrincipal != undefined){
+  //   console.log('ya llego el objeto');
+  // }
   this.numeroSelec = this.cantidadSeleccionada.length;
   this.cdRef.detectChanges();
 }
   
   
+  llenarTablaMov(obj:{}){
+   console.log('tengo que llenar datos con esto', obj)
+    let largoob = Object.keys(obj).length
+    for(var i = 0; i < largoob; i++){
+      console.log(obj[Object.keys(obj)[i]]);
+      let objInter =  obj[Object.keys(obj)[i]];
+      objInter['position'] = i;
+      this.ELEMENT_DATA.push(objInter); 
+    }
+    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+    console.log('datos en element data', this.ELEMENT_DATA)
+    
+  }
   
     /**  Aplica los filtros sobre la tabla */
   applyFilter(filterValue: string) {
@@ -88,7 +108,7 @@ export class TablaDatosComponent implements OnInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
+  checkboxLabel(row?: CuentasME): string {
     this.cantidadSeleccionada = this.selection.selected;
     if (!row) {
    

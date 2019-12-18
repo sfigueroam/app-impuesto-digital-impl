@@ -27,9 +27,9 @@ module.exports.handler = async (event, context, callback) => {
     // console.log("Resultado Final:", salida);
     // console.log("[FIN PROCESO]");
     let data = [{
-        "idCta" : '1234',
+        "idCta" : 1234,
         "rutCta": 18365,
-        "DvRutCta": 7,
+        "DvRutCta": '7',
         "FormaCta" : 21,
         "FolioCta": 12548,
         "MonedaCta": 3,

@@ -18,6 +18,7 @@ import { TablaMovimientoComponent } from './componentes/tabla-movimiento/tabla-m
 import { VerItemComponent } from './componentes/ver-item/ver-item.component';
 import { FooterComponent } from './componentes/footer/footer.component'
 import {DialogOverviewExampleDialog} from './componentes/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http'; 
 import {MatDialogModule} from '@angular/material';
 registerLocaleData(localeEs, 'es');
 
@@ -47,7 +48,8 @@ registerLocaleData(localeEs, 'es');
     FormsModule,
     ReactiveFormsModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   providers: [
      { provide: LOCALE_ID, useValue: 'es' },
