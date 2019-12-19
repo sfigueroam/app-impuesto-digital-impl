@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@ang
 import {environment} from '../../../environments/environment';
 import {DetalleCuentasService} from '../../servicios/detalle-cuentas.service';
 
+
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
@@ -70,7 +71,6 @@ export class PrincipalComponent implements OnInit {
       })
       
       this.detalleMovParaTabla;
-
     console.log('despues de apretar get filatabla ocultaform,verTablaDatos,verMov', this.ocultarForm,this.verTablaDatos,this.verMov)
     
   }

@@ -1,10 +1,22 @@
 import { Component, OnInit, Input, EventEmitter, Output, ChangeDetectorRef } from '@angular/core';
+import { MatTableDataSource } from '@angular/material';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface tablaMovimientos {
+  Id_cta: number;
+  Id_Mov: number;
+  Tipo_Mov: string;
+  Estado_Mov: string;
+  Fecha_Mov:string;
+  Form_Tipo:number;
+  Folio:number;
+  Moneda_Origen:number;
+  Monto_Mov: number;
+  Moneda_Pago:string;
+  Monto_Pagado:number;
+  Periodo_Contable: number;
+  Comuna: string;
+  Mov_Origen: number;
+  
 }
 
 
@@ -16,21 +28,11 @@ export interface PeriodicElement {
 export class TablaMovimientoComponent implements OnInit {
   
   
-  ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+  ELEMENT_DATA: tablaMovimientos[] = [];
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
-  dataSource = this.ELEMENT_DATA;
+  displayedColumns: string[] = ['idmov', 'movorigen', 'tipo', 'estado', 'form', 'comuna', 'version', 'folio', 'fechavenc',
+  'fechamov', 'monedaorigen', 'montomov', 'montopagado', 'action'];
+  dataSource = new MatTableDataSource<tablaMovimientos>(this.ELEMENT_DATA);
 
   constructor(private cdRef:ChangeDetectorRef) { }
   
@@ -48,9 +50,13 @@ export class TablaMovimientoComponent implements OnInit {
   
     ngAfterViewChecked()
 {
+   if(this.filaTabla != 'undefined' && (this.ELEMENT_DATA.length == 0 || this.ELEMENT_DATA.length == undefined)){
+   
+    this.llenarTablaMov(this.filaTabla);
+    console.log('llegaron los datos a la tabla 1');
+  }
   //Aca tengo que poner una condicion de si viene vacia y el tema del lenght tabla para desplegar los datos que me llegaron del back
   console.log('recibi los datos en tabla movimiento para hacer la tabla', this.filaTabla);
-
   this.cdRef.detectChanges();
 }
   
@@ -61,6 +67,25 @@ export class TablaMovimientoComponent implements OnInit {
   
   volver(){
     this.volverTablaDatos.emit(true);
+  }
+  
+  
+  llenarTablaMov(obj:{}){
+    // console.log('esta es la fila tabla que recibi', obj)
+    //   console.log('tengo que llenar datos con esto', obj)
+    let largoob = Object.keys(obj).length
+    for(var i = 0; i < largoob; i++){
+      console.log(obj[Object.keys(obj)[i]]);
+      let objInter =  obj[Object.keys(obj)[i]];
+      objInter['position'] = i+1;
+      this.ELEMENT_DATA.push(objInter); 
+    }
+    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+    console.log('datos en element data', this.ELEMENT_DATA)
+    
+    
+    
+    
   }
   
 
