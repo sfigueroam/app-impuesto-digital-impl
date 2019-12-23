@@ -16,13 +16,13 @@ provider:
     restApiId: ${self:custom.apiId}
     restApiRootResourceId: ${self:custom.apiRootId}
   environment:
-    # REST_TOKEN_GRANT_TYPE: ${self:custom.wsNube.wsGrantType}
-    # REST_TOKEN_SCOPE: ${self:custom.wsNube.wsScope}
-    # REST_TOKEN_CLIENT_ID: ${self:custom.wsNube.wsClientId}
-    # REST_TOKEN_CLIENT_SECRET: ${self:custom.wsNube.wsClientSecret}
-    # HOST_TOKEN: ${self:custom.wsNube.wsGenToken}
-    # ENV: ${self:custom.env}
-    # HOSTNUBE:  ${self:custom.wsNube.wsHostNube}
+    REST_TOKEN_GRANT_TYPE: ${self:custom.wsNube.wsGrantType}
+    REST_TOKEN_SCOPE: ${self:custom.wsNube.wsScope}
+    REST_TOKEN_CLIENT_ID: ${self:custom.wsNube.wsClientId}
+    REST_TOKEN_CLIENT_SECRET: ${self:custom.wsNube.wsClientSecret}
+    HOST_TOKEN: ${self:custom.wsNube.wsGenToken}
+    ENV: ${self:custom.env}
+    HOSTNUBE:  ${self:custom.wsNube.wsHostNube}
 
    
 package:
