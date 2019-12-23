@@ -1,7 +1,7 @@
 'use strict';
 const https = require('https');
 const querystring = require('querystring');
-const host = process.env.HOST_NUBE;
+const host = process.env.HOST_TOKEN;
 
 
 function obtenerToken(clienteId, scope, clientSecret, grantType) {

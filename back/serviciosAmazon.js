@@ -1,5 +1,6 @@
 const https = require('https');
-const hostService = process.env.endpoint;
+// const hostService = process.env.HOSTNUBE;
+const hostService = "jx1wukpm36.execute-api.us-east-1.amazonaws.com";
 
 
 function consultaCuentaMonex(id, token) {
@@ -9,7 +10,9 @@ function consultaCuentaMonex(id, token) {
                 //hostname: host,
                 hostname: hostService,
                 port: 443,
-                path:  "/" + process.env.ENV + '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1' +
+                // path:  "/" + process.env.ENV + '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1' +
+                // '&in_id_sistema=1&in_cliente_tipo=1&in_rut_rol=' + id  ,
+                path:  "/" + 'dev' + '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1' +
                 '&in_id_sistema=1&in_cliente_tipo=1&in_rut_rol=' + id  ,
                 method: 'GET',
                 rejectUnauthorized: false,
