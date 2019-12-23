@@ -1,8 +1,8 @@
 'use strict';
 const https = require('https');
 const querystring = require('querystring');
-const host = process.env.HOST_TOKEN;
-
+// const host = process.env.HOST_TOKEN;
+const host = "id-dev.tegere.info";
 
 function obtenerToken(clienteId, scope, clientSecret, grantType) {
     return new Promise((resolve, reject) => {
