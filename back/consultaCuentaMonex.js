@@ -3,7 +3,7 @@ const servAmazon = require('./serviciosAmazon');
 const genToken = require('./genToken');
 
 module.exports.handler = async (event, context, callback) => {
-
+    console.log(event);
     var In = JSON.parse(event.body);
     var rut = In['data']['identificacion']
     
