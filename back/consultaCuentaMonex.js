@@ -15,15 +15,10 @@ module.exports.handler = async (event, context, callback) => {
 
     console.log("[INICIO PROCESO] Iniciando consulta a servicios");
     
-    // let clienteId = process.env.REST_TOKEN_CLIENT_ID;
-    // let scope = process.env.REST_TOKEN_SCOPE;
-    // let clientSecret = process.env.REST_TOKEN_CLIENT_SECRET;
-    // let grantType = process.env.REST_TOKEN_GRANT_TYPE;
-    
-    let clienteId = '4i65ld3cq12ddnp2th47g359os';
-    let scope =  "tgr-dev-api-servicios-cut/all";
-    let clientSecret = "67gpaamp8fp5387o6gfke7op4nt11dpfll94portn907sh6fpa";
-    let grantType = "client_credentials";
+    let clienteId = process.env.REST_TOKEN_CLIENT_ID;
+    let scope = process.env.REST_TOKEN_SCOPE;
+    let clientSecret = process.env.REST_TOKEN_CLIENT_SECRET;
+    let grantType = process.env.REST_TOKEN_GRANT_TYPE;
     
     
     let token;
@@ -39,29 +34,6 @@ module.exports.handler = async (event, context, callback) => {
     console.log("Resultado Final:", salida);
     console.log("[FIN PROCESO]");
     
-    
-    // let data = [{
-    //     "idCta" : 1234,
-    //     "rutCta": 18365,
-    //     "DvRutCta": '7',
-    //     "FormaCta" : 21,
-    //     "FolioCta": 12548,
-    //     "MonedaCta": 3,
-    //     "FechaVctoCta": '2019-11-21',
-    //     "SaldoCta": 300,
-    //     "FechaGiroCta": '2019-10-12',
-    //     "NombreContrib": 'Importadora Smith'
-    // },
-    // { "idCta" : '789',
-    //     "rutCta": 987,
-    //     "DvRutCta": 4,
-    //     "FormaCta" : 3,
-    //     "FolioCta": 487,
-    //     "MonedaCta": 3,
-    //     "FechaVctoCta": '2019-11-14',
-    //     "SaldoCta": 9788,
-    //     "FechaGiroCta": '2019-10-18',
-    //     "NombreContrib": 'Importadora Smith'}]
 
     const response = {
         statusCode: 201,

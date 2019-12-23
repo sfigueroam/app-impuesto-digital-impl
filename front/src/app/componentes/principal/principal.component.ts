@@ -59,14 +59,17 @@ export class PrincipalComponent implements OnInit {
   }
   
   getDatosTable(objeto:{}){
+    this.cargaDatos = true
+    this.ocultarForm = false;
     this.objetoTabla = objeto;
     console.log('objeto recibido de la tabla', this.objetoTabla)
-    this.detalleCuentas.getMovimientos(this.objetoTabla['idCta']).subscribe(
+    this.detalleCuentas.getMovimientos(this.objetoTabla['id']).subscribe(
       data => {
         this.detalleMovParaTabla = data
         console.log('estos datos se van para desplegar detalle de mov',this.detalleMovParaTabla)
             this.verTablaDatos = true;
             this.ocultarForm = false;
+            this.cargaDatos = false;
         
       })
       
