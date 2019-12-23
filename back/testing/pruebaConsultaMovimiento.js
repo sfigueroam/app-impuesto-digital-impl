@@ -7,11 +7,11 @@ process.env.HOST_NUBE = "id-dev.tegere.info";
 process.env.endpoint = "zop1awucw7.execute-api.us-east-1.amazonaws.com"
 process.env.BUCKET_NAME="tgr-dev-api-certificados-data";
 process.env.ENV="dev";
-const crear = require('../getCertificate');
+const crear = require('../consultaMovimiento');
 
 
 console.log('Inicio de funcion');
-let event = {"pathParameters": {"idCert":"141106265ra0lDZhcdco"}}; // json entrada para buscar certificado
+let event = {"pathParameters": {"mov":"29674"}}; // json entrada para buscar certificado
 
 //nube:1AWS14110612w0jtpEiRE-cdcp
 
