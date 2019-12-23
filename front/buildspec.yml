@@ -4,7 +4,8 @@ phases:
         commands:
             - cd front
             - touch ${CODEBUILD_SRC_DIR}/front/src/environments/environment.ts
-            - cp ${CODEBUILD_SRC_DIR}/front/src/environments/environment.ts ${CODEBUILD_SRC_DIR}/front/src/environments/environment.prod.ts 
+            - cp ${CODEBUILD_SRC_DIR}/front/src/environments/environment.ts ${CODEBUILD_SRC_DIR}/front/src/environments/environment.prod.ts
+            - sed -i "s;BUILD_API_ENDPOINT;${BUILD_API_ENDPOINT};g" ${CODEBUILD_SRC_DIR}/front/src/environments/environment.prod.ts
             - sudo apt-get update -y
             - npm install -g @angular/cli@6.0.8
             - npm install
