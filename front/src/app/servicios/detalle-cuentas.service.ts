@@ -11,13 +11,13 @@ export class DetalleCuentasService {
   
 
    presentaCuentasME(dataJson): Observable <any> {
-      const urlTramite = environment.apiNube + 'impdigital/presentaCuentasME';
+      const urlTramite = environment.apiNube + '/impdigital/presentaCuentasME';
       return this.http.post(urlTramite, JSON.stringify(dataJson));
     }
     
     
      getMovimientos(idMov): Observable <any> {
-      const urlTramite = environment.apiNube + 'impdigital/presentaMovsME/' + idMov;
+      const urlTramite = environment.apiNube + '/impdigital/presentaMovsME/' + idMov;
       return this.http.get(urlTramite);
     }
 }
