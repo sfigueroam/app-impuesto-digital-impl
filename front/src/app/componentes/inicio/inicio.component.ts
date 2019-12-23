@@ -33,18 +33,18 @@ export class InicioComponent implements OnInit {
     
     this.forma = fb.group({
       identificacion: ['', [Validators.required, rutValidator, Validators.maxLength(10)]],
-      formulario: ['', [Validators.required, Validators.maxLength(3), Validators.pattern('^[0-9]*$')]],
-      fechaDesde : [{disable:true, value: ''}],
-      fechaHasta: [{disable:true, value: ''}],
-      saldo:['',Validators.required]
+      formulario: ['', [Validators.maxLength(3), Validators.pattern('^[0-9]*$')]],
+      fechaDesde : [''],
+      fechaHasta: [''],
+      saldo:['']
     });
     
       this.formaFolio = fb.group({
       folio: ['', [Validators.required, Validators.maxLength(11)]],
-      formulario: ['', [Validators.required, Validators.maxLength(3), Validators.pattern('^[0-9]*$')]],
-      fechaDesde : [{disable:true, value: ''}],
-      fechaHasta: [{disable:true, value: ''}],
-      saldo:['',Validators.required]
+      formulario: ['', [Validators.maxLength(3), Validators.pattern('^[0-9]*$')]],
+      fechaDesde : [''],
+      fechaHasta: [''],
+      saldo:['',]
     });
     
     
