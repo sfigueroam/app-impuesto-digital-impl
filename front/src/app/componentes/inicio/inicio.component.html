@@ -9,6 +9,7 @@
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Formulario" formControlName ="formulario">
     <mat-error *ngIf="forma?.get('formulario').hasError('required')">Debe Ingresar un Formulario</mat-error>
+    <mat-error *ngIf="forma?.get('formulario').hasError('maxlength')">Máximo 3 caracteres</mat-error>
   </mat-form-field>
   <mat-form-field>
   <input matInput readonly [matDatepicker]="pickerdesde" placeholder="Desde" formControlName = "fechaDesde" data-date-format="YYYY MMMM DD" >
@@ -54,6 +55,7 @@
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Formulario" formControlName ="formulario">
     <mat-error *ngIf="formaFolio?.get('formulario').hasError('required')">Debe Ingresar un Formulario</mat-error>
+        <mat-error *ngIf="forma?.get('formulario').hasError('maxlength')">Máximo 3 caracteres</mat-error>
   </mat-form-field>
   <mat-form-field>
   <input matInput readonly [matDatepicker]="pickerdesdefolio" placeholder="Desde" formControlName = "fechaDesde" data-date-format="DD MMMM YYYY" >
@@ -78,6 +80,10 @@
     </mat-option>
       <mat-option value = "acreedor">
       Acreedor
+    </mat-option>
+    
+    <mat-option value = "0">
+      0
     </mat-option>
   </mat-select>
 </mat-form-field>
