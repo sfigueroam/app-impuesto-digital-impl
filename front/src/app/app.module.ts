@@ -20,6 +20,10 @@ import { FooterComponent } from './componentes/footer/footer.component'
 import {DialogOverviewExampleDialog} from './componentes/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import {MatDialogModule} from '@angular/material';
+import { CookieService } from 'ngx-cookie-service';
+import { AutenticaComponent } from './componentes/autentica/autentica.component';
+import { LoginComponent } from './componentes/login/login.component';
+import { LogoutComponent } from './componentes/logout/logout.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -33,6 +37,9 @@ registerLocaleData(localeEs, 'es');
     VerItemComponent,
     FooterComponent,
     DialogOverviewExampleDialog,
+    AutenticaComponent,
+    LoginComponent,
+    LogoutComponent,
     
   ],
   
@@ -53,6 +60,7 @@ registerLocaleData(localeEs, 'es');
   ],
   providers: [
      { provide: LOCALE_ID, useValue: 'es' },
+     CookieService
      ],
   bootstrap: [AppComponent]
 })
