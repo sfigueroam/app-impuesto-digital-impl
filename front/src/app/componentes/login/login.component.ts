@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     
     this.exp = this.cognito.getExpirationDate();
     this.userdataservice.loggeado = true;
-    this.router.navigate(['generarCertificado']);
+    this.router.navigate(['']);
   }
 
 }
