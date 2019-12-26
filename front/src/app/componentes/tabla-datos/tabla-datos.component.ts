@@ -82,6 +82,7 @@ export class TablaDatosComponent implements OnInit {
       this.ELEMENT_DATA.push(objInter); 
     }
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+     this.dataSource.paginator = this.paginator;
     console.log('datos en element data', this.ELEMENT_DATA)
     
   }
