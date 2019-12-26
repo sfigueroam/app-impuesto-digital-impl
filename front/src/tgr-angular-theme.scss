@@ -1,0 +1,110 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$tgr-blue: (
+  50: #8794d7,
+  100: #6e7dcf,
+  200: #5163c5,
+  300: #3c4fb4,
+  400: #35469f,
+  500: #2f3c89,
+  600: #2a377d,
+  700: #25306e,
+  800: #1e2658,
+  900: #161d42,
+  A100: #6e7dcf,
+  A200: #3f53bd,
+  A400: #2a377e,
+  A700: #25306e,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$tgr-lightblue: (
+  50: #a9c7fa,
+  100: #97baf8,
+  200: #80abf6,
+  300: #6c9ff5,
+  400: #5e95f5,
+  500: #448aff,
+  600: #4483f4,
+  700: #397ef4,
+  800: #2e65c3,
+  900: #1967f1,
+  A100: #97baf8,
+  A200: #74a3f6,
+  A400: #4584f4,
+  A700: #397ef4,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$tgr-red: (
+  50: #e56a74,
+  100: #e25c67,
+  200: #e04d59,
+  300: #dd3f4b,
+  400: #db3441,
+  500: #df2b34,
+  600: #d52735,
+  700: #cc2533,
+  800: #a31e29,
+  900: #b5212d,
+  A100: #e25c67,
+  A200: #de4451,
+  A400: #d52735,
+  A700: #cc2533,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+
+$tgr-primary-color: mat-palette($tgr-blue);
+$tgr-accent-accent: mat-palette($tgr-lightblue, A200, A100, A400);
+$tgr-accent-warn: mat-palette($tgr-red);
+
+$tgr-theme: mat-light-theme($tgr-primary-color, $tgr-accent-accent, $tgr-accent-warn);
+
+@include angular-material-theme($tgr-theme);

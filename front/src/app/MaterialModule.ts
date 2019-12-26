@@ -11,9 +11,7 @@ import {MatNativeDateModule} from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
-
-
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -22,13 +20,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     imports: [
             MatButtonModule, MatRadioModule, MatInputModule, MatSlideToggleModule,
             MatProgressSpinnerModule, MatCheckboxModule,MatTabsModule,MatDatepickerModule,MatNativeDateModule,
-            MatSelectModule,MatPaginatorModule,MatFormFieldModule
+            MatSelectModule,MatPaginatorModule,MatFormFieldModule, MatCardModule
             ],
 
     exports: [
         MatButtonModule, MatRadioModule, MatInputModule, MatSlideToggleModule,
         MatProgressSpinnerModule, MatCheckboxModule,MatTabsModule,MatDatepickerModule,MatNativeDateModule,
-        MatSelectModule,MatPaginatorModule, MatFormFieldModule
+        MatSelectModule,MatPaginatorModule, MatFormFieldModule, MatCardModule
         ],
   })
 

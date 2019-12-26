@@ -1,4 +1,68 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Styles */
+@import 'tgr_material.css';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Etiquetas HTML */
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: #EAEFF5;
+    margin: 0 auto;
+}
+
+h1{
+    font-family: "Montserrat", sans-serif !important;
+    font-size:20px !important;
+    color:#2f3c89;
+    margin-top:10px !important;
+}
+
+/* Estilos TGR */
+
+.mat-card-title{
+    font-size:16px !important;
+    color:#757575;
+    margin:0 auto;
+    font-weight: 300 !important;
+}
+
+.mat-card-header{
+    justify-content: center;
+}
+
+.mat-form-field{
+    width: 60%!important; 
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.tgr-tab-label {
+    position: absolute;
+    top:70px;
+    left:40px;
+    font-weight:bold;
+    color: #2f3c89;
+    font-size:15px;
+}
+
+// .tgr-columna{
+//     flex-direction: column !important;
+//     flex-wrap: nowrap;
+// }
+
+.tgr-center{
+    margin:0 auto;
+}
+
+.tgr-content-center{
+    text-align:center;
+}
+
+.tgr-center-titulo{
+    text-align:center !important;
+}
+
