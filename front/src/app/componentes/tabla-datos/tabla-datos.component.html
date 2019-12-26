@@ -1,4 +1,23 @@
-<button mat-button (click) = volver()> Volver</button>
+<div class="mdl-grid">
+  
+  
+  <div class="mdl-cell mdl-cell--12-col mdl-typography--text-center">
+    <h1>Impuestos<strong> Digitales</strong></h1>
+  </div>  
+
+<mat-card class="tgr-center tgr-content-center mdl-cell--9-col">
+  
+  <mat-card-header>
+    <mat-card-title>CONSULTA DE CUENTAS MONEX</mat-card-title>
+    
+    <mat-card-title class="tgr_datos_rut">Jose Andres Araya Lopez │ <strong>RUT: 20.999.999-9</strong></mat-card-title>
+    
+  </mat-card-header>
+  
+  <mat-card-content class="tgr_bottom">  
+
+<button class="tgr_volver" mat-button (click) = volver()><i class="material-icons">chevron_left</i>Volver</button>
+
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar en la Tabla">
 </mat-form-field>
@@ -78,6 +97,14 @@
 </table>
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
+</mat-card-content>
+
+</mat-card>
+
+</div>
+
 <div>
      <app-footer [idGiros] = "datosFooter" [Ngiros] = "numeroSelec" ></app-footer>
 </div>
+
+

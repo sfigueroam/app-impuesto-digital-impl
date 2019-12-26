@@ -49,6 +49,31 @@ h1{
     font-size:15px;
 }
 
+.tgr_top {
+    margin-top:20px;
+}
+
+.tgr_bottom {
+    margin-bottom:20px !important;
+}
+
+.tgr_volver{
+    color:#aaaaaa !important;
+    position:absolute;
+}
+
+.tgr_datos_rut{
+    color:#2f3c89;
+    font-size:18px !important;
+    font-family: "Montserrat", sans-serif !important;
+    padding-top:10px !important;
+}
+
+.mat-table{
+    border:rgba(0, 0, 0, 0.12) solid 1px !important;
+    box-shadow: none !important;
+}
+
 // .tgr-columna{
 //     flex-direction: column !important;
 //     flex-wrap: nowrap;

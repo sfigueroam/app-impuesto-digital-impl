@@ -12,13 +12,13 @@
     <mat-card-title>CONSULTA DE CUENTAS MONEX</mat-card-title>
   </mat-card-header>
   
-  <mat-card-content>
+  <mat-card-content class="tgr_bottom">
   
   <span class="tgr-tab-label">Buscar por: </span>
   <mat-tab-group mat-align-tabs="end">
     
   <mat-tab label="RUT">
-    <form class="tgr-tab-form" [formGroup] = "forma" (ngSubmit) = "setDataRut()" novalidate = "novalidate">
+    <form class="tgr-tab-form tgr_top" [formGroup] = "forma" (ngSubmit) = "setDataRut()" novalidate = "novalidate">
                 
       <mat-form-field>
         <input matInput placeholder="RUT" name = rut formControlName ="identificacion" formatRut required validateRut required>
@@ -33,20 +33,20 @@
       <div class="tgr_date_picker">
         
             <h4>Fecha de vencimiento</h4>
-      
+            
+            <mat-form-field>
+              <input matInput readonly [matDatepicker]="pickerhasta" placeholder="Hasta" formControlName = "fechaHasta" (dateChange) = "pruebainputRut()">
+              <!--<mat-error *ngIf="forma?.get('fechaHasta').hasError('required')">Debe Ingresar una fecha</mat-error>-->
+              <!--<mat-error *ngIf="forma?.get('fechaHasta').hasError('incorrect')">Debe Ingresar una fecha menor a la anterior</mat-error>-->
+              <mat-datepicker-toggle matSuffix [for]="pickerhasta"></mat-datepicker-toggle>
+              <mat-datepicker #pickerhasta></mat-datepicker>
+            </mat-form-field>
+            
             <mat-form-field>
               <input matInput readonly [matDatepicker]="pickerdesde" placeholder="Desde" formControlName = "fechaDesde" data-date-format="YYYY MMMM DD" >
               <!--<mat-error *ngIf="forma?.get('fechaDesde').hasError('required')">Debe Ingresar una fecha</mat-error>-->
               <mat-datepicker-toggle matSuffix [for]="pickerdesde"></mat-datepicker-toggle>
               <mat-datepicker #pickerdesde ></mat-datepicker>
-            </mat-form-field>
-                  
-            <mat-form-field>
-              <input matInput readonly [matDatepicker]="pickerhasta" placeholder="hasta" formControlName = "fechaHasta" (dateChange) = "pruebainputRut()">
-              <!--<mat-error *ngIf="forma?.get('fechaHasta').hasError('required')">Debe Ingresar una fecha</mat-error>-->
-              <!--<mat-error *ngIf="forma?.get('fechaHasta').hasError('incorrect')">Debe Ingresar una fecha menor a la anterior</mat-error>-->
-              <mat-datepicker-toggle matSuffix [for]="pickerhasta"></mat-datepicker-toggle>
-              <mat-datepicker #pickerhasta></mat-datepicker>
             </mat-form-field>
       
       </div>
@@ -69,7 +69,7 @@
             
   <mat-tab label="Folio">
     
-      <form class="tgr-tab-form" [formGroup] = "formaFolio" (ngSubmit) = "setDataFolio()" novalidate = "novalidate">
+      <form class="tgr-tab-form tgr_top" [formGroup] = "formaFolio" (ngSubmit) = "setDataFolio()" novalidate = "novalidate">
         
         <mat-form-field>
           <input matInput placeholder="Folio"  formControlName ="folio" required>
@@ -84,20 +84,20 @@
         <div class="tgr_date_picker">
           
           <h4>Fecha de vencimiento</h4>
+          
+          <mat-form-field>
+            <input matInput readonly [matDatepicker]="pickerhastafolio" placeholder="Hasta" formControlName = "fechaHasta" (dateChange) = "pruebainput()" >
+            <!--<mat-error *ngIf="forma?.get('fechaHasta').hasError('required')">Debe Ingresar una fecha</mat-error>-->
+            <mat-error *ngIf="formaFolio?.get('fechaHasta').hasError('incorrect')">Debe Ingresar una fecha menor a la anterior</mat-error>
+            <mat-datepicker-toggle matSuffix [for]="pickerhastafolio" ></mat-datepicker-toggle>
+            <mat-datepicker #pickerhastafolio ></mat-datepicker>
+          </mat-form-field>
               
           <mat-form-field>
             <input matInput readonly [matDatepicker]="pickerdesdefolio" placeholder="Desde" formControlName = "fechaDesde" data-date-format="DD MMMM YYYY" >
             <!--<mat-error *ngIf="formaFolio?.get('fechaDesde').hasError('required')">Debe Ingresar una fecha</mat-error>-->
             <mat-datepicker-toggle matSuffix [for]="pickerdesdefolio"></mat-datepicker-toggle>
             <mat-datepicker #pickerdesdefolio></mat-datepicker>
-          </mat-form-field>
-            
-          <mat-form-field>
-            <input matInput readonly [matDatepicker]="pickerhastafolio" placeholder="hasta" formControlName = "fechaHasta" (dateChange) = "pruebainput()" >
-            <!--<mat-error *ngIf="forma?.get('fechaHasta').hasError('required')">Debe Ingresar una fecha</mat-error>-->
-            <mat-error *ngIf="formaFolio?.get('fechaHasta').hasError('incorrect')">Debe Ingresar una fecha menor a la anterior</mat-error>
-            <mat-datepicker-toggle matSuffix [for]="pickerhastafolio" ></mat-datepicker-toggle>
-            <mat-datepicker #pickerhastafolio ></mat-datepicker>
           </mat-form-field>
             
         </div>      
@@ -116,7 +116,7 @@
             
         </form>
             
-        <button class="mdl-button tgr-button-action" (click) = setDataFolio(); [disabled] = !botonBuscar >Buscar </button>
+        <button class="mdl-button tgr-button-action" (click) = setDataFolio(); [disabled] = !botonBuscar ><i class="material-icons">search</i> Buscar</button>
             
     </mat-tab>
   </mat-tab-group>  
