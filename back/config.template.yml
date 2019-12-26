@@ -5,13 +5,12 @@ role: BUILD_LAMBDA_ROLE_ARN
 accessControlAllowOrigin: "*"
 apiId: BUILD_API_ID
 apiRootId: BUILD_API_ROOT_ID
-
 # Para el servicio de deudas
-# wsTierra:
-#     wsGrantType: BUILD_WST_GRANT_TYPE
-#     wsClientSecret: BUILD_WST_CLIENT_SECRET
-#     wsClientId: BUILD_WST_CLIENT_ID
-#     wsScope: BUILD_WST_SCOPE
-#     wsHost: BUILD_WST_HOST
-#     wsHostNube: BUILD_WSN_HOST
+wsNube:
+    wsGrantType: BUILD_WSN_GRANT_TYPE
+    wsClientSecret: BUILD_WSN_CLIENT_SECRET
+    wsClientId: BUILD_WSN_CLIENT_ID
+    wsScope: BUILD_WSN_SCOPE
+    wsGenToken: BUILD_WSN_HOST_TOKEN
+    wsHostNube: BUILD_WSN_HOST
 

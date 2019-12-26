@@ -1,3 +1,4 @@
+
 <div class="mdl-grid">
   
   
@@ -26,7 +27,7 @@
               
       <mat-form-field>
         <input matInput placeholder="Formulario" formControlName ="formulario">
-        <mat-error *ngIf="forma?.get('formulario').hasError('required')">Debe Ingresar un Formulario</mat-error>
+        <!--<mat-error *ngIf="forma?.get('formulario').hasError('required')">Debe Ingresar un Formulario</mat-error>-->
       </mat-form-field>
               
       <div class="tgr_date_picker">
@@ -35,15 +36,15 @@
       
             <mat-form-field>
               <input matInput readonly [matDatepicker]="pickerdesde" placeholder="Desde" formControlName = "fechaDesde" data-date-format="YYYY MMMM DD" >
-              <mat-error *ngIf="forma?.get('fechaDesde').hasError('required')">Debe Ingresar una fecha</mat-error>
+              <!--<mat-error *ngIf="forma?.get('fechaDesde').hasError('required')">Debe Ingresar una fecha</mat-error>-->
               <mat-datepicker-toggle matSuffix [for]="pickerdesde"></mat-datepicker-toggle>
               <mat-datepicker #pickerdesde ></mat-datepicker>
             </mat-form-field>
                   
             <mat-form-field>
               <input matInput readonly [matDatepicker]="pickerhasta" placeholder="hasta" formControlName = "fechaHasta" (dateChange) = "pruebainputRut()">
-              <mat-error *ngIf="forma?.get('fechaHasta').hasError('required')">Debe Ingresar una fecha</mat-error>
-              <mat-error *ngIf="forma?.get('fechaHasta').hasError('incorrect')">Debe Ingresar una fecha menor a la anterior</mat-error>
+              <!--<mat-error *ngIf="forma?.get('fechaHasta').hasError('required')">Debe Ingresar una fecha</mat-error>-->
+              <!--<mat-error *ngIf="forma?.get('fechaHasta').hasError('incorrect')">Debe Ingresar una fecha menor a la anterior</mat-error>-->
               <mat-datepicker-toggle matSuffix [for]="pickerhasta"></mat-datepicker-toggle>
               <mat-datepicker #pickerhasta></mat-datepicker>
             </mat-form-field>
@@ -77,7 +78,7 @@
               
         <mat-form-field>
            <input matInput placeholder="Formulario" formControlName ="formulario">
-           <mat-error *ngIf="formaFolio?.get('formulario').hasError('required')">Debe Ingresar un Formulario</mat-error>
+           <!--<mat-error *ngIf="formaFolio?.get('formulario').hasError('required')">Debe Ingresar un Formulario</mat-error>-->
         </mat-form-field>
         
         <div class="tgr_date_picker">
@@ -86,14 +87,14 @@
               
           <mat-form-field>
             <input matInput readonly [matDatepicker]="pickerdesdefolio" placeholder="Desde" formControlName = "fechaDesde" data-date-format="DD MMMM YYYY" >
-            <mat-error *ngIf="formaFolio?.get('fechaDesde').hasError('required')">Debe Ingresar una fecha</mat-error>
+            <!--<mat-error *ngIf="formaFolio?.get('fechaDesde').hasError('required')">Debe Ingresar una fecha</mat-error>-->
             <mat-datepicker-toggle matSuffix [for]="pickerdesdefolio"></mat-datepicker-toggle>
             <mat-datepicker #pickerdesdefolio></mat-datepicker>
           </mat-form-field>
             
           <mat-form-field>
             <input matInput readonly [matDatepicker]="pickerhastafolio" placeholder="hasta" formControlName = "fechaHasta" (dateChange) = "pruebainput()" >
-            <mat-error *ngIf="forma?.get('fechaHasta').hasError('required')">Debe Ingresar una fecha</mat-error>
+            <!--<mat-error *ngIf="forma?.get('fechaHasta').hasError('required')">Debe Ingresar una fecha</mat-error>-->
             <mat-error *ngIf="formaFolio?.get('fechaHasta').hasError('incorrect')">Debe Ingresar una fecha menor a la anterior</mat-error>
             <mat-datepicker-toggle matSuffix [for]="pickerhastafolio" ></mat-datepicker-toggle>
             <mat-datepicker #pickerhastafolio ></mat-datepicker>
@@ -127,7 +128,6 @@
 </div>
 
 
-    
 
         
 
