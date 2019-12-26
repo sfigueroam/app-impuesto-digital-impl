@@ -6,6 +6,10 @@ import {TablaDatosComponent} from 'src/app/componentes/tabla-datos/tabla-datos.c
 import {TablaMovimientoComponent} from 'src/app/componentes/tabla-movimiento/tabla-movimiento.component';
 import {VerItemComponent} from 'src/app/componentes/ver-item/ver-item.component';
 import {FooterComponent} from 'src/app/componentes/footer/footer.component';
+import { AutenticaComponent } from './componentes/autentica/autentica.component';
+import { LoginComponent } from './componentes/login/login.component';
+import { LogoutComponent } from './componentes/logout/logout.component';
+
 
 const routes: Routes = [
  {path: '', component: PrincipalComponent},
@@ -13,6 +17,9 @@ const routes: Routes = [
  {path: 'tablamov', component: TablaMovimientoComponent},
  {path: 'item', component: VerItemComponent},
  {path: 'footer', component: FooterComponent},
+ {path:"autentica", component:AutenticaComponent},
+ {path:"login", component:LoginComponent},
+ {path:"logout", component:LogoutComponent},
   ];
 
 @NgModule({
