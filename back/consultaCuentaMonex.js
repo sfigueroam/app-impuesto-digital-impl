@@ -48,7 +48,7 @@ function send(httpCode, resultado, callback) {
     }; 
  
     if (httpCode) { 
-        response.data = JSON.stringify(resultado); 
+        response.body = JSON.stringify(resultado); 
         
     }
     console.log('ests es la rpta', response);

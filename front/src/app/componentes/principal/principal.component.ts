@@ -48,7 +48,7 @@ export class PrincipalComponent implements OnInit {
     // console.log('datos en principal', this.objetoForm)
     this.detalleCuentas.presentaCuentasME(this.objetoForm).subscribe(
       data => {
-        this.movParaTabla = data;
+        this.movParaTabla = data.data;
         console.log(this.movParaTabla);
         this.ocultarForm = true;
         this.cargaDatos = false;
@@ -65,7 +65,7 @@ export class PrincipalComponent implements OnInit {
     console.log('objeto recibido de la tabla', this.objetoTabla)
     this.detalleCuentas.getMovimientos(this.objetoTabla['id']).subscribe(
       data => {
-        this.detalleMovParaTabla = data;
+        this.detalleMovParaTabla = data.data;
         console.log('estos datos se van para desplegar detalle de mov',this.detalleMovParaTabla)
             this.verTablaDatos = true;
             this.ocultarForm = false;
