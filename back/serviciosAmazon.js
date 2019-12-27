@@ -5,6 +5,11 @@ const hostService = process.env.HOSTNUBE;
 
 function consultaCuentaMonex(id, token) {
     return new Promise((resolve, reject) => {
+        
+    var respServicio = {
+      codeStatus: "",
+      respuesta: ""
+    };
 
             let options = {
                 //hostname: host,
@@ -26,7 +31,7 @@ function consultaCuentaMonex(id, token) {
             let req = https.request(options, (res) => {
                 
                     console.log('Respuesta servicio tierra statusCode:', res.statusCode);
-                   
+                   respServicio.codeStatus = res.statusCode
                     if( res.statusCode != 200 && res.statusCode != 201){
                         console.log("Error al tratar de consumir el servicio tierra");
                         return("Por el momento no podemos atender su consulta");
@@ -43,8 +48,9 @@ function consultaCuentaMonex(id, token) {
 
             req.on('close', () => {
                 let salida = JSON.parse(respuesta);
+                respServicio.respuesta = salida
                 //----------------------------Corregir salida en servicio web--------------------------------------//
-                resolve(salida);
+                resolve(respServicio);
             });
             req.end();
         })
