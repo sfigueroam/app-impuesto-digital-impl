@@ -5,7 +5,7 @@
     <h1>Impuestos<strong> Digitales</strong></h1>
   </div>  
 
-<mat-card class="tgr-center tgr-content-center mdl-cell--9-col">
+<mat-card class="tgr-center tgr-content-center mdl-cell--8-col">
   
   <mat-card-header>
     <mat-card-title>CONSULTA DE CUENTAS MONEX</mat-card-title>
@@ -30,14 +30,16 @@
       <mat-checkbox (change)="$event ? masterToggle() : null"
                     [checked]="selection.hasValue() && isAllSelected()"
                     [indeterminate]="selection.hasValue() && !isAllSelected()"
-                    [aria-label]="checkboxLabel()">
+                    [aria-label]="checkboxLabel()"
+                    color="primary">
       </mat-checkbox>
     </th>
     <td mat-cell *matCellDef="let row">
       <mat-checkbox (click)="$event.stopPropagation()"
                     (change)="$event ? selection.toggle(row) : null"
                     [checked]="selection.isSelected(row)"
-                    [aria-label]="checkboxLabel(row)">
+                    [aria-label]="checkboxLabel(row)"
+                    color="primary">
       </mat-checkbox>
     </td>
   </ng-container>
@@ -45,7 +47,7 @@
    Position Column 
   <ng-container matColumnDef="Folio">
     <th mat-header-cell *matHeaderCellDef> Folio </th>
-    <td mat-cell *matCellDef="let element"> {{element.formFolio}} </td>
+    <td mat-cell *matCellDef="let element"> <strong>{{element.formFolio}}</strong> </td>
   </ng-container>
 
    Name Column 

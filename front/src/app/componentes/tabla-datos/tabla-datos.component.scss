@@ -1,3 +1,46 @@
 table {
   width: 100%;
 }
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-header-row{
+  background:#2F3C89;
+  height: 35px;
+}
+
+.mat-header-cell{
+  color:white;
+  font-weight:300;
+}
+
+td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:last-of-type{
+  padding-right: 0;
+}
+
+td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type{
+  padding-left: 5px;
+}
+
+.mat-checkbox-inner-container{
+  background:white;
+  border-radius:3px;
+}
+
+.mat-checkbox-inner-container-no-side-margin{
+  margin-top:3px !important;
+}
+
+.tgr_volver{
+    color:#aaaaaa !important;
+    position:absolute;
+    top: 10px;
+    left: 0;
+}
+
+th.mat-header-cell {
+  text-align: center;
+}
