@@ -28,20 +28,26 @@ module.exports.handler = async (event, context, callback) => {
     console.log("Resultado Final:", salida);
     console.log("[FIN PROCESO]");
 
+    send(salida.codeStatus,salida.respuesta,callback)
     
 
-    const response = {
-        statusCode: 201,
-        body: JSON.stringify(salida),
-        headers: {
-            "Access-Control-Allow-Origin": "*", // Required for CORS support to work
-            "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        }
-    };
-
-    console.log('tgr-certificado-api createCertificado', 'response', response);
-    callback(null, response);
+function send(httpCode, resultado, callback) { 
+    const response = { 
+        statusCode: httpCode, 
+        headers: { 
+            "Access-Control-Allow-Origin": "*", // Required for CORS support to work 
+            "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS 
+            'Accept': 'application/json, text/plain, */*', 
+            'Content-Type': 'application/json' 
+        } 
+    }; 
+ 
+    if (httpCode) { 
+        response.body = JSON.stringify(resultado); 
+        
+    }
+    console.log('ests es la rpta', response);
+    callback(null, response); 
+}
 
 };
