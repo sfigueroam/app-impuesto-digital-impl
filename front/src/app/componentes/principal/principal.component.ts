@@ -48,7 +48,7 @@ export class PrincipalComponent implements OnInit {
     // console.log('datos en principal', this.objetoForm)
     this.detalleCuentas.presentaCuentasME(this.objetoForm).subscribe(
       data => {
-        this.movParaTabla = data;
+        this.movParaTabla = data.respuesta;
         console.log(this.movParaTabla);
         this.ocultarForm = true;
         this.cargaDatos = false;
