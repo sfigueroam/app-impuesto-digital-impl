@@ -48,7 +48,7 @@ export class PrincipalComponent implements OnInit {
     // console.log('datos en principal', this.objetoForm)
     this.detalleCuentas.presentaCuentasME(this.objetoForm).subscribe(
       data => {
-        this.movParaTabla = data.respuesta;
+        this.movParaTabla = data;
         console.log(this.movParaTabla);
         this.ocultarForm = true;
         this.cargaDatos = false;
@@ -65,7 +65,7 @@ export class PrincipalComponent implements OnInit {
     console.log('objeto recibido de la tabla', this.objetoTabla)
     this.detalleCuentas.getMovimientos(this.objetoTabla['id']).subscribe(
       data => {
-        this.detalleMovParaTabla = data.respuesta
+        this.detalleMovParaTabla = data;
         console.log('estos datos se van para desplegar detalle de mov',this.detalleMovParaTabla)
             this.verTablaDatos = true;
             this.ocultarForm = false;
@@ -110,18 +110,6 @@ export class PrincipalComponent implements OnInit {
     console.log('movimiento recibido de tabla movimiento', this.movSeleccionado);
  
   }
-  
-  
-  // datosCargadosPrimeraTabla(booleano: boolean){
-   
-  //   // this.cargaDatos = false;
-  //   console.log('datosCargadosPrimeraTabla ocultaform,verTablaDatos,verMov, cargadatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
-  //   console.log('cargaron los datos en la tabla', booleano);
- 
-  //   // this.verTablaDatos = false
-  //   // this.verMov = false;
-  //   // this.cargaDatos = !booleano;
-  // }
-  
+
 
 }
