@@ -1,6 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef, Inject } from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {DetalleCuentasService} from '../../servicios/detalle-cuentas.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { DialogData } from '../footer/footer.component';
 
 
 @Component({
@@ -22,7 +24,7 @@ export class PrincipalComponent implements OnInit {
   
   
   
-  constructor(private detalleCuentas: DetalleCuentasService, private cdRef:ChangeDetectorRef) { }
+  constructor(private detalleCuentas: DetalleCuentasService, private cdRef:ChangeDetectorRef, public dialog: MatDialog) { }
 
   
   ngOnInit() {
@@ -52,6 +54,13 @@ export class PrincipalComponent implements OnInit {
         console.log(this.movParaTabla);
         this.ocultarForm = true;
         this.cargaDatos = false;
+       
+      },(error) =>{
+         if(error.status == 404){
+            this.openDialog();
+            console.log('ocurrio un error');
+          }
+        
       })
    
       this.movParaTabla;
@@ -110,6 +119,44 @@ export class PrincipalComponent implements OnInit {
     console.log('movimiento recibido de tabla movimiento', this.movSeleccionado);
  
   }
+  
+  
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog2, {
+      width: '250px',
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 
 
 }
+
+
+
+@Component({
+  selector: 'dialog-overview-example-dialog2',
+  templateUrl: 'dialog-overview-example-dialog2.html',
+})
+export class DialogOverviewExampleDialog2 {
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog2>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+      
+    }
+
+  onNoClick(): void {
+
+    this.dialogRef.close();
+  }
+  
+
+
+
+  
+
+}
+

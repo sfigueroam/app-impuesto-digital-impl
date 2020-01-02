@@ -18,6 +18,7 @@ import { TablaMovimientoComponent } from './componentes/tabla-movimiento/tabla-m
 import { VerItemComponent } from './componentes/ver-item/ver-item.component';
 import { FooterComponent } from './componentes/footer/footer.component'
 import {DialogOverviewExampleDialog} from './componentes/footer/footer.component';
+import {DialogOverviewExampleDialog2} from './componentes/principal/principal.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import {MatDialogModule} from '@angular/material';
 import { CookieService } from 'ngx-cookie-service';
@@ -38,6 +39,7 @@ registerLocaleData(localeEs, 'es');
     VerItemComponent,
     FooterComponent,
     DialogOverviewExampleDialog,
+    DialogOverviewExampleDialog2,
     AutenticaComponent,
     LoginComponent,
     LogoutComponent,
@@ -46,7 +48,8 @@ registerLocaleData(localeEs, 'es');
   ],
   
     entryComponents: [ 
-    DialogOverviewExampleDialog, 
+    DialogOverviewExampleDialog,
+    DialogOverviewExampleDialog2,
   ], 
   imports: [
     BrowserModule,
