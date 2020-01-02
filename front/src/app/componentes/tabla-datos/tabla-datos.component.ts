@@ -37,6 +37,9 @@ export class TablaDatosComponent implements OnInit {
   siguiente: boolean;
   datosFooter;
   numeroSelec = '0';
+  nombreContribuyente;
+  rutContribuyente;
+  dvContribuyente;
   
   constructor(private cdRef:ChangeDetectorRef) { }
   @Input() datosPrincipal:{};
@@ -62,7 +65,10 @@ export class TablaDatosComponent implements OnInit {
   if(this.datosPrincipal != 'undefined' && (this.ELEMENT_DATA.length == 0 || this.ELEMENT_DATA.length == undefined)){
     console.log(this.datosPrincipal);
     this.llenarTablaMov(this.datosPrincipal);
-    console.log('llegaron los datos a la tabla 1');
+    this.nombreContribuyente = this.datosPrincipal[0]['nombreContribuyente'];
+    this.rutContribuyente = this.datosPrincipal[0]['rutRol']
+    this.dvContribuyente = this.datosPrincipal[0]['rutDv']
+    console.log('llegaron los datos a la tabla 1 y estos son nobre rut y dv', this.nombreContribuyente, this.rutContribuyente, this.dvContribuyente );
   }
   // if(this.datosPrincipal != undefined){
   //   console.log('ya llego el objeto');
