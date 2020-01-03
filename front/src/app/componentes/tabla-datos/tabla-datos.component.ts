@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angu
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource, MatPaginator} from '@angular/material';
 import { ChangeDetectorRef } from '@angular/core';
+import {UsuarioService} from '../../servicios/usuario.service';
 
 export interface CuentasME {
         position: number
@@ -41,7 +42,7 @@ export class TablaDatosComponent implements OnInit {
   rutContribuyente;
   dvContribuyente;
   
-  constructor(private cdRef:ChangeDetectorRef) { }
+  constructor(private cdRef:ChangeDetectorRef, private usuario: UsuarioService) { }
   @Input() datosPrincipal:{};
   // @Output()
   // datosPrimeraTabla = new EventEmitter<boolean>();
@@ -68,6 +69,9 @@ export class TablaDatosComponent implements OnInit {
     this.nombreContribuyente = this.datosPrincipal[0]['nombreContribuyente'];
     this.rutContribuyente = this.datosPrincipal[0]['rutRol']
     this.dvContribuyente = this.datosPrincipal[0]['rutDv']
+    this.usuario.nombreUsuario = this.nombreContribuyente;
+    this.usuario.rutUsuario = this.rutContribuyente;
+    this.usuario.dvUsuario = this.dvContribuyente;
     console.log('llegaron los datos a la tabla 1 y estos son nobre rut y dv', this.nombreContribuyente, this.rutContribuyente, this.dvContribuyente );
   }
   // if(this.datosPrincipal != undefined){

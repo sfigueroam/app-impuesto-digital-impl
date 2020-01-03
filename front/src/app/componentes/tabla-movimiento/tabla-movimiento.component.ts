@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, ChangeDetectorRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import {UsuarioService} from '../../servicios/usuario.service';
 
 export interface tablaMovimientos {
   Id_cta: number;
@@ -34,16 +35,22 @@ export class TablaMovimientoComponent implements OnInit {
   'fechamov', 'monedaorigen', 'montomov', 'montopagado', 'action'];
   dataSource = new MatTableDataSource<tablaMovimientos>(this.ELEMENT_DATA);
 
-  constructor(private cdRef:ChangeDetectorRef) { }
+  constructor(private cdRef:ChangeDetectorRef, private usuario: UsuarioService) { }
   
   @Input() filaTabla:{}
   @Output() 
   volverTablaDatos = new EventEmitter<boolean>();
   @Output()
   movimientoSeleccionado = new EventEmitter<{}>();
-  itemConsultado:{};
+  itemConsultado:[];
+  nombreContribuyente;
+  rutContribuyente;
+  dvContribuyente;
 
   ngOnInit() {
+    this.nombreContribuyente = this.usuario.nombreUsuario;
+    this.rutContribuyente = this.usuario.rutUsuario;
+    this.dvContribuyente = this.usuario.dvUsuario
     //aca va la llamada al servicio que trae los datos saco el largo
   }
   
@@ -62,6 +69,7 @@ export class TablaMovimientoComponent implements OnInit {
   
   verItem(element){
     this.itemConsultado = element;
+    console.log('verIOtem tabla movimiento', this.itemConsultado);
     this.movimientoSeleccionado.emit(element);
   }
   
@@ -74,6 +82,7 @@ export class TablaMovimientoComponent implements OnInit {
     // console.log('esta es la fila tabla que recibi', obj)
     //   console.log('tengo que llenar datos con esto', obj)
     let largoob = Object.keys(obj).length
+    console.log('largo objeto que llego tabla mov', largoob);
     for(var i = 0; i < largoob; i++){
       console.log(obj[Object.keys(obj)[i]]);
       let objInter =  obj[Object.keys(obj)[i]];

@@ -8,7 +8,7 @@
     
         <mat-card-header>
             <mat-card-title>DETALLE DE ÍTEM DEL FORMULARIO</mat-card-title>
-            <mat-card-title class="tgr_datos_rut">Jose Andres Araya Lopez │ <strong>RUT: 20.999.999-9</strong></mat-card-title>
+            <mat-card-title class="tgr_datos_rut"> <p> {{nombreContribuyente}} <strong>│ RUT: {{rutContribuyente}} - {{dvContribuyente}}</strong></p></mat-card-title>
         </mat-card-header>
       
         <mat-card-content class="tgr_bottom">  
@@ -25,12 +25,12 @@
                     
                         <div class="tgr_vertical">
                             <div>Formulario</div>
-                            <div>99</div>
+                            <div>{{movConsultado.formTipo}}</div>
                         </div>
                         
                         <div class="tgr_vertical">
                             <div>Fecha de vencimiento</div>
-                            <div>31-03-2011</div>
+                            <div>{{movConsultado.fechaVcto}}</div>
                         </div>    
                         
                     </div> 
@@ -39,12 +39,12 @@
                     
                         <div class="tgr_vertical">
                             <div>Periodo</div>
-                            <div>2011-03</div>
+                            <div>{{movConsultado.periodoContab}}</div>
                         </div>
                         
                         <div class="tgr_vertical">
                             <div>Saldo</div>
-                            <div>0</div>
+                            <div></div>
                         </div>
                         
                     </div> 
@@ -63,17 +63,17 @@
                     
                         <div class="tgr_vertical">
                             <div>Tipo de movimiento</div>
-                            <div>Pago</div>
+                            <div>{{movConsultado.movTipo}}</div>
                         </div>
                         
                         <div class="tgr_vertical">
                             <div>Monto de movimiento</div>
-                            <div>$17.039</div>
+                            <div>{{movConsultado.monto}}</div>
                         </div>
                         
                         <div class="tgr_vertical">
                             <div>Periodo contable</div>
-                            <div>$17.039</div>
+                            <div></div>
                         </div>
                         
                     </div> 
@@ -82,17 +82,17 @@
                     
                         <div class="tgr_vertical">
                             <div>Fecha de movimiento</div>
-                            <div>2011-03</div>
+                            <div>{{movConsultado.fecha}}</div>
                         </div>
                         
                         <div class="tgr_vertical">
                             <div>Moneda pago</div>
-                            <div>CPL</div>
+                            <div>{{movConsultado.monedaPago}}</div>
                         </div>
                         
                         <div class="tgr_vertical">
                             <div>Tipo de caja</div>
-                            <div>xx</div>
+                            <div></div>
                         </div>
                         
                     </div>
@@ -101,17 +101,17 @@
                     
                         <div class="tgr_vertical">
                             <div>Comuna</div>
-                            <div>La Serena</div>
+                            <div>{{movConsultado.comuna}}</div>
                         </div>
                         
                         <div class="tgr_vertical">
                             <div>Monto pagado</div>
-                            <div>$17.039</div>
+                            <div>{{movConsultado.montopago}}</div>
                         </div>
                         
                         <div class="tgr_vertical">
                             <div>Numero caja</div>
-                            <div>xx</div>
+                            <div></div>
                         </div>
                         
                     </div> 
@@ -135,21 +135,21 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!-- Position Column -->
-  <ng-container matColumnDef="position">
+  <ng-container matColumnDef="codigo">
     <th mat-header-cell *matHeaderCellDef> CODIGO </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
 
   <!-- Name Column -->
-  <ng-container matColumnDef="name">
+  <ng-container matColumnDef="descripcion">
     <th mat-header-cell *matHeaderCellDef> DESCRIPCIÓN </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.monedaPago}} </td>
   </ng-container>
 
   <!-- Weight Column -->
-  <ng-container matColumnDef="weight">
+  <ng-container matColumnDef="valor">
     <th mat-header-cell *matHeaderCellDef> VALOR </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.monto}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

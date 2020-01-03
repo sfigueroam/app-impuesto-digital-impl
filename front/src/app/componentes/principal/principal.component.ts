@@ -3,6 +3,7 @@ import {environment} from '../../../environments/environment';
 import {DetalleCuentasService} from '../../servicios/detalle-cuentas.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DialogData } from '../footer/footer.component';
+import {UsuarioService}from '../../servicios/usuario.service';
 
 
 @Component({
@@ -18,13 +19,13 @@ export class PrincipalComponent implements OnInit {
   verTablaDatos:boolean;
   verMov:boolean;
   verDetalleItem:boolean;
-  movSeleccionado:{};
+  movSeleccionado;
   movParaTabla;
   detalleMovParaTabla;
   
   
   
-  constructor(private detalleCuentas: DetalleCuentasService, private cdRef:ChangeDetectorRef, public dialog: MatDialog) { }
+  constructor(private detalleCuentas: DetalleCuentasService, private cdRef:ChangeDetectorRef, public dialog: MatDialog, private usuario: UsuarioService) { }
 
   
   ngOnInit() {

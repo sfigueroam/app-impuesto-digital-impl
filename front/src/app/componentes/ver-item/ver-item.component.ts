@@ -1,56 +1,69 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import {SelectionModel} from '@angular/cdk/collections';
+import {MatTableDataSource, MatPaginator} from '@angular/material';
+import {UsuarioService} from '../../servicios/usuario.service';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: string;
+export interface tablaItems {
+
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'APELLIDO PATERNO', weight: 'Orellana'},
-  {position: 2, name: 'APELLIDO MATERNO', weight: 'Espinoza'},
-  {position: 3, name: 'NUMERO DE RUT', weight: '12.465.349-5'},
-  {position: 5, name: 'NOMBRES', weight: 'Tatiana Elizabeth'},
-  {position: 6, name: 'DIRECCIÓN', weight: 'Bio Bio 1485, 54 E, Edificio Bio Bio'},
-  {position: 7, name: 'ORDEN O FOLIO', weight: '17209502'},
-  {position: 8, name: 'COMUNA', weight: 'Santiago'},
-  {position: 10, name: 'NUMERO DE CUOTA', weight: '2'},
-  {position: 15, name: 'FECHA DE VENCIMIENTO', weight: '31/03/2011'},
-  {position: 91, name: 'TOTAL A PAGAR PLAZO', weight: '$17.039'},
-];
-
+ 
+ 
 @Component({
   selector: 'app-ver-item',
   templateUrl: './ver-item.component.html',
   styleUrls: ['./ver-item.component.scss']
 })
 export class VerItemComponent implements OnInit {
-  
-  displayedColumns: string[] = ['position', 'name', 'weight'];
-  dataSource = ELEMENT_DATA;
 
-  constructor(private cdRef:ChangeDetectorRef) { }
+  
+  
+  displayedColumns: string[] = ['codigo', 'descripcion', 'valor'];
+  
+
+  constructor(private cdRef:ChangeDetectorRef, private usuario: UsuarioService) { }
  @Input() movConsultado:{}
  @Output()
  volverSeleccioMov = new EventEmitter<boolean>()
- 
+  ELEMENT_DATA: object[] = [];
+  dataSource = new MatTableDataSource<tablaItems>(this.ELEMENT_DATA);
+ arregloObj: object[] = [];
+  nombreContribuyente;
+  rutContribuyente;
+  dvContribuyente;
   
   ngOnInit() {
+    this.nombreContribuyente = this.usuario.nombreUsuario;
+    this.rutContribuyente = this.usuario.rutUsuario;
+    this.dvContribuyente = this.usuario.dvUsuario
 
   }
   
   
   ngAfterViewChecked(){
-  
-    this.cdRef.detectChanges();
-    console.log('item a ver en ver item', this.movConsultado);
+    
+    if(this.movConsultado != 'undefined' && (this.ELEMENT_DATA.length == 0 || this.ELEMENT_DATA.length == undefined)){
+   
+    this.llenarTablaMov(this.movConsultado);
+  }
+  //Aca tengo que poner una condicion de si viene vacia y el tema del lenght tabla para desplegar los datos que me llegaron del back
+  this.cdRef.detectChanges();
 
 }
   
   volver(){
-    console.log('emitiendo el true')
     this.volverSeleccioMov.emit(true);
     
   }
+  
+  
+  llenarTablaMov(obj:{}){
+    //en caso de tener mas hay que llamar al servicio en principal
+    this.ELEMENT_DATA.push(obj)
+    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+    console.log('datos en element data', this.ELEMENT_DATA)
+    
+  }
+  
 
 }
