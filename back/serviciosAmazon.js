@@ -100,10 +100,14 @@ function consultaMovimiento(id, token) {
             });
 
             req.on('close', () => {
+                if(respServicio.statusCode != 200 && respServicio.statusCode != 201){
+                    resolve(respServicio)
+                }
+                else{
                 let salida = JSON.parse(respuesta);
                  respServicio.respuesta = salida
                 //----------------------------Corregir salida en servicio web--------------------------------------//
-                resolve(respServicio);
+                resolve(respServicio); }
             });
             req.end();
         })
