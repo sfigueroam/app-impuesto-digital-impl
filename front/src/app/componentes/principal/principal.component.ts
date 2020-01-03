@@ -58,13 +58,18 @@ export class PrincipalComponent implements OnInit {
       },(error) =>{
          if(error.status == 404){
             this.openDialog();
-            console.log('ocurrio un error');
+            this.ocultarForm  = false;
+            this.verTablaDatos = false;
+            this.verMov = false;
+            this.verDetalleItem = false
+            this.cargaDatos = false;
+            console.log('despues resultado error ocultaform,verTablaDatos,verMov, CargaDatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
           }
         
       })
    
       this.movParaTabla;
-    console.log('despues de apretar get items form ocultaform,verTablaDatos,verMov, CargaDatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
+    console.log('despues resultado corrrecto ocultaform,verTablaDatos,verMov, CargaDatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
   }
   
   getDatosTable(objeto:{}){
@@ -149,7 +154,6 @@ export class DialogOverviewExampleDialog2 {
     }
 
   onNoClick(): void {
-
     this.dialogRef.close();
   }
   
