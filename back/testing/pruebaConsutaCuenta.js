@@ -11,7 +11,7 @@ const crear = require('../consultaCuentaMonex');
 
 
 console.log('Inicio de funcion');
-let event = {"body": "{\"data\": {\"identificacion\": \"99.588.400-3\",\"id\": {\"rut\": 66666666,\"dv\": \"6\" }}}"}
+let event = {"body": "{\"identificacion\": \"99.588.400-3\",\"id\": {\"rut\": 66666666,\"dv\": \"6\" }}}"}
 
 //nube:1AWS14110612w0jtpEiRE-cdcp
 

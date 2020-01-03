@@ -34,11 +34,13 @@ function consultaCuentaMonex(id, token) {
                    respServicio.codeStatus = res.statusCode
                     if( res.statusCode != 200 && res.statusCode != 201){
                         console.log("Error al tratar de consumir el servicio tierra");
+                        respServicio.respuesta = 'error al tratar de consumir el servicio tierra';
                         return("Por el momento no podemos atender su consulta");
+                        
                     }
                   
                 res.on('data', (d) => {
-                    respuesta += d;
+                    respServicio.respuesta += d;
                 });
 
             }).on('error', (error) => {
@@ -47,8 +49,7 @@ function consultaCuentaMonex(id, token) {
             });
 
             req.on('close', () => {
-                let salida = JSON.parse(respuesta);
-                respServicio.respuesta = salida
+             
                 //----------------------------Corregir salida en servicio web--------------------------------------//
                 resolve(respServicio);
             });

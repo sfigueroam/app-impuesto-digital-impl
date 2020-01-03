@@ -3,13 +3,15 @@ const servAmazon = require('./serviciosAmazon');
 const genToken = require('./genToken');
 
 module.exports.handler = async (event, context, callback) => {
-    console.log(event);
+    console.log(event.body);
+    
     var In = JSON.parse(event.body);
     var rut = In['identificacion']
     
     rut = rut.replace(/-/g , "");
     rut = rut.replace(/\./g , "");
     rut = rut.substring(0,rut.length-1)
+    
     console.log('tgr-consultaCuentaMonex . JSON de Entrada:' , In);
     
 
