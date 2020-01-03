@@ -8,6 +8,7 @@ export class UsuarioService {
   nombreUsuario;
   rutUsuario;
   dvUsuario;
+  datosMov;
 
   constructor() { }
 }

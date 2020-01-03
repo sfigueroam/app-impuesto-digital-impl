@@ -31,11 +31,13 @@ export class VerItemComponent implements OnInit {
   nombreContribuyente;
   rutContribuyente;
   dvContribuyente;
+  datosMov;
   
   ngOnInit() {
     this.nombreContribuyente = this.usuario.nombreUsuario;
     this.rutContribuyente = this.usuario.rutUsuario;
     this.dvContribuyente = this.usuario.dvUsuario
+    this.datosMov = this.usuario.datosMov
 
   }
   
@@ -46,6 +48,8 @@ export class VerItemComponent implements OnInit {
    
     this.llenarTablaMov(this.movConsultado);
   }
+  
+  console.log('datosmov', this.datosMov);
   //Aca tengo que poner una condicion de si viene vacia y el tema del lenght tabla para desplegar los datos que me llegaron del back
   this.cdRef.detectChanges();
 
@@ -58,7 +62,7 @@ export class VerItemComponent implements OnInit {
   
   
   llenarTablaMov(obj:{}){
-    //en caso de tener mas hay que llamar al servicio en principal
+    this.datosMov = obj;
     this.ELEMENT_DATA.push(obj)
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
     console.log('datos en element data', this.ELEMENT_DATA)
