@@ -3,18 +3,18 @@ const servAmazon = require('./serviciosAmazon');
 const genToken = require('./genToken');
 
 module.exports.handler = async (event, context, callback) => {
-    console.log(event.body);
+    // console.log(event.body);
     
-    var In = JSON.parse(event.body);
-    var rut = In['identificacion']
+    // var In = JSON.parse(event.body);
+    // var rut = In['identificacion']
     
-    rut = rut.replace(/-/g , "");
-    rut = rut.replace(/\./g , "");
-    rut = rut.substring(0,rut.length-1)
+    // rut = rut.replace(/-/g , "");
+    // rut = rut.replace(/\./g , "");
+    // rut = rut.substring(0,rut.length-1)
     
-    console.log('tgr-consultaCuentaMonex . JSON de Entrada:' , In);
+    // console.log('tgr-consultaCuentaMonex . JSON de Entrada:' , In);
     
-
+    var rut = '99.588.400-3'
     console.log("[INICIO PROCESO] Iniciando consulta a servicios");
     
     let clienteId = process.env.REST_TOKEN_CLIENT_ID;

@@ -51,7 +51,15 @@ function consultaCuentaMonex(id, token) {
             req.on('close', () => {
              
                 //----------------------------Corregir salida en servicio web--------------------------------------//
-                resolve(respServicio);
+                if(respServicio.codeStatus != 200 &&respServicio.codeStatus != 201){
+                     resolve(respServicio);
+                }
+                else{
+                    let salida = JSON.parse(respServicio.respuesta)
+                    
+                    resolve(salida)
+                }
+               
             });
             req.end();
         })
