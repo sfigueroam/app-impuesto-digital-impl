@@ -34,7 +34,7 @@ function consultaCuentaMonex(id, token) {
                    respServicio.codeStatus = res.statusCode
                     if( res.statusCode != 200 && res.statusCode != 201){
                         console.log("Error al tratar de consumir el servicio tierra");
-                        return("Por el momento no podemos atender su consulta");
+                        // return("Por el momento no podemos atender su consulta");
                     }
                   
                 res.on('data', (d) => {
@@ -47,8 +47,9 @@ function consultaCuentaMonex(id, token) {
             });
 
             req.on('close', () => {
+
                 let salida = JSON.parse(respuesta);
-                respServicio.respuesta = salida
+                 respServicio.respuesta = salida
                 //----------------------------Corregir salida en servicio web--------------------------------------//
                 resolve(respServicio);
             });
@@ -100,14 +101,10 @@ function consultaMovimiento(id, token) {
             });
 
             req.on('close', () => {
-                if(respServicio.statusCode != 200 && respServicio.statusCode != 201){
-                    resolve(respServicio)
-                }
-                else{
                 let salida = JSON.parse(respuesta);
                  respServicio.respuesta = salida
                 //----------------------------Corregir salida en servicio web--------------------------------------//
-                resolve(respServicio); }
+                resolve(respServicio);
             });
             req.end();
         })

@@ -15,6 +15,7 @@ module.exports.handler = async (event, context, callback) => {
     console.log('tgr-consultaCuentaMonex . JSON de Entrada:' , In);
     
     console.log("[INICIO PROCESO] Iniciando consulta a servicios");
+
     
     let clienteId = process.env.REST_TOKEN_CLIENT_ID;
     let scope = process.env.REST_TOKEN_SCOPE;
