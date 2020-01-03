@@ -18,7 +18,7 @@
 
 <button class="tgr_volver" mat-button (click) = volver()><i class="material-icons">chevron_left</i>Volver</button>
 
-<mat-form-field>
+<mat-form-field class="tgr_buscar">
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar en la Tabla">
 </mat-form-field>
 
@@ -88,7 +88,7 @@
     <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()"  >
-            <button mat-button (click)="verMovimiento(element)">Ver Movimiento</button> </td>
+            <button mat-button (click)="verMovimiento(element)" class="tgr_ver">Ver Movimiento</button> </td>
     </ng-container>
   
 

@@ -1,0 +1,38 @@
+.footer {
+    background: #fff;
+    bottom: 0;
+    box-shadow: 0 3px 26px 0 #a8a8a8;
+    display: block;
+    left: 0;
+    min-height: 60px;
+    position: fixed;
+    right: 0;
+    z-index: 900;
+}
+
+.tgr-centro-footer{
+    display: flex;
+    justify-content: space-between;
+    span{
+      margin-top:12px;
+    }
+}
+
+.tgr_monto{
+    color:#c0c0c0;
+}
+
+.mdl-button {
+  &.tgr-button-action {
+      margin-top:5px;
+      border-radius:4px;
+      font-weight:600;
+      background-color: #4CAF50;
+      color: #ffffff;
+      &[disabled] {
+        background-color: #F0F0F0;
+        color: #757575;
+        opacity: 0.6;
+      }
+  }
+}

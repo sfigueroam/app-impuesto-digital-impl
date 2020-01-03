@@ -1,4 +1,22 @@
-<button mat-button (click) = volver()> Volver</button>
+<div class="mdl-grid">
+  
+<div class="mdl-cell mdl-cell--12-col mdl-typography--text-center">
+  <h1>Impuestos<strong> Digitales</strong></h1>
+</div> 
+  
+<mat-card class="tgr-center tgr-content-center mdl-cell--10-col">  
+
+        <mat-card-header>
+            <mat-card-title>DETALLE DE MOVIMIENTOS</mat-card-title>
+            <button class="tgr_volver" mat-button (click) = volver()><i class="material-icons">chevron_left</i>Volver</button>
+        </mat-card-header>
+      
+<mat-card-content class="tgr_bottom">  
+
+    <div class="tgr_encabezado">
+      <p>Jose Andres Araya Lopez <strong>│ RUT: 20.999.999-9</strong></p>
+    </div>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
@@ -44,8 +62,6 @@
     <td mat-cell *matCellDef="let element"> {{element.formVersion}}   </td>
   </ng-container>
   
-
-  
   <ng-container matColumnDef="folio">
     <th mat-header-cell *matHeaderCellDef> Folio </th>
     <td mat-cell *matCellDef="let element"> {{element.formFolio}} </td>
@@ -80,7 +96,7 @@
     <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()"  >
-            <button mat-button (click)="verItem(element)">Ver Item</button> </td>
+            <button mat-button (click)="verItem(element)" class="tgr_ver">Ver Item</button> </td>
     </ng-container>
   
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -88,3 +104,9 @@
   
    
 </table>
+
+</mat-card-content>
+
+</mat-card>
+
+</div>

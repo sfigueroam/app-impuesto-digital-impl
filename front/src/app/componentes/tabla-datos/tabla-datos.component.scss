@@ -39,6 +39,22 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:
     position:absolute;
     top: 10px;
     left: 0;
+     &:hover {
+       text-decoration: underline;
+     }
+}
+
+.tgr_ver{
+    color:#FFF !important;
+    background: #006ce5;
+    text-transform: uppercase;
+    font-size:12px !important;
+    height:28px;
+    line-height: 0 !important;
+    &:hover {
+       background: #0053B3;
+       transition: 0.4s;
+     }
 }
 
 th.mat-header-cell {
