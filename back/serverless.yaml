@@ -50,3 +50,13 @@ functions:
         path: impdigital/presentaMovsME/{mov}
         method: get
         cors: true
+        
+  getItem:
+    name: tgr-${self:custom.env}-${self:service}-getItem
+    handler: consultaMovimiento.handler
+    timeout: 30
+    events:
+    - http:
+        path: impdigital/presentaMovsME/getItem/{idMov}
+        method: get
+        cors: true
