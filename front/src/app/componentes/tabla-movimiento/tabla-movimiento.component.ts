@@ -69,6 +69,7 @@ export class TablaMovimientoComponent implements OnInit {
   
   verItem(element){
     this.itemConsultado = element;
+    this.usuario.datosItem = element;
     console.log('verIOtem tabla movimiento', this.itemConsultado);
     this.movimientoSeleccionado.emit(element);
   }

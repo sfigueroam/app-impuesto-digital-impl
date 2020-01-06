@@ -22,6 +22,7 @@ export class PrincipalComponent implements OnInit {
   movSeleccionado;
   movParaTabla;
   detalleMovParaTabla;
+  detalleItem;
   
   
   
@@ -115,15 +116,28 @@ export class PrincipalComponent implements OnInit {
   }
   
   getMovimientoSeleccionado(mov:{}){
-  // this.ocultarForm = true;
-  //   this.verTablaDatos = false;
+    this.cargaDatos = true
+    this.ocultarForm = false;
   this.movSeleccionado = mov;
+  console.log('movimiento seleccionado para consultarle el id a base de datos', this.movSeleccionado);
   this.verDetalleItem = true
   this.verMov = true;
+  console.log('id a consultar',this.movSeleccionado['id'])
     //console.log('despues de apretar ver item ocultaform,verTablaDatos,verMov', this.ocultarForm,this.verTablaDatos,this.verMov)
-    
-    console.log('movimiento recibido de tabla movimiento', this.movSeleccionado);
-    this.usuario.datosMov = this.movSeleccionado
+  this.detalleCuentas.getItem(this.movSeleccionado['id']).subscribe(
+      data => {
+        this.detalleItem = data;
+        console.log('estos datos se van para desplegar detalle de mov',this.detalleItem);
+            this.verTablaDatos = true;
+            this.ocultarForm = false;
+            this.cargaDatos = false;
+            
+            
+        
+      })
+      this.detalleItem;
+    console.log('items que van a ver item', this.detalleItem);
+    this.usuario.datosMov = this.detalleItem;
  
   }
   

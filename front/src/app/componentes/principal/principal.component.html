@@ -16,7 +16,7 @@
         </div>
         
           <div *ngIf ="verDetalleItem && !cargaDatos ">
-          <app-ver-item [movConsultado] = "movSeleccionado" (volverSeleccioMov) = "volverTablaMovimientos($event)"></app-ver-item>
+          <app-ver-item [movConsultado] = "detalleItem" (volverSeleccioMov) = "volverTablaMovimientos($event)"></app-ver-item>
         </div>
         
         <div *ngIf = "cargaDatos && !ocultarForm">

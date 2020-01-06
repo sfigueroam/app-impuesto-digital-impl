@@ -9,6 +9,20 @@ export class UsuarioService {
   rutUsuario;
   dvUsuario;
   datosMov;
+  formulario;
+  fechaVcto;
+  tipoMov;
+  montoMov;
+  periodoContable;
+  periodo;
+  saldo;
+  fechaMov;
+  monedaPago;
+  tipoCaja;
+  comuna;
+  montoPagado;
+  nCaja;
+  datosItem;
 
   constructor() { }
 }

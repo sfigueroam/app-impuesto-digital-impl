@@ -7,8 +7,6 @@ export interface tablaItems {
 
 }
 
- 
- 
 @Component({
   selector: 'app-ver-item',
   templateUrl: './ver-item.component.html',
@@ -37,7 +35,7 @@ export class VerItemComponent implements OnInit {
     this.nombreContribuyente = this.usuario.nombreUsuario;
     this.rutContribuyente = this.usuario.rutUsuario;
     this.dvContribuyente = this.usuario.dvUsuario
-    this.datosMov = this.usuario.datosMov
+    this.datosMov = this.usuario.datosItem;
 
   }
   
@@ -45,11 +43,11 @@ export class VerItemComponent implements OnInit {
   ngAfterViewChecked(){
     
     if(this.movConsultado != 'undefined' && (this.ELEMENT_DATA.length == 0 || this.ELEMENT_DATA.length == undefined)){
-   
+   console.log('entre a llenar datos')
     this.llenarTablaMov(this.movConsultado);
   }
   
-  console.log('datosmov', this.datosMov);
+  console.log('llegaron los datos ', this.movConsultado);
   //Aca tengo que poner una condicion de si viene vacia y el tema del lenght tabla para desplegar los datos que me llegaron del back
   this.cdRef.detectChanges();
 
@@ -62,10 +60,21 @@ export class VerItemComponent implements OnInit {
   
   
   llenarTablaMov(obj:{}){
-    this.datosMov = obj;
-    this.ELEMENT_DATA.push(obj)
+    // this.datosMov = obj;
+    // this.ELEMENT_DATA.push(obj)
+    // this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+    // console.log('datos en element data', this.ELEMENT_DATA)
+    
+    console.log('tengo que llenar datos con esto', obj)
+    let largoob = Object.keys(obj).length
+    for(var i = 0; i < largoob; i++){
+      console.log(obj[Object.keys(obj)[i]]);
+      let objInter =  obj[Object.keys(obj)[i]];
+      this.ELEMENT_DATA.push(objInter); 
+    }
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
     console.log('datos en element data', this.ELEMENT_DATA)
+    
     
   }
   

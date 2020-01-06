@@ -39,12 +39,12 @@
                     
                         <div class="tgr_vertical">
                             <div>Periodo</div>
-                            <div>{{datosMov.periodoContab}}</div>
+                            <div>{{datosMov.periodo}}</div>
                         </div>
                         
                         <div class="tgr_vertical">
                             <div>Saldo</div>
-                            <div></div>
+                            <div>{{datosMov.saldo}}</div>
                         </div>
                         
                     </div> 
@@ -73,7 +73,7 @@
                         
                         <div class="tgr_vertical">
                             <div>Periodo contable</div>
-                            <div></div>
+                            <div>{{datosMov.periodoContab}}</div>
                         </div>
                         
                     </div> 
@@ -92,7 +92,7 @@
                         
                         <div class="tgr_vertical">
                             <div>Tipo de caja</div>
-                            <div></div>
+                            <div>{{datosMov.tipoCaja}}</div>
                         </div>
                         
                     </div>
@@ -111,7 +111,7 @@
                         
                         <div class="tgr_vertical">
                             <div>Numero caja</div>
-                            <div></div>
+                            <div>{{datosMov.nCaja}}</div>
                         </div>
                         
                     </div> 
@@ -134,22 +134,22 @@
             
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <!-- Position Column -->
+   Position Column 
   <ng-container matColumnDef="codigo">
     <th mat-header-cell *matHeaderCellDef> CODIGO </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
   </ng-container>
 
-  <!-- Name Column -->
+   Name Column 
   <ng-container matColumnDef="descripcion">
     <th mat-header-cell *matHeaderCellDef> DESCRIPCIÓN </th>
-    <td mat-cell *matCellDef="let element"> {{element.monedaPago}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
   </ng-container>
 
-  <!-- Weight Column -->
+   Weight Column 
   <ng-container matColumnDef="valor">
     <th mat-header-cell *matHeaderCellDef> VALOR </th>
-    <td mat-cell *matCellDef="let element"> {{element.monto}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
