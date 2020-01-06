@@ -11,7 +11,7 @@ const crear = require('../consultaItem');
 
 
 console.log('Inicio de funcion');
-let event = {"pathParameters": {"item":"59017"}}; //
+let event = {"pathParameters": {"idMov":"59017"}}; //
 
 //nube:1AWS14110612w0jtpEiRE-cdcp
 

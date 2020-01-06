@@ -53,7 +53,7 @@ functions:
         
   getItem:
     name: tgr-${self:custom.env}-${self:service}-getItem
-    handler: consultaMovimiento.handler
+    handler: consultaItem.handler
     timeout: 30
     events:
     - http:
