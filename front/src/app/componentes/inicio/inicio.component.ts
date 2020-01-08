@@ -27,6 +27,9 @@ export class InicioComponent implements OnInit {
   
    @Output()
    datosForm = new EventEmitter<{}>();
+   
+  @Output()
+   datosFormFolio = new EventEmitter<{}>();
   
 
   constructor(rutValidator: RutValidator, fb: FormBuilder, private cdRef:ChangeDetectorRef) {
@@ -105,7 +108,7 @@ export class InicioComponent implements OnInit {
     data.fechaDesde = data.fechaDesde.replace(/\//g , "-");
     data.fechaHasta = data.fechaHasta.replace(/\//g , "-");
     this.mostrarTabla.emit(true);
-    this.datosForm.emit(data);
+    this.datosFormFolio.emit(data);
     
 
   }

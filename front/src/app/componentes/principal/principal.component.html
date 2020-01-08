@@ -3,7 +3,7 @@
     
       <main class="mdl-layout__content">
         <div *ngIf="!ocultarForm && !verTablaDatos && !verMov && !verDetalleItem && !cargaDatos">
-        <app-inicio (mostrarTabla) = "estadoMostrarTabla($event)" (datosForm) = "getDatosForm($event)" ></app-inicio>
+        <app-inicio (mostrarTabla) = "estadoMostrarTabla($event)" (datosForm) = "getDatosForm($event)"  (datosFormFolio) = "getDatosFormFolio($event)" ></app-inicio>
         </div>
         
         <div *ngIf = "ocultarForm && !verTablaDatos && !verMov && !verDetalleItem && !cargaDatos">

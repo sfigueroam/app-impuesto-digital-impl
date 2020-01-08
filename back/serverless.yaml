@@ -60,3 +60,13 @@ functions:
         path: impdigital/presentaMovsME/getItem/{idMov}
         method: get
         cors: true
+        
+  getDeudaFolio:
+    name: tgr-${self:custom.env}-${self:service}-getCuentaFolio
+    handler: consultaCuentaFolio.handler
+    timeout: 30
+    events:
+    - http:
+        path: impdigital/presentaMovsME/form/{form}/{folio}
+        method: get
+        cors: true
