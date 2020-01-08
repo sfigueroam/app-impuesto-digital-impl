@@ -60,7 +60,7 @@ functions:
         path: impdigital/presentaMovsME/getItem/{idMov}
         method: get
         cors: true
-      
+        
   getCuentaFolio:
     name: tgr-${self:custom.env}-${self:service}-getCuentaFolio
     handler: consultaCuentaFolio.handler
