@@ -44,7 +44,7 @@ export class InicioComponent implements OnInit {
     
       this.formaFolio = fb.group({
       folio: ['', [Validators.required, Validators.maxLength(11)]],
-      formulario: ['', [Validators.maxLength(3), Validators.pattern('^[0-9]*$')]],
+      formulario: ['', [Validators.maxLength(3), Validators.required, Validators.pattern('^[0-9]*$')]],
       fechaDesde : [''],
       fechaHasta: [''],
       saldo:['',]
