@@ -61,7 +61,7 @@ functions:
         method: get
         cors: true
         
-  getDeudaFolio:
+  getCuentaFolio:
     name: tgr-${self:custom.env}-${self:service}-getCuentaFolio
     handler: consultaCuentaFolio.handler
     timeout: 30
