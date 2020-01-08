@@ -80,29 +80,32 @@ export class PrincipalComponent implements OnInit {
     this.objetoForm = objeto;
     console.log('datos del form', objeto)
     console.log('despues de apretar get items form ocultaform,verTablaDatos,verMov, cargadatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
-    // console.log('datos en principal', this.objetoForm)
-    // this.detalleCuentas.presentaCuentasME(this.objetoForm).subscribe(
-    //   data => {
-    //     this.movParaTabla = data;
-    //     console.log(this.movParaTabla);
-    //     this.ocultarForm = true;
-    //     this.cargaDatos = false;
+    console.log('datos en principal', this.objetoForm)
+    var folio = this.objetoForm['folio'];
+    var form = this.objetoForm['formulario'];
+    console.log('form y folio a consultar', form,folio)
+    this.detalleCuentas.presentaCuentasMEFolio(form,folio).subscribe(
+      data => {
+        this.movParaTabla = data;
+        console.log(this.movParaTabla);
+        this.ocultarForm = true;
+        this.cargaDatos = false;
        
-    //   },(error) =>{
-    //     if(error.status == 404){
-    //         this.openDialog();
-    //         this.ocultarForm  = false;
-    //         this.verTablaDatos = false;
-    //         this.verMov = false;
-    //         this.verDetalleItem = false
-    //         this.cargaDatos = false;
-    //         console.log('despues resultado error ocultaform,verTablaDatos,verMov, CargaDatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
-    //       }
+      },(error) =>{
+        if(error.status == 404){
+            this.openDialog();
+            this.ocultarForm  = false;
+            this.verTablaDatos = false;
+            this.verMov = false;
+            this.verDetalleItem = false
+            this.cargaDatos = false;
+            console.log('despues resultado error ocultaform,verTablaDatos,verMov, CargaDatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
+          }
         
-    //   })
+      })
    
-    //   this.movParaTabla;
-    // console.log('despues resultado corrrecto ocultaform,verTablaDatos,verMov, CargaDatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
+      this.movParaTabla;
+    console.log('despues resultado corrrecto ocultaform,verTablaDatos,verMov, CargaDatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
   }
   
   

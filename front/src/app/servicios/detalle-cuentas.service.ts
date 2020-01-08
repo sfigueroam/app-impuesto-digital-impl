@@ -16,6 +16,13 @@ export class DetalleCuentasService {
     }
     
     
+    presentaCuentasMEFolio(form,folio): Observable <any> {
+      const urlTramite = environment.apiNube + '/impdigital/presentaMovsME/form/' + form + '/' + folio;
+      return this.http.get(urlTramite);
+    }
+     
+    
+    
      getMovimientos(idMov): Observable <any> {
       const urlTramite = environment.apiNube + '/impdigital/presentaMovsME/' + idMov;
       return this.http.get(urlTramite);
