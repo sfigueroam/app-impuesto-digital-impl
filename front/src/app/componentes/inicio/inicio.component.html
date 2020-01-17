@@ -82,7 +82,7 @@
         </mat-form-field>
               
         <mat-form-field>
-           <input matInput placeholder="Formulario" formControlName ="formulario" maxlength = '3' (input) = "avisoInput()" >
+           <input matInput placeholder="Formulario" formControlName ="formulario" required maxlength = '3' (input) = "avisoInput()"  >
            <mat-error *ngIf="forma?.get('formulario').hasError('maxLength')">Largo Maximo de 3</mat-error>
            <!--<mat-error *ngIf="formaFolio?.get('formulario').hasError('required')">Debe Ingresar un Formulario</mat-error>-->
         </mat-form-field>

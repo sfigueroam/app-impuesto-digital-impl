@@ -158,16 +158,43 @@ pruebainputRut(){
 }
 
 avisoInput(){
-  this.botonDatosIncompletos = true;
+
+    this.forma.statusChanges.subscribe(data =>{
+      if(data == 'VALID'){
+        this.botonBuscar = true;
+        this.botonDatosIncompletos = false
+      }
+      else{
+        console.log('form invalido');
+        this.botonBuscar = false;
+        this.botonDatosIncompletos = true;
+      }
+    })
+    
+    
+    this.formaFolio.statusChanges.subscribe(data =>{
+      if(data == 'VALID'){
+        this.botonBuscar = true;
+        this.botonDatosIncompletos = false
+      }
+      else{
+        console.log('form invalido');
+        this.botonBuscar = false;
+        this.botonDatosIncompletos = true;
+      }
+    })
+    
+    
   console.log('hola cambio el input');
 }
 
 comprobarRut(value:string){
-  console.log('el rut ingresado es :', rut.validar(value));
+  if(value.charAt(value.length-1) == 'k'){
+   value =  value.replace(/\k/g, 'K');
+  }
   if(!rut.validar(value)){
     this.forma.controls['identificacion'].setErrors({'incorrect': true})
   }
-  console.log('rut ingresado es', value)
   
 }
 
