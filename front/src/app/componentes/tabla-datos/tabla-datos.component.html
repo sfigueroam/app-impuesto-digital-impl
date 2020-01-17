@@ -10,7 +10,9 @@
   <mat-card-header>
     <mat-card-title>CONSULTA DE CUENTAS MONEX</mat-card-title>
     
-    <mat-card-title class="tgr_datos_rut">{{nombreContribuyente}} │ <strong>RUT: {{rutContribuyente}}- {{dvContribuyente}}</strong></mat-card-title>
+    <mat-card-title class="tgr_datos_rut">{{nombreContribuyente}} 
+    <!--│ <strong>RUT: {{rutContribuyente}}- {{dvContribuyente}}</strong>-->
+    </mat-card-title>
     
   </mat-card-header>
   
@@ -54,6 +56,11 @@
   <ng-container matColumnDef="Formulario">
     <th mat-header-cell *matHeaderCellDef> Formulario </th>
     <td mat-cell *matCellDef="let element"> {{element.formTipo}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="Rut">
+    <th mat-header-cell *matHeaderCellDef> Rut/Rol </th>
+    <td mat-cell *matCellDef="let element"> {{element.rutRol}} - {{element.rutDv}} </td>
   </ng-container>
 
    Weight Column 

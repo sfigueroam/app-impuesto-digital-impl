@@ -29,7 +29,7 @@ export class TablaDatosComponent implements OnInit {
   ELEMENT_DATA: CuentasME[] = [];
 
   
-  displayedColumns: string[] = ['select','Folio', 'Formulario', 'Moneda', 'Saldo-Neto', 'Fecha-Venc', 'Fecha-Giro', 'action'];
+  displayedColumns: string[] = ['select','Folio', 'Formulario', 'Rut', 'Moneda', 'Saldo-Neto', 'Fecha-Venc', 'Fecha-Giro', 'action'];
   dataSource = new MatTableDataSource<CuentasME>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   selection = new SelectionModel<CuentasME>(true, []);

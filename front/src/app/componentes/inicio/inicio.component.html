@@ -21,13 +21,15 @@
     <form class="tgr-tab-form tgr_top" [formGroup] = "forma" (ngSubmit) = "setDataRut()" novalidate = "novalidate">
                 
       <mat-form-field>
-        <input matInput placeholder="RUT" name = rut formControlName ="identificacion" formatRut required validateRut required>
+        <input matInput placeholder="RUT" name = rut formControlName ="identificacion" formatRut required validateRut required (input) = 'comprobarRut($event.target.value)'>
         <mat-error *ngIf="forma?.get('identificacion').hasError('required')">Debe Ingresar un Rut</mat-error>
+        <mat-error *ngIf="forma?.get('identificacion').hasError('setValidity')">Formato Rut Incorrecto</mat-error>
+        <mat-error *ngIf="forma?.get('identificacion').hasError('incorrect')">Datos ingresados no corresponden a formato definido</mat-error>
       </mat-form-field>
               
       <mat-form-field>
-        <input matInput placeholder="Formulario" formControlName ="formulario">
-        <!--<mat-error *ngIf="forma?.get('formulario').hasError('required')">Debe Ingresar un Formulario</mat-error>-->
+        <input matInput placeholder="Formulario" formControlName ="formulario" maxlength = '3' (input) = "avisoInput()" >
+        <mat-error *ngIf="forma?.get('formulario').hasError('maxLength')">Largo Maximo de 3</mat-error>
       </mat-form-field>
               
       <div class="tgr_date_picker">
@@ -53,7 +55,7 @@
             
       <mat-form-field>
         <mat-label>Saldo</mat-label>
-        <mat-select formControlName = "saldo">
+        <mat-select formControlName = "saldo" (selectionChange) = "avisoInput()">
           <mat-option value = "deudor">Deudor</mat-option>
           <mat-option value = "acreedor">Acreedor</mat-option>
           <mat-option value = "0">0</mat-option>
@@ -63,7 +65,9 @@
     </form>
             
     <button class="mdl-button tgr-button-action" (click) = setDataRut(); [disabled] = !botonBuscar ><i class="material-icons">search</i> Buscar</button>
-    
+    <div *ngIf = botonDatosIncompletos>
+      Para consultar por este filtro debe ingresar Rut y/o Folio
+    </div>
   </mat-tab>
             
             
@@ -72,12 +76,14 @@
       <form class="tgr-tab-form tgr_top" [formGroup] = "formaFolio" (ngSubmit) = "setDataFolio()" novalidate = "novalidate">
         
         <mat-form-field>
-          <input matInput placeholder="Folio"  formControlName ="folio" required>
+          <input matInput placeholder="Folio"  formControlName ="folio" required maxlength = '11'>
           <mat-error *ngIf="formaFolio?.get('folio').hasError('required')">Debe Ingresar un folio </mat-error>
+          <mat-error *ngIf="formaFolio?.get('folio').hasError('maxlength')"> Datos ingresados no corresponden a formato definido</mat-error>
         </mat-form-field>
               
         <mat-form-field>
-           <input matInput placeholder="Formulario" formControlName ="formulario">
+           <input matInput placeholder="Formulario" formControlName ="formulario" maxlength = '3' (input) = "avisoInput()" >
+           <mat-error *ngIf="forma?.get('formulario').hasError('maxLength')">Largo Maximo de 3</mat-error>
            <!--<mat-error *ngIf="formaFolio?.get('formulario').hasError('required')">Debe Ingresar un Formulario</mat-error>-->
         </mat-form-field>
         
@@ -104,12 +110,15 @@
             
         <mat-form-field>
           <mat-label>Saldo</mat-label>
-            <mat-select formControlName = "saldo">
+            <mat-select formControlName = "saldo" (selectionChange) = "avisoInput()">
             <mat-option value = "deudor">
               Deudor
             </mat-option>
             <mat-option value = "acreedor">
               Acreedor
+            </mat-option>
+            <mat-option value = "0">
+              0
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -117,6 +126,9 @@
         </form>
             
         <button class="mdl-button tgr-button-action" (click) = setDataFolio(); [disabled] = !botonBuscar ><i class="material-icons">search</i> Buscar</button>
+    <div *ngIf = botonDatosIncompletos>
+      Para consultar por este filtro debe ingresar Rut y/o Folio
+    </div>
             
     </mat-tab>
   </mat-tab-group>  

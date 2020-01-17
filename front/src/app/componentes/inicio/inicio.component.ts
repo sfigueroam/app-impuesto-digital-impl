@@ -3,6 +3,7 @@ import {FormGroup, FormControl, Validators, FormBuilder, FormGroupDirective, NgF
 import { RutValidator } from 'ng2-rut/dist/rut.validator';
 import * as moment from 'moment';
 import {ErrorStateMatcher} from '@angular/material/core';
+const rut = require('validar-rut')
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -21,6 +22,7 @@ export class InicioComponent implements OnInit {
    forma:FormGroup;
    formaFolio: FormGroup;
    botonBuscar:boolean;
+   botonDatosIncompletos:boolean = false;
    matcher = new MyErrorStateMatcher();
    @Output()
    mostrarTabla= new EventEmitter<boolean>();
@@ -56,6 +58,7 @@ export class InicioComponent implements OnInit {
     this.forma.statusChanges.subscribe(data =>{
       if(data == 'VALID'){
         this.botonBuscar = true;
+        this.botonDatosIncompletos = false
       }
       else{
         this.botonBuscar = false;
@@ -65,6 +68,7 @@ export class InicioComponent implements OnInit {
     this.formaFolio.statusChanges.subscribe(data =>{
       if(data == 'VALID'){
         this.botonBuscar = true;
+        this.botonDatosIncompletos = false;
       }
       else{
         this.botonBuscar = false;
@@ -153,5 +157,18 @@ pruebainputRut(){
   
 }
 
+avisoInput(){
+  this.botonDatosIncompletos = true;
+  console.log('hola cambio el input');
+}
+
+comprobarRut(value:string){
+  console.log('el rut ingresado es :', rut.validar(value));
+  if(!rut.validar(value)){
+    this.forma.controls['identificacion'].setErrors({'incorrect': true})
+  }
+  console.log('rut ingresado es', value)
+  
+}
 
 }
