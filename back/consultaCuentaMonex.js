@@ -6,12 +6,19 @@ module.exports.handler = async (event, context, callback) => {
     console.log(event.body);
     
     var In = JSON.parse(event.body);
-    var rut = In['identificacion']
+    var rut = In['identificacion'];
+    var formulario = In['formulario'];
+    var fechaDesde = In['fechaDesde'];
+    var fechaHasta = In['fechaHasta'];
+    var saldo = In['saldo'];
+    
+    var dv = rut.substring(rut.length-1)
     
     rut = rut.replace(/-/g , "");
     rut = rut.replace(/\./g , "");
     rut = rut.substring(0,rut.length-1)
     
+    console.log('el dv es ',dv);
     console.log('tgr-consultaCuentaMonex . JSON de Entrada:' , In);
     
     console.log("[INICIO PROCESO] Iniciando consulta a servicios");
@@ -32,7 +39,7 @@ module.exports.handler = async (event, context, callback) => {
         console.log('Error al generar token nube', err);
     }
     
-    let salida = await servAmazon.consultaCuentaMonex(rut,token);
+    let salida = await servAmazon.consultaCuentaMonex(rut,formulario,fechaDesde,fechaHasta, saldo, dv, token);
     console.log("Resultado Final:", salida);
     console.log("[FIN PROCESO]");
     send(salida.codeStatus,salida.respuesta,callback)

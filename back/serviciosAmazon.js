@@ -3,7 +3,7 @@ const hostService = process.env.HOSTNUBE;
 
 
 
-function consultaCuentaMonex(id, token) {
+function consultaCuentaMonex(id,formulario,fechaDesde,fechaHasta, saldo, dv, token) {
     return new Promise((resolve, reject) => {
         
     var respServicio = {
@@ -15,10 +15,11 @@ function consultaCuentaMonex(id, token) {
                 //hostname: host,
                 hostname: hostService,
                 port: 443,
-                path:  "/" + process.env.ENV + '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1' +
-                '&in_id_sistema=1&in_cliente_tipo=1&in_rut_rol=' + id  ,
-                // path:  "/" + 'dev' + '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1' +
+                // path:  "/" + process.env.ENV + '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1' +
                 // '&in_id_sistema=1&in_cliente_tipo=1&in_rut_rol=' + id  ,
+                path:  "/" + process.env.ENV +  '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1&in_id_sistema=1' + 
+                '&in_cliente_tipo=1&in_rut_rol=' + id + '&in_rut_dv=' + dv + '&in_form_tipo=' + formulario +
+                '&in_saldo='+ saldo +'&in_fecha_vcto_desde=' + fechaDesde +'&in_fecha_vcto_hasta='+ fechaHasta,
                 method: 'GET',
                 rejectUnauthorized: false,
                 headers: {

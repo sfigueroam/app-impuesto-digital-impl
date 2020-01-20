@@ -11,6 +11,6 @@ const crear = require('../consultaCuentaMonex');
 
 
 console.log('Inicio de funcion');
-let event = {"body": "{\"identificacion\": \"77.905.330-K\", \"cdco\":\"id\"}"};
+let event = {"body": "{\"identificacion\": \"77.905.330-K\", \"formulario\":\"\", \"fechaDesde\":\"\", \"fechaHasta\":\"\", \"saldo\":\"0\"}"};
 
 crear.handler(event, null, ()=>{});
