@@ -22,6 +22,7 @@ export class InicioComponent implements OnInit {
    forma:FormGroup;
    formaFolio: FormGroup;
    botonBuscar:boolean;
+   botonBuscarFolio:boolean;
    botonDatosIncompletos:boolean = false;
    matcher = new MyErrorStateMatcher();
    @Output()
@@ -67,11 +68,11 @@ export class InicioComponent implements OnInit {
     
     this.formaFolio.statusChanges.subscribe(data =>{
       if(data == 'VALID'){
-        this.botonBuscar = true;
+        this.botonBuscarFolio = true;
         this.botonDatosIncompletos = false;
       }
       else{
-        this.botonBuscar = false;
+        this.botonBuscarFolio = false;
       }
     })
     
