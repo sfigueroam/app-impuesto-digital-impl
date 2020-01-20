@@ -44,6 +44,7 @@ export class TablaDatosComponent implements OnInit {
   
   constructor(private cdRef:ChangeDetectorRef, private usuario: UsuarioService) { }
   @Input() datosPrincipal:{};
+  @Input() tipoConsulta:string;
   // @Output()
   // datosPrimeraTabla = new EventEmitter<boolean>();
   @Output()
@@ -61,6 +62,7 @@ export class TablaDatosComponent implements OnInit {
   
   ngAfterViewChecked()
 {
+  console.log('tipod',this.tipoConsulta)
   this.datosFooter = this.cantidadSeleccionada;
   
   if(this.datosPrincipal != 'undefined' && (this.ELEMENT_DATA.length == 0 || this.ELEMENT_DATA.length == undefined)){

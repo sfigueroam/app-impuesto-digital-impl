@@ -1,4 +1,124 @@
-<div class="mdl-grid">
+<div *ngIf = "tipoConsulta == 'r'"  class="mdl-grid">
+  
+  
+  <div class="mdl-cell mdl-cell--12-col mdl-typography--text-center">
+    <h1>Impuestos<strong> Digitales</strong></h1>
+  </div>  
+
+<mat-card class="tgr-center tgr-content-center mdl-cell--8-col">
+  
+  <mat-card-header>
+    <mat-card-title>CONSULTA DE CUENTAS MONEX</mat-card-title>
+    
+    <mat-card-title class="tgr_datos_rut">{{nombreContribuyente}} 
+    │ <strong>RUT: {{rutContribuyente}}- {{dvContribuyente}}</strong>
+    </mat-card-title>
+    
+  </mat-card-header>
+  
+  <mat-card-content class="tgr_bottom">  
+
+<button class="tgr_volver" mat-button (click) = volver()><i class="material-icons">chevron_left</i>Volver</button>
+
+<mat-form-field class="tgr_buscar">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar en la Tabla">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+   Checkbox Column 
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()"
+                    color="primary">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)"
+                    color="primary">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+   Position Column 
+  <ng-container matColumnDef="Folio">
+    <th mat-header-cell *matHeaderCellDef> Folio </th>
+    <td mat-cell *matCellDef="let element"> <strong>{{element.formFolio}}</strong> </td>
+  </ng-container>
+
+   Name Column 
+  <ng-container matColumnDef="Formulario">
+    <th mat-header-cell *matHeaderCellDef> Formulario </th>
+    <td mat-cell *matCellDef="let element"> {{element.formTipo}} </td>
+  </ng-container>
+  
+ 
+  <ng-container matColumnDef="Rut">
+ 
+    <th mat-header-cell *matHeaderCellDef [hidden] = "true"> Rut/Rol </th>
+    <td mat-cell *matCellDef="let element" [hidden] = "true"> {{element.rutRol}} - {{element.rutDv}} </td>
+
+  </ng-container>
+
+
+   Weight Column 
+  <ng-container matColumnDef="Moneda">
+    <th mat-header-cell *matHeaderCellDef> Moneda </th>
+    <td mat-cell *matCellDef="let element"> {{element.moneda}} </td>
+  </ng-container>
+
+   Symbol Column 
+  <ng-container matColumnDef="Saldo-Neto">
+    <th mat-header-cell *matHeaderCellDef> Saldo Neto </th>
+    <td mat-cell *matCellDef="let element"> {{element.saldo}} </td>
+  </ng-container>
+  
+    Symbol Column 
+  <ng-container matColumnDef="Fecha-Venc">
+    <th mat-header-cell *matHeaderCellDef> Fecha Venc. </th>
+    <td mat-cell *matCellDef="let element"> {{element.fechaVcto | date:"dd/MM/yyyy"}} </td>
+  </ng-container>
+  
+     Symbol Column 
+  <ng-container matColumnDef="Fecha-Giro">
+    <th mat-header-cell *matHeaderCellDef> Fecha Giro </th>
+    <td mat-cell *matCellDef="let element"> {{element.fechaGiro | date:"dd/MM/yyyy"}} </td>
+  </ng-container>
+  
+<!--  <ng-container matColumnDef="action" (click)="$event.stopPropagation()">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Fecha Giro </th>-->
+<!--    <td mat-cell *matCellDef="let element"> <button mat-button  (click) = "verMovimiento()" >Ver Movimiento</button> </td>-->
+<!--</ng-container>-->
+
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()"  >
+            <button mat-button (click)="verMovimiento(element)" class="tgr_ver">Ver Movimiento</button> </td>
+    </ng-container>
+  
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="selection.toggle(row) ">
+  </tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</mat-card-content>
+
+</mat-card>
+
+</div>
+
+<!--folio-->
+
+<div *ngIf = "tipoConsulta == 'f'"  class="mdl-grid">
   
   
   <div class="mdl-cell mdl-cell--12-col mdl-typography--text-center">

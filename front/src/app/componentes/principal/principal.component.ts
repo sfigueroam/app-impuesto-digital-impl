@@ -23,6 +23,7 @@ export class PrincipalComponent implements OnInit {
   movParaTabla;
   detalleMovParaTabla;
   detalleItem;
+  consultaTipo:string;
   
   
   
@@ -110,7 +111,10 @@ export class PrincipalComponent implements OnInit {
   
   
   
-  
+  tipoConsulta(tipo:string){
+    this.consultaTipo = tipo;
+    console.log('el tipo de consulta es:', tipo);
+  }
   
   
   

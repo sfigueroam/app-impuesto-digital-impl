@@ -33,6 +33,9 @@ export class InicioComponent implements OnInit {
    
   @Output()
    datosFormFolio = new EventEmitter<{}>();
+   
+  @Output()
+  tipoConsulta = new EventEmitter<{}>();
   
 
   constructor(rutValidator: RutValidator, fb: FormBuilder, private cdRef:ChangeDetectorRef) {
@@ -99,6 +102,7 @@ export class InicioComponent implements OnInit {
     data['IdSistema'] = '3';
     this.mostrarTabla.emit(true);
     this.datosForm.emit(data);
+    this.tipoConsulta.emit('r');
     
    
   
@@ -114,6 +118,7 @@ export class InicioComponent implements OnInit {
     data.fechaHasta = data.fechaHasta.replace(/\//g , "-");
     this.mostrarTabla.emit(true);
     this.datosFormFolio.emit(data);
+    this.tipoConsulta.emit('f');
     
 
   }
