@@ -13,6 +13,4 @@ const crear = require('../consultaCuentaMonex');
 console.log('Inicio de funcion');
 let event = {"body": "{\"identificacion\": \"77.905.330-K\", \"cdco\":\"id\"}"};
 
-//nube:1AWS14110612w0jtpEiRE-cdcp
-
 crear.handler(event, null, ()=>{});
