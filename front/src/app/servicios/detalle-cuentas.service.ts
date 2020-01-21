@@ -17,7 +17,7 @@ export class DetalleCuentasService {
     
     
     presentaCuentasMEFolio(dataJson): Observable <any> {
-      const urlTramite = environment.apiNube + '/impdigital/presentaMovsME/form/';
+      const urlTramite = environment.apiNube + '/impdigital/presentasCuentasMEForm';
       return this.http.get(urlTramite);
     }
      
