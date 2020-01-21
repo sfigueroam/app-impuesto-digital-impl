@@ -6,7 +6,7 @@ module.exports.handler = async (event, context, callback) => {
     console.log(event.body);
     
     var In = JSON.parse(event.body);
-    var folio = In['identificacion'];
+    var folio = In['folio'];
     var formulario = In['formulario'];
     var fechaDesde = In['fechaDesde'];
     var fechaHasta = In['fechaHasta'];
