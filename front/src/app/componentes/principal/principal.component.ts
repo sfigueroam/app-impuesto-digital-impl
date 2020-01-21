@@ -82,10 +82,10 @@ export class PrincipalComponent implements OnInit {
     console.log('datos del form', objeto)
     console.log('despues de apretar get items form ocultaform,verTablaDatos,verMov, cargadatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
     console.log('datos en principal', this.objetoForm)
-    var folio = this.objetoForm['folio'];
-    var form = this.objetoForm['formulario'];
-    console.log('form y folio a consultar', form,folio)
-    this.detalleCuentas.presentaCuentasMEFolio(form,folio).subscribe(
+    // var folio = this.objetoForm['folio'];
+    // var form = this.objetoForm['formulario'];
+    // console.log('form y folio a consultar', form,folio)
+    this.detalleCuentas.presentaCuentasMEFolio(this.objetoForm).subscribe(
       data => {
         this.movParaTabla = data;
         console.log(this.movParaTabla);

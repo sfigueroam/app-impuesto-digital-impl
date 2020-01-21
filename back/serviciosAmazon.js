@@ -172,7 +172,7 @@ function consultaItem(id, token) {
 }
 
 
-function consultaCuentaMonexFolio(form, folio, token) {
+function consultaCuentaMonexFolio(folio,formulario,fechaDesde,fechaHasta,saldo, token) {
     return new Promise((resolve, reject) => {
         
     var respServicio = {
@@ -184,10 +184,12 @@ function consultaCuentaMonexFolio(form, folio, token) {
                 //hostname: host,
                 hostname: hostService,
                 port: 443,
-                path:  "/" + process.env.ENV + '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1' +
-                '&in_id_sistema=1&in_form_tipo=' + form + '&in_form_folio=' + folio,
-                // path:  "/" + 'dev' + '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1' +
-                // '&in_id_sistema=1&in_cliente_tipo=1&in_rut_rol=' + id  ,
+                // path:  "/" + process.env.ENV + '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1' +
+                // '&in_id_sistema=1&in_form_tipo=' + form + '&in_form_folio=' + folio,
+                path:  "/" + process.env.ENV +  '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1&in_id_sistema=1' + 
+                '&in_cliente_tipo=1&in_form_tipo=' + formulario + '&in_form_folio=' + folio + 
+                '&in_saldo='+ saldo +'&in_fecha_vcto_desde=' + fechaDesde +'&in_fecha_vcto_hasta='+ fechaHasta,
+             
                 method: 'GET',
                 rejectUnauthorized: false,
                 headers: {

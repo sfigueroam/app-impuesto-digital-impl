@@ -5,9 +5,18 @@ const genToken = require('./genToken');
 module.exports.handler = async (event, context, callback) => {
     console.log(event.body);
     
-    var form = event.pathParameters.form
-    var folio = event.pathParameters.folio
-    console.log('tgr-consultaCuentaMonex . Form y Folio:' , form, folio);
+    var In = JSON.parse(event.body);
+    var folio = In['identificacion'];
+    var formulario = In['formulario'];
+    var fechaDesde = In['fechaDesde'];
+    var fechaHasta = In['fechaHasta'];
+    var saldo = In['saldo'];
+    
+    
+    if(fechaDesde == 'Invalid date' || fechaHasta == 'Invalid date'){
+        fechaDesde = ''
+        fechaHasta = ''
+    }
     
     console.log("[INICIO PROCESO] Iniciando consulta a servicios");
 
@@ -27,7 +36,7 @@ module.exports.handler = async (event, context, callback) => {
         console.log('Error al generar token nube', err);
     }
     
-    let salida = await servAmazon.consultaCuentaMonexFolio(form,folio,token);
+    let salida = await servAmazon.consultaCuentaMonexFolio(folio,formulario,fechaDesde,fechaHasta,saldo, token);
     console.log("Resultado Final:", salida);
     console.log("[FIN PROCESO]");
     send(salida.codeStatus,salida.respuesta,callback)

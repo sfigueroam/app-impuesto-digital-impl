@@ -11,7 +11,7 @@ const crear = require('../consultaCuentaFolio');
 
 
 console.log('Inicio de funcion');
-let event = {"pathParameters": {"form":"22", "folio": "2" }}; //
+let event = {"body": "{\"identificacion\": \"1234\", \"formulario\":\"21\", \"fechaDesde\":\"\", \"fechaHasta\":\"\", \"saldo\":\"0\"}"};
 
 //nube:1AWS14110612w0jtpEiRE-cdcp
 
