@@ -67,6 +67,6 @@ functions:
     timeout: 30
     events:
     - http:
-        path: impdigital/presentaMovsME/form/{form}/{folio}
-        method: get
+        path: impdigital/presentaMovsME/form
+        method: post
         cors: true
