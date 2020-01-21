@@ -18,7 +18,7 @@ export class DetalleCuentasService {
     
     presentaCuentasMEFolio(dataJson): Observable <any> {
       const urlTramite = environment.apiNube + '/impdigital/presentaCuentasMEForm';
-      return this.http.get(urlTramite);
+      return this.http.post(urlTramite, JSON.stringify(dataJson));
     }
      
     
