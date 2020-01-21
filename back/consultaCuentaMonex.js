@@ -12,6 +12,11 @@ module.exports.handler = async (event, context, callback) => {
     var fechaHasta = In['fechaHasta'];
     var saldo = In['saldo'];
     
+    if(fechaDesde == 'Invalid date' || fechaHasta == 'Invalid date'){
+        fechaDesde = ''
+        fechaHasta = ''
+    }
+    
     var dv = rut.substring(rut.length-1)
     
     rut = rut.replace(/-/g , "");
