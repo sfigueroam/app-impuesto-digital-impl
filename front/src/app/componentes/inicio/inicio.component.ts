@@ -56,9 +56,6 @@ export class InicioComponent implements OnInit {
       saldo:['',]
     });
     
-    
-    
-    console.log(this.forma.valid.valueOf());
     this.forma.statusChanges.subscribe(data =>{
       if(data == 'VALID'){
         this.botonBuscar = true;
@@ -129,13 +126,11 @@ export class InicioComponent implements OnInit {
             
       const valuesStart=fechaInicial.split("-");
       const valuesEnd=fechaFinal.split("-");
-      console.log('valores Start End', valuesStart,valuesEnd)
             // Verificamos que la fecha no sea posterior a la actual
             var dateStart=new Date(valuesStart[2],(valuesStart[1]-1),valuesStart[0]);
             var dateEnd=new Date(valuesEnd[2],(valuesEnd[1]-1),valuesEnd[0]);
             if(dateStart>=dateEnd)
             {
-              console.log('la fecha de inicio es mayor');
                 return 0;
             }
             return 1;
@@ -146,7 +141,6 @@ pruebainput(){
   data.fechaDesde = moment(data.fechaDesde).locale('en-ca').format('L');
   data.fechaHasta = moment(data.fechaHasta).locale('en-ca').format('L');
       if(!this.validate_fechaMayorQue(data.fechaDesde, data.fechaHasta)){
-      console.log('entre a poner el boton en false');
       this.formaFolio.controls['fechaHasta'].setErrors({'incorrect' : true})
     };
   
@@ -157,7 +151,6 @@ pruebainputRut(){
   data.fechaDesde = moment(data.fechaDesde).locale('en-ca').format('L');
   data.fechaHasta = moment(data.fechaHasta).locale('en-ca').format('L');
       if(!this.validate_fechaMayorQue(data.fechaDesde, data.fechaHasta)){
-      console.log('entre a poner el boton en false');
       this.forma.controls['fechaHasta'].setErrors({'incorrect' : true})
     };
   
@@ -171,7 +164,6 @@ avisoInput(){
         this.botonDatosIncompletos = false
       }
       else{
-        console.log('form invalido');
         this.botonBuscar = false;
         this.botonDatosIncompletos = true;
       }
@@ -184,14 +176,10 @@ avisoInput(){
         this.botonDatosIncompletos = false
       }
       else{
-        console.log('form invalido');
         this.botonBuscar = false;
         this.botonDatosIncompletos = true;
       }
     })
-    
-    
-  console.log('hola cambio el input');
 }
 
 comprobarRut(value:string){

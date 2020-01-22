@@ -60,10 +60,8 @@ export class TablaMovimientoComponent implements OnInit {
    if(this.filaTabla != 'undefined' && (this.ELEMENT_DATA.length == 0 || this.ELEMENT_DATA.length == undefined)){
    
     this.llenarTablaMov(this.filaTabla);
-    console.log('llegaron los datos a la tabla 1');
   }
   //Aca tengo que poner una condicion de si viene vacia y el tema del lenght tabla para desplegar los datos que me llegaron del back
-  console.log('recibi los datos en tabla movimiento para hacer la tabla', this.filaTabla);
   this.cdRef.detectChanges();
 }
   
@@ -80,10 +78,7 @@ export class TablaMovimientoComponent implements OnInit {
   
   
   llenarTablaMov(obj:{}){
-    // console.log('esta es la fila tabla que recibi', obj)
-    //   console.log('tengo que llenar datos con esto', obj)
     let largoob = Object.keys(obj).length
-    console.log('largo objeto que llego tabla mov', largoob);
     for(var i = 0; i < largoob; i++){
       console.log(obj[Object.keys(obj)[i]]);
       let objInter =  obj[Object.keys(obj)[i]];

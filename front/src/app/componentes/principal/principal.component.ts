@@ -31,13 +31,11 @@ export class PrincipalComponent implements OnInit {
 
   
   ngOnInit() {
-     console.log('inicio de todo ocultaform,verTablaDatos,verMov', this.ocultarForm,this.verTablaDatos,this.verMov)
   }
   
   estadoMostrarTabla(mostrarpantalla:boolean){
     this.ocultarForm = !mostrarpantalla;
     this.cargaDatos = true
-    console.log('este booleano viene de inicio', mostrarpantalla)
   }
   
     ngAfterViewChecked()
@@ -49,12 +47,10 @@ export class PrincipalComponent implements OnInit {
     
     //aca va la llamada al servicio para cargar los datos de la tabla  
     this.objetoForm = objeto;
-    console.log('despues de apretar get items form ocultaform,verTablaDatos,verMov, cargadatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
     // console.log('datos en principal', this.objetoForm)
     this.detalleCuentas.presentaCuentasME(this.objetoForm).subscribe(
       data => {
         this.movParaTabla = data;
-        console.log(this.movParaTabla);
         this.ocultarForm = true;
         this.cargaDatos = false;
        
@@ -66,29 +62,23 @@ export class PrincipalComponent implements OnInit {
             this.verMov = false;
             this.verDetalleItem = false
             this.cargaDatos = false;
-            console.log('despues resultado error ocultaform,verTablaDatos,verMov, CargaDatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
           }
         
       })
    
       this.movParaTabla;
-    console.log('despues resultado corrrecto ocultaform,verTablaDatos,verMov, CargaDatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
   }
   
     getDatosFormFolio(objeto:{}){
     
     //aca va la llamada al servicio para cargar los datos de la tabla  
     this.objetoForm = objeto;
-    console.log('datos del form', objeto)
-    console.log('despues de apretar get items form ocultaform,verTablaDatos,verMov, cargadatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
-    console.log('datos en principal', this.objetoForm)
     // var folio = this.objetoForm['folio'];
     // var form = this.objetoForm['formulario'];
     // console.log('form y folio a consultar', form,folio)
     this.detalleCuentas.presentaCuentasMEFolio(this.objetoForm).subscribe(
       data => {
         this.movParaTabla = data;
-        console.log(this.movParaTabla);
         this.ocultarForm = true;
         this.cargaDatos = false;
        
@@ -100,40 +90,27 @@ export class PrincipalComponent implements OnInit {
             this.verMov = false;
             this.verDetalleItem = false
             this.cargaDatos = false;
-            console.log('despues resultado error ocultaform,verTablaDatos,verMov, CargaDatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
           }
         
       })
    
       this.movParaTabla;
-    console.log('despues resultado corrrecto ocultaform,verTablaDatos,verMov, CargaDatos', this.ocultarForm,this.verTablaDatos,this.verMov, this.cargaDatos)
   }
   
   
   
   tipoConsulta(tipo:string){
     this.consultaTipo = tipo;
-    console.log('el tipo de consulta es:', tipo);
   }
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   getDatosTable(objeto:{}){
     this.cargaDatos = true
     this.ocultarForm = false;
     this.objetoTabla = objeto;
-    console.log('objeto recibido de la tabla', this.objetoTabla)
     this.detalleCuentas.getMovimientos(this.objetoTabla['id']).subscribe(
       data => {
         this.detalleMovParaTabla = data;
-        console.log('estos datos se van para desplegar detalle de mov',this.detalleMovParaTabla)
             this.verTablaDatos = true;
             this.ocultarForm = false;
             this.cargaDatos = false;
@@ -141,7 +118,6 @@ export class PrincipalComponent implements OnInit {
       })
       
       this.detalleMovParaTabla;
-    console.log('despues de apretar get filatabla ocultaform,verTablaDatos,verMov', this.ocultarForm,this.verTablaDatos,this.verMov)
     
   }
   
@@ -170,15 +146,11 @@ export class PrincipalComponent implements OnInit {
     this.cargaDatos = true
     this.ocultarForm = false;
   this.movSeleccionado = mov;
-  console.log('movimiento seleccionado para consultarle el id a base de datos', this.movSeleccionado);
   this.verDetalleItem = true
   this.verMov = true;
-  console.log('id a consultar',this.movSeleccionado['id'])
-    //console.log('despues de apretar ver item ocultaform,verTablaDatos,verMov', this.ocultarForm,this.verTablaDatos,this.verMov)
   this.detalleCuentas.getItem(this.movSeleccionado['id']).subscribe(
       data => {
         this.detalleItem = data;
-        console.log('estos datos se van para desplegar detalle de mov',this.detalleItem);
             this.verTablaDatos = true;
             this.ocultarForm = false;
             this.cargaDatos = false;
@@ -187,7 +159,6 @@ export class PrincipalComponent implements OnInit {
         
       })
       this.detalleItem;
-    console.log('items que van a ver item', this.detalleItem);
     this.usuario.datosMov = this.detalleItem;
  
   }

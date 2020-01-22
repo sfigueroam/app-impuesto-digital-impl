@@ -55,18 +55,14 @@ export class TablaDatosComponent implements OnInit {
   
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
-    console.log(this.datosPrincipal);
-    // console.log(this.ELEMENT_DATA.length);
     
   }
   
   ngAfterViewChecked()
 {
-  console.log('tipod',this.tipoConsulta)
   this.datosFooter = this.cantidadSeleccionada;
   
   if(this.datosPrincipal != 'undefined' && (this.ELEMENT_DATA.length == 0 || this.ELEMENT_DATA.length == undefined)){
-    console.log(this.datosPrincipal);
     this.llenarTablaMov(this.datosPrincipal);
     this.nombreContribuyente = this.datosPrincipal[0]['nombreContribuyente'];
     this.rutContribuyente = this.datosPrincipal[0]['rutRol']
@@ -74,11 +70,8 @@ export class TablaDatosComponent implements OnInit {
     this.usuario.nombreUsuario = this.nombreContribuyente;
     this.usuario.rutUsuario = this.rutContribuyente;
     this.usuario.dvUsuario = this.dvContribuyente;
-    console.log('llegaron los datos a la tabla 1 y estos son nobre rut y dv', this.nombreContribuyente, this.rutContribuyente, this.dvContribuyente );
   }
-  // if(this.datosPrincipal != undefined){
-  //   console.log('ya llego el objeto');
-  // }
+
   this.numeroSelec = this.cantidadSeleccionada.length;
   this.cdRef.detectChanges();
 }
@@ -88,14 +81,12 @@ export class TablaDatosComponent implements OnInit {
    console.log('tengo que llenar datos con esto', obj)
     let largoob = Object.keys(obj).length
     for(var i = 0; i < largoob; i++){
-      console.log(obj[Object.keys(obj)[i]]);
       let objInter =  obj[Object.keys(obj)[i]];
       objInter['position'] = i;
       this.ELEMENT_DATA.push(objInter); 
     }
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
      this.dataSource.paginator = this.paginator;
-    console.log('datos en element data', this.ELEMENT_DATA)
     
   }
   
@@ -136,12 +127,10 @@ export class TablaDatosComponent implements OnInit {
     actualizarSeleccionados() {
     this.cantidadSeleccionada = this.selection.selected;
     this.numeroSelec = this.cantidadSeleccionada;
-      console.log('cantidad desde actualizar selec', this.numeroSelec.length);
   }
   
    private selectRow($event, dataSource) {
     if ($event.cheked) {
-      console.log($event.checked)
       this.dataMov = dataSource;
     }
   }
