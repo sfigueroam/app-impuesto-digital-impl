@@ -8,15 +8,25 @@ export const environment = {
    // apiNube: 'https://wnrssq4u4c.execute-api.us-east-1.amazonaws.com/dev', 
  apiNube: 'BUILD_API_ENDPOINT',
   
-    cognito: { 
-     authorizeURL: 'https://autentica-dev.tegere.info/oauth2/authorize', 
-     logoutURL: 'https://autentica-dev.tegere.info/logout', 
-     clientId: '2ous0l73nn5h3enldboi04ktn6', 
-     redirectUri: 'https://impuesto-digital-dev.tegere.info/login', 
-     logoutUri: 'https://impuesto-digital-dev.tegere.info/logout', 
-     jwtCookieName: 'tgr-jwt', 
-     expCookieName: 'exp', 
-     allowCookies: true, 
+  //   cognito: { 
+  //    authorizeURL: 'https://autentica-dev.tegere.info/oauth2/authorize', 
+  //    logoutURL: 'https://autentica-dev.tegere.info/logout', 
+  //    clientId: '2ous0l73nn5h3enldboi04ktn6', 
+  //    redirectUri: 'https://impuesto-digital-dev.tegere.info/login', 
+  //    logoutUri: 'https://impuesto-digital-dev.tegere.info/logout', 
+  //    jwtCookieName: 'tgr-jwt', 
+  //    expCookieName: 'exp', 
+  //    allowCookies: true, 
+  // },
+  cognito: { 
+   authorizeURL: 'BUILD_AUTH_AUTHORIZE_URL', 
+   logoutURL: 'BUILD_AUTH_LOGOUT_URL', 
+   clientId: 'BUILD_AUTH_CLIENT_ID', 
+   redirectUri: 'BUILD_APP_REDIRECT_LOGIN_URL', 
+   logoutUri: 'BUILD_APP_REDIRECT_LOGOUT_URL', 
+   jwtCookieName: 'tgr-jwt', 
+   expCookieName: 'exp', 
+   allowCookies: true, 
   },
   
   

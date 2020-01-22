@@ -6,6 +6,11 @@ phases:
             - touch ${CODEBUILD_SRC_DIR}/front/src/environments/environment.ts
             - cp ${CODEBUILD_SRC_DIR}/front/src/environments/environment.ts ${CODEBUILD_SRC_DIR}/front/src/environments/environment.prod.ts
             - sed -i "s;BUILD_API_ENDPOINT;${BUILD_API_ENDPOINT};g" ${CODEBUILD_SRC_DIR}/front/src/environments/environment.prod.ts
+            - sed -i "s;BUILD_AUTH_AUTHORIZE_URL;${BUILD_AUTH_AUTHORIZE_URL};g" ${CODEBUILD_SRC_DIR}/front/src/environments/environment.prod.ts
+            - sed -i "s;BUILD_AUTH_LOGOUT_URL;${BUILD_AUTH_LOGOUT_URL};g" ${CODEBUILD_SRC_DIR}/front/src/environments/environment.prod.ts
+            - sed -i "s;BUILD_AUTH_CLIENT_ID;${BUILD_AUTH_CLIENT_ID};g" ${CODEBUILD_SRC_DIR}/front/src/environments/environment.prod.ts
+            - sed -i "s;BUILD_APP_REDIRECT_LOGIN_URL;${BUILD_APP_REDIRECT_LOGIN_URL};g" ${CODEBUILD_SRC_DIR}/front/src/environments/environment.prod.ts
+            - sed -i "s;BUILD_APP_REDIRECT_LOGOUT_URL;${BUILD_APP_REDIRECT_LOGOUT_URL};g" ${CODEBUILD_SRC_DIR}/front/src/environments/environment.prod.ts
             - sudo apt-get update -y
             - npm install -g @angular/cli@6.0.8
             - npm install
