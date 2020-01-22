@@ -34,8 +34,8 @@ export class LoginComponent implements OnInit {
       value => {
         this.identity = value;
         console.log(this.identity);
-        this.user.rut = JSON.parse(this.identity["custom:clave-unica:run"]).numero;
-        this.user.dv = JSON.parse(this.identity["custom:clave-unica:run"]).DV;
+        // this.user.rut = JSON.parse(this.identity["custom:clave-unica:run"]).numero;
+        // this.user.dv = JSON.parse(this.identity["custom:clave-unica:run"]).DV;
         this.user.loggeado = true;
       }
     );
