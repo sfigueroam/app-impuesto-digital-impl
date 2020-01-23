@@ -32,4 +32,9 @@ export class DetalleCuentasService {
       const urlTramite = environment.apiNube + '/impdigital/presentaMovsME/getItem/' + id;
       return this.http.get(urlTramite);
     }
+    
+    getPermisos(idUsuario): Observable <any> {
+      const urlTramite = environment.apiNube + '/impdigital/consultaPerfil/' + idUsuario;
+      return this.http.get(urlTramite);
+    }
 }

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {CognitoService} from '../../servicios/cognito.service';
 import {UserService} from '../../servicios/user.service';
 import {UserDataService} from '../../servicios/user-data.service';
+import {DetalleCuentasService} from '../../servicios/detalle-cuentas.service';
 
 
 @Component({
@@ -24,11 +25,13 @@ export class LoginComponent implements OnInit {
   dvDummy = '6';
   loggeado: any;
   identityProvider;
+  idUsuario;
 
   constructor(private cognito: CognitoService, 
               private route: ActivatedRoute, 
               private router: Router, 
               private user: UserService,
+              private detallecuentaservice : DetalleCuentasService,
               private userdataservice: UserDataService) {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
@@ -48,6 +51,11 @@ export class LoginComponent implements OnInit {
     
     this.exp = this.cognito.getExpirationDate();
     this.userdataservice.loggeado = true;
+    this.detallecuentaservice.getPermisos('jmoraT').subscribe(
+      data =>{
+        console.log('estos son los roles', data)
+      
+    })
     this.router.navigate(['']);
   }
 
