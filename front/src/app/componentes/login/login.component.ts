@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       value => {
         this.identity = value;
         console.log(this.identity);
-        this.idUsuario = JSON.parse(this.identity["identities"][0]["userId"]);
+        this.idUsuario = this.identity["identities"][0]["userId"];
         console.log('usuario logeado:', this.idUsuario);
       }
     );
