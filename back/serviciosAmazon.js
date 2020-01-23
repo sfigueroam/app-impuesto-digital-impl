@@ -1,5 +1,6 @@
 const https = require('https');
 const hostService = process.env.HOSTNUBE;
+const hostServiceP = process.env.HOSTNUBE_PERFILES;
 
 
 
@@ -232,6 +233,61 @@ function consultaCuentaMonexFolio(folio,formulario,fechaDesde,fechaHasta,saldo, 
 }
 
 
+function consultaPerfil(idApp, idUsuario, token) {
+    return new Promise((resolve, reject) => {
+        
+    var respServicio = {
+      codeStatus: "",
+      respuesta: ""
+    };
+
+            let options = {
+                //hostname: host,
+                hostname: hostServiceP,
+                port: 443,
+                path:  "/" + process.env.ENV +  '/info-perfiles/v1/roles/usuarios/' + idUsuario + '?aplicacion=' + idApp ,
+                method: 'GET',
+                rejectUnauthorized: false,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+            };
+
+            let respuesta = '';
+            let req = https.request(options, (res) => {
+                
+                    console.log('Respuesta servicio tierra statusCode:', res.statusCode);
+                   respServicio.codeStatus = res.statusCode
+                    if( res.statusCode != 200 && res.statusCode != 201){
+                        console.log("Error al tratar de consumir el servicio tierra");
+                        // return("Por el momento no podemos atender su consulta");
+                    }
+                  
+                res.on('data', (d) => {
+                    respuesta += d;
+                });
+
+            }).on('error', (error) => {
+                console.error(error);
+                reject(error);
+            });
+
+            req.on('close', () => {
+
+                let salida = JSON.parse(respuesta);
+                 respServicio.respuesta = salida
+                //----------------------------Corregir salida en servicio web--------------------------------------//
+                resolve(respServicio);
+            });
+            req.end();
+        })
+        .catch((error) => {
+            console.log(error, 'Error en promesa validarCliente');
+        });
+}
+
+
 
 
 
@@ -239,4 +295,5 @@ exports.consultaCuentaMonex  = consultaCuentaMonex;
 exports.consultaMovimiento = consultaMovimiento;
 exports.consultaItem = consultaItem;
 exports.consultaCuentaMonexFolio = consultaCuentaMonexFolio;
+exports.consultaPerfil = consultaPerfil;
 

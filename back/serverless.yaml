@@ -23,8 +23,12 @@ provider:
     HOST_TOKEN: ${self:custom.wsNube.wsGenToken}
     ENV: ${self:custom.env}
     HOSTNUBE:  ${self:custom.wsNube.wsHostNube}
+    REST_TOKEN_GRANT_TYPE_PERFILES: ${self:custom.wsNubePerfilamiento.wspGrantType}
+    REST_TOKEN_SCOPE_PERFILES: ${self:custom.wsNubePerfilamiento.wspScope}
+    REST_TOKEN_CLIENT_ID_PERFILES: ${self:custom.wsNubePerfilamiento.wspClientId}
+    REST_TOKEN_CLIENT_SECRET_PERFILES: ${self:custom.wsNubePerfilamiento.wspClientSecret}
+    HOSTNUBE_PERFILES:  ${self:custom.wsNubePerfilamiento.wspHostNube}
 
-   
 package:
   exclude:
   - package-lock.json
@@ -69,4 +73,14 @@ functions:
     - http:
         path: impdigital/presentaCuentasMEForm
         method: post
+        cors: true
+        
+  consultaPerfil:
+    name: tgr-${self:custom.env}-${self:service}-consultaPerfil
+    handler: consultaPerfilamiento.handler
+    timeout: 30
+    events:
+    - http:
+        path: impdigital/consultaPerfil/{idUsuario}
+        method: get
         cors: true

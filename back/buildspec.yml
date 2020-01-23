@@ -8,12 +8,17 @@ phases:
             - sed -i "s;BUILD_LAMBDA_ROLE_ARN;${BUILD_LAMBDA_ROLE_ARN};g"               ${CODEBUILD_SRC_DIR}/back/config.yml
             - sed -i "s;BUILD_API_ID;${BUILD_API_ID};g"                                 ${CODEBUILD_SRC_DIR}/back/config.yml
             - sed -i "s;BUILD_API_ROOT_ID;${BUILD_API_ROOT_ID};g"                       ${CODEBUILD_SRC_DIR}/back/config.yml
-            - sed -i "s;BUILD_WSN_GRANT_TYPE;${BUILD_WSN_GRANT_TYPE};g"                       ${CODEBUILD_SRC_DIR}/back/config.yml
-            - sed -i "s;BUILD_WSN_CLIENT_SECRET;${BUILD_WSN_CLIENT_SECRET};g"                       ${CODEBUILD_SRC_DIR}/back/config.yml
-            - sed -i "s;BUILD_WSN_CLIENT_ID;${BUILD_WSN_CLIENT_ID};g"                       ${CODEBUILD_SRC_DIR}/back/config.yml
-            - sed -i "s;BUILD_WSN_SCOPE;${BUILD_WSN_SCOPE};g"                       ${CODEBUILD_SRC_DIR}/back/config.yml
-            - sed -i "s;BUILD_WSN_HOST_TOKEN;${BUILD_WSN_HOST_TOKEN};g"                       ${CODEBUILD_SRC_DIR}/back/config.yml
-            - sed -i "s;BUILD_WSN_HOST;${BUILD_WSN_HOST};g"                       ${CODEBUILD_SRC_DIR}/back/config.yml
+            - sed -i "s;BUILD_WSN_GRANT_TYPE;${BUILD_WSN_GRANT_TYPE};g"                 ${CODEBUILD_SRC_DIR}/back/config.yml
+            - sed -i "s;BUILD_WSN_CLIENT_SECRET;${BUILD_WSN_CLIENT_SECRET};g"           ${CODEBUILD_SRC_DIR}/back/config.yml
+            - sed -i "s;BUILD_WSN_CLIENT_ID;${BUILD_WSN_CLIENT_ID};g"                   ${CODEBUILD_SRC_DIR}/back/config.yml
+            - sed -i "s;BUILD_WSN_SCOPE;${BUILD_WSN_SCOPE};g"                           ${CODEBUILD_SRC_DIR}/back/config.yml
+            - sed -i "s;BUILD_WSN_HOST_TOKEN;${BUILD_WSN_HOST_TOKEN};g"                 ${CODEBUILD_SRC_DIR}/back/config.yml
+            - sed -i "s;BUILD_WSN_HOST;${BUILD_WSN_HOST};g"                             ${CODEBUILD_SRC_DIR}/back/config.yml
+            - sed -i "s;BUILD_INFO_PERFILES_GRANT_TYPE;${BUILD_INFO_PERFILES_GRANT_TYPE};g"                             ${CODEBUILD_SRC_DIR}/back/config.yml
+            - sed -i "s;BUILD_INFO_PERFILES_CLIENT_SECRET;${BUILD_INFO_PERFILES_CLIENT_SECRET};g"                             ${CODEBUILD_SRC_DIR}/back/config.yml
+            - sed -i "s;BUILD_INFO_PERFILES_CLIENT_ID;${BUILD_INFO_PERFILES_CLIENT_ID};g"                             ${CODEBUILD_SRC_DIR}/back/config.yml
+            - sed -i "s;BUILD_INFO_PERFILES_SCOPE;${BUILD_INFO_PERFILES_SCOPE};g"                             ${CODEBUILD_SRC_DIR}/back/config.yml
+            - sed -i "s;BUILD_INFO_PERFILES_HOST;${BUILD_INFO_PERFILES_HOST};g"                             ${CODEBUILD_SRC_DIR}/back/config.yml
             - echo Installing serverless...
             - npm install -g serverless
             - echo Installing source NPM dependencies...

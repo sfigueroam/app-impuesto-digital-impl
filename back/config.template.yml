@@ -13,4 +13,12 @@ wsNube:
     wsScope: BUILD_WSN_SCOPE
     wsGenToken: BUILD_WSN_HOST_TOKEN
     wsHostNube: BUILD_WSN_HOST
+wsNubePerfilamiento:
+    wspGrantType: BUILD_INFO_PERFILES_GRANT_TYPE
+    wspClientSecret: BUILD_INFO_PERFILES_CLIENT_SECRET
+    wspClientId: BUILD_INFO_PERFILES_CLIENT_ID
+    wspScope: BUILD_INFO_PERFILES_SCOPE
+    wspHostNube: BUILD_INFO_PERFILES_HOST
+    
+
 
