@@ -103,6 +103,7 @@ export class DialogOverviewExampleDialog {
         montoSwift : [''],
         fechaOrdenPago: [{disable:true, value: ''}],
         fechaDeposito: [{disable:true, value: ''}],
+        ordenante :[''],
         descripcionRemesa: [''],
         bancoCorresponsal: [''],
         nOrdenPago:['']

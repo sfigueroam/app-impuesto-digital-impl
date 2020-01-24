@@ -18,7 +18,7 @@
   <mat-tab-group mat-align-tabs="end">
     
   <mat-tab label="RUT">
-    <form class="tgr-tab-form tgr_top" [formGroup] = "forma" (ngSubmit) = "setDataRut()" novalidate = "novalidate">
+    <form class="tgr-tab-form tgr_top" [formGroup] = "forma" (ngSubmit) = "setDataRut()"  novalidate = "novalidate">
                 
       <mat-form-field>
         <input matInput placeholder="RUT" name = rut formControlName ="identificacion" formatRut required validateRut required (input) = 'comprobarRut($event.target.value)'>
@@ -64,7 +64,7 @@
       
     </form>
             
-    <button class="mdl-button tgr-button-action" (click) = setDataRut(); [disabled] = !botonBuscar ><i class="material-icons">search</i> Buscar</button>
+    <button class="mdl-button tgr-button-action" (click) = setDataRut();  [disabled] = !botonBuscar ><i class="material-icons">search</i> Buscar</button>
     <div *ngIf = botonDatosIncompletos>
       Para consultar por este filtro debe ingresar Rut y/o Folio
     </div>

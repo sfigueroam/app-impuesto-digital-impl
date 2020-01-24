@@ -199,5 +199,15 @@ comprobarRut(value:string){
     }
     return true;
   }
+  
+    handleKeyboardEvent(event) {
+    if (event.keyCode === 13) {
+     console.log('hola');
+    }
+  }
+  
+
+  
+
 
 }

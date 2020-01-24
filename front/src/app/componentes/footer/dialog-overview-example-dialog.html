@@ -20,6 +20,10 @@
   <mat-datepicker-toggle matSuffix [for]="pickerhastafolio"></mat-datepicker-toggle>
   <mat-datepicker #pickerhastafolio></mat-datepicker>
 </mat-form-field>
+
+      <mat-form-field class="tgr-edit-campos">
+      <input matInput placeholder="Ordenante" formControlName="ordenante">
+    </mat-form-field>
     
      <mat-form-field class="tgr-edit-campos">
       <input matInput placeholder="Descripcion Remesa" formControlName="descripcionRemesa">
@@ -33,8 +37,8 @@
       <input matInput placeholder="N° Orden Pago" formControlName="nOrdenPago">
     </mat-form-field>
     
-    <button class="mdl-button mdl-js-button mdl-button--colored tgr_float-right tgr-buttom-azul" type="submit" (click)="getDatosForm()" [disabled]="formGiro.invalid"  >Confirmar </button>
-    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button class="mdl-button mdl-js-button mdl-button--colored tgr_float-right tgr-buttom-azul" type="submit" (click)="getDatosForm()" [disabled]="formGiro.invalid"  >Procesar </button>
+    <button mat-button (click)="onNoClick()">Volver</button>
   </form>
     
   

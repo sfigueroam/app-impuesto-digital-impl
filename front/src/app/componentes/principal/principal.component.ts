@@ -73,9 +73,6 @@ export class PrincipalComponent implements OnInit {
     
     //aca va la llamada al servicio para cargar los datos de la tabla  
     this.objetoForm = objeto;
-    // var folio = this.objetoForm['folio'];
-    // var form = this.objetoForm['formulario'];
-    // console.log('form y folio a consultar', form,folio)
     this.detalleCuentas.presentaCuentasMEFolio(this.objetoForm).subscribe(
       data => {
         this.movParaTabla = data;
@@ -94,7 +91,6 @@ export class PrincipalComponent implements OnInit {
         
       })
    
-      this.movParaTabla;
   }
   
   
@@ -117,7 +113,6 @@ export class PrincipalComponent implements OnInit {
         
       })
       
-      this.detalleMovParaTabla;
     
   }
   
@@ -158,7 +153,6 @@ export class PrincipalComponent implements OnInit {
             
         
       })
-      this.detalleItem;
     this.usuario.datosMov = this.detalleItem;
  
   }
