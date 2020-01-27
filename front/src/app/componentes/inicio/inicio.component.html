@@ -77,7 +77,7 @@
         
         <mat-form-field>
           <input matInput placeholder="Folio"  formControlName ="folio" required (input) = "avisoInput()"  (keypress)="numberOnly($event)">
-          <mat-error *ngIf="formaFolio?.get('folio').hasError('required')">Debe Ingresar un folio </mat-error>
+          <mat-error *ngIf="formaFolio?.get('folio').hasError('required')">Para consultar por este filtro debe ingresar un folio </mat-error>
           <mat-error *ngIf="formaFolio?.get('folio').hasError('maxlength')"> Datos ingresados no corresponden a formato definido</mat-error>
         </mat-form-field>
               
