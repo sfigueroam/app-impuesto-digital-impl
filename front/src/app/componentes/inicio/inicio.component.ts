@@ -70,6 +70,7 @@ export class InicioComponent implements OnInit {
       if(data == 'VALID'){
         this.botonBuscarFolio = true;
         this.botonDatosIncompletos = false;
+       
       }
       else{
         this.botonBuscarFolio = false;
@@ -80,7 +81,7 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    console.log(this.forma.status);
   }
   
   
@@ -175,9 +176,18 @@ avisoInput(){
         this.botonBuscar = true;
         this.botonDatosIncompletos = false
       }
-      else{
+      // else if((this.formaFolio.get('folio').dirty && data == 'INVALID') || (this.formaFolio.get('formulario').dirty && data == 'INVALID') ){
+      //   this.botonBuscar = false;
+        
+      // }
+      else if(this.formaFolio.get('formulario').dirty && this.formaFolio.get('folio').untouched){
         this.botonBuscar = false;
         this.botonDatosIncompletos = true;
+      }
+      
+      else if(this.formaFolio.get('folio').invalid && this.formaFolio.get('formulario').valid){
+        this.botonBuscar = false;
+        
       }
     })
 }
