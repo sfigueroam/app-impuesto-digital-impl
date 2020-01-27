@@ -73,6 +73,7 @@ export class InicioComponent implements OnInit {
        
       }
       else{
+         console.log(this.formaFolio.get('folio'),this.formaFolio.get('formulario') );
         this.botonBuscarFolio = false;
       }
     })
@@ -187,8 +188,15 @@ avisoInput(){
       
       else if(this.formaFolio.get('folio').invalid && this.formaFolio.get('formulario').valid){
         this.botonBuscar = false;
+        this.botonDatosIncompletos = false;
         
       }
+      
+      // else if(this.formaFolio.get('folio').invalid && this.formaFolio.get('formulario').valid && this.formaFolio.get('folio').dirty){
+      //   this.botonBuscar = false;
+      //   this.botonDatosIncompletos = false;
+        
+      // }
     })
 }
 

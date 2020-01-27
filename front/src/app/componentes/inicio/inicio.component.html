@@ -76,7 +76,7 @@
       <form class="tgr-tab-form tgr_top" [formGroup] = "formaFolio" (ngSubmit) = "setDataFolio()" novalidate = "novalidate">
         
         <mat-form-field>
-          <input matInput placeholder="Folio"  formControlName ="folio" required  (keypress)="numberOnly($event)">
+          <input matInput placeholder="Folio"  formControlName ="folio" required (input) = "avisoInput()"  (keypress)="numberOnly($event)">
           <mat-error *ngIf="formaFolio?.get('folio').hasError('required')">Debe Ingresar un folio </mat-error>
           <mat-error *ngIf="formaFolio?.get('folio').hasError('maxlength')"> Datos ingresados no corresponden a formato definido</mat-error>
         </mat-form-field>
