@@ -25,6 +25,7 @@ export class PrincipalComponent implements OnInit {
   detalleMovParaTabla;
   detalleItem;
   consultaTipo:string;
+  ocultarCheck: boolean = false;
   
   
   
@@ -55,6 +56,8 @@ export class PrincipalComponent implements OnInit {
         this.movParaTabla.forEach(element => {
           element.fechaVcto = moment(element.fechaVcto).format()
           if(element.formTipo != '21'){
+            this.ocultarCheck = true;
+            console.log(this.ocultarCheck);
             element['excluded'] = true
           }
         })
@@ -100,6 +103,7 @@ export class PrincipalComponent implements OnInit {
         this.movParaTabla.forEach(element => {
           element.fechaVcto = moment(element.fechaVcto).format()
           if(element.formTipo != '21'){
+            this.ocultarCheck = true;
             element['excluded'] = true
           }
         })

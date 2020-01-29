@@ -45,6 +45,7 @@ export class TablaDatosComponent implements OnInit {
   constructor(private cdRef:ChangeDetectorRef, private usuario: UsuarioService) { }
   @Input() datosPrincipal:{};
   @Input() tipoConsulta:string;
+  @Input() ocultarCheck:string;
   // @Output()
   // datosPrimeraTabla = new EventEmitter<boolean>();
   @Output()

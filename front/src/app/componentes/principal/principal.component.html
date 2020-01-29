@@ -7,7 +7,7 @@
         </div>
         
         <div *ngIf = "ocultarForm && !verTablaDatos && !verMov && !verDetalleItem && !cargaDatos">
-          <app-tabla-datos [datosPrincipal] = "movParaTabla"  (fila) ="getDatosTable($event)"  (volverForm) = "volverForm($event)" [tipoConsulta] = "consultaTipo" > </app-tabla-datos>
+          <app-tabla-datos [datosPrincipal] = "movParaTabla" [ocultarCheck] = "ocultarCheck"  (fila) ="getDatosTable($event)"  (volverForm) = "volverForm($event)" [tipoConsulta] = "consultaTipo" > </app-tabla-datos>
         </div>
         
         
