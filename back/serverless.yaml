@@ -10,7 +10,7 @@ provider:
   role: ${self:custom.role}
   stackName: tgr-${self:custom.env}-${self:service}
   stackTags:
-    Application: ${self:service}
+    Application: ${self:custom.appName}
     Env: ${self:custom.stage}
   apiGateway:
     restApiId: ${self:custom.apiId}

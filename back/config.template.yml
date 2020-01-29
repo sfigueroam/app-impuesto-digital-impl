@@ -5,6 +5,7 @@ role: BUILD_LAMBDA_ROLE_ARN
 accessControlAllowOrigin: "*"
 apiId: BUILD_API_ID
 apiRootId: BUILD_API_ROOT_ID
+appName: BUILD_APP_NAME
 # Para el servicio de deudas
 wsNube:
     wsGrantType: BUILD_WSN_GRANT_TYPE

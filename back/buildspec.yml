@@ -4,6 +4,7 @@ phases:
         commands:
             - cp ${CODEBUILD_SRC_DIR}/back/config.template.yml ${CODEBUILD_SRC_DIR}/back/config.yml
             - sed -i "s;BUILD_ENV;${BUILD_ENV};g"                                       ${CODEBUILD_SRC_DIR}/back/config.yml
+            - sed -i "s;BUILD_APP_NAME;${BUILD_APP_NAME};g"                             ${CODEBUILD_SRC_DIR}/back/config.yml
             - sed -i "s;BUILD_STAGE;${BUILD_STAGE};g"                                   ${CODEBUILD_SRC_DIR}/back/config.yml
             - sed -i "s;BUILD_LAMBDA_ROLE_ARN;${BUILD_LAMBDA_ROLE_ARN};g"               ${CODEBUILD_SRC_DIR}/back/config.yml
             - sed -i "s;BUILD_API_ID;${BUILD_API_ID};g"                                 ${CODEBUILD_SRC_DIR}/back/config.yml
