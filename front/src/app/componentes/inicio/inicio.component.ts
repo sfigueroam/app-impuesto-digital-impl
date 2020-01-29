@@ -73,7 +73,6 @@ export class InicioComponent implements OnInit {
        
       }
       else{
-         console.log(this.formaFolio.get('folio'),this.formaFolio.get('formulario') );
         this.botonBuscarFolio = false;
       }
     })
@@ -218,14 +217,4 @@ comprobarRut(value:string){
     return true;
   }
   
-    handleKeyboardEvent(event) {
-    if (event.keyCode === 13) {
-     console.log('hola');
-    }
-  }
-  
-
-  
-
-
 }

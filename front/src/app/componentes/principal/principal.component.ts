@@ -4,6 +4,7 @@ import {DetalleCuentasService} from '../../servicios/detalle-cuentas.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DialogData } from '../footer/footer.component';
 import {UsuarioService}from '../../servicios/usuario.service';
+import * as moment from 'moment';
 
 
 @Component({
@@ -51,6 +52,27 @@ export class PrincipalComponent implements OnInit {
     this.detalleCuentas.presentaCuentasME(this.objetoForm).subscribe(
       data => {
         this.movParaTabla = data;
+        this.movParaTabla.forEach(element => {
+          element.fechaVcto = moment(element.fechaVcto).format()
+          if(element.formTipo != '21'){
+            element['excluded'] = true
+          }
+        })
+
+    this.movParaTabla.sort(function (a, b) {
+      if (a.fechaVcto > b.fechaVcto) {
+        return 1;
+      }
+      if (a.fechaVcto < b.fechaVcto) {
+        return -1;
+      }
+      return 0;
+      });
+        
+    this.movParaTabla.sort(function (a, b){
+    return (b.fechaVcto - a.fechaVcto)
+    })
+
         this.ocultarForm = true;
         this.cargaDatos = false;
        
@@ -65,8 +87,6 @@ export class PrincipalComponent implements OnInit {
           }
         
       })
-   
-      this.movParaTabla;
   }
   
     getDatosFormFolio(objeto:{}){
@@ -75,7 +95,24 @@ export class PrincipalComponent implements OnInit {
     this.objetoForm = objeto;
     this.detalleCuentas.presentaCuentasMEFolio(this.objetoForm).subscribe(
       data => {
+        
         this.movParaTabla = data;
+        this.movParaTabla.forEach(element => {
+          element.fechaVcto = moment(element.fechaVcto).format()
+          if(element.formTipo != '21'){
+            element['excluded'] = true
+          }
+        })
+
+    this.movParaTabla.sort(function (a, b) {
+      if (a.fechaVcto > b.fechaVcto) {
+        return 1;
+      }
+      if (a.fechaVcto < b.fechaVcto) {
+        return -1;
+      }
+      return 0;
+      });
         this.ocultarForm = true;
         this.cargaDatos = false;
        

@@ -40,8 +40,10 @@
       <mat-checkbox (click)="$event.stopPropagation()"
                     (change)="$event ? selection.toggle(row) : null"
                     [checked]="selection.isSelected(row)"
-                    [aria-label]="checkboxLabel(row)"
-                    color="primary">
+                    [disabled]="row.excluded">
+                    <!--[aria-label]="checkboxLabel(row)"-->
+                    <!--color="primary">-->
+        
       </mat-checkbox>
     </td>
   </ng-container>
@@ -103,10 +105,25 @@
     </ng-container>
   
 
+    <ng-container matColumnDef="excluded">
+    <th mat-header-cell *matHeaderCellDef [hidden] = true> Excluded </th>
+    <td mat-cell *matCellDef="let element" [hidden] = true> {{element.excluded}} </td>
+  </ng-container>
+
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <!-- !row.excluded will prevent those rows from being clicked -->
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-      (click)="selection.toggle(row) ">
+    (click)="!row.excluded && selection.toggle(row)"
+    [ngStyle]="row.excluded && {'background-color': 'lightgrey'}">
   </tr>
+
+
+
+  <!--<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+  <!--<tr mat-row *matRowDef="let row; columns: displayedColumns;"-->
+  <!--    (click)="selection.toggle(row) ">-->
+  <!--</tr>-->
 </table>
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
@@ -116,7 +133,7 @@
 
 </div>
 
-<!--folio-->
+<!------------------------------------------------------------------folio----------------------------------------------------------------------------------------------------------------------->
 
 <div *ngIf = "tipoConsulta == 'f'"  class="mdl-grid">
   
@@ -160,8 +177,7 @@
       <mat-checkbox (click)="$event.stopPropagation()"
                     (change)="$event ? selection.toggle(row) : null"
                     [checked]="selection.isSelected(row)"
-                    [aria-label]="checkboxLabel(row)"
-                    color="primary">
+                    [disabled]="row.excluded">
       </mat-checkbox>
     </td>
   </ng-container>
@@ -217,11 +233,16 @@
         <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()"  >
             <button mat-button (click)="verMovimiento(element)" class="tgr_ver">Ver Movimiento</button> </td>
     </ng-container>
-  
+    
+  <ng-container matColumnDef="excluded">
+    <th mat-header-cell *matHeaderCellDef [hidden] = true> Excluded </th>
+    <td mat-cell *matCellDef="let element" [hidden] = true> {{element.excluded}} </td>
+  </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-      (click)="selection.toggle(row) ">
+    (click)="!row.excluded && selection.toggle(row)"
+    [ngStyle]="row.excluded && {'background-color': 'lightgrey'}">
   </tr>
 </table>
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

@@ -29,7 +29,7 @@ export class TablaDatosComponent implements OnInit {
   ELEMENT_DATA: CuentasME[] = [];
 
   
-  displayedColumns: string[] = ['select','Folio', 'Formulario', 'Rut', 'Moneda', 'Saldo-Neto', 'Fecha-Venc', 'Fecha-Giro', 'action'];
+  displayedColumns: string[] = ['select','Folio', 'Formulario', 'Rut', 'Moneda', 'Saldo-Neto', 'Fecha-Venc', 'Fecha-Giro', 'action' , 'excluded'];
   dataSource = new MatTableDataSource<CuentasME>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   selection = new SelectionModel<CuentasME>(true, []);
@@ -78,7 +78,7 @@ export class TablaDatosComponent implements OnInit {
   
   
   llenarTablaMov(obj:{}){
-   console.log('tengo que llenar datos con esto', obj)
+  // console.log('tengo que llenar datos con esto', obj)
     let largoob = Object.keys(obj).length
     for(var i = 0; i < largoob; i++){
       let objInter =  obj[Object.keys(obj)[i]];
