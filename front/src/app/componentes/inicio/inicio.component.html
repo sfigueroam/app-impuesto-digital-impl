@@ -73,10 +73,10 @@
         </mat-form-field>
       
     </form>
-     
-    <button (click) = limpiarFormRut()>Limpiar Campos </button>        
-    <button class="mdl-button tgr-button-action" (click) = setDataRut();  [disabled] = !botonBuscar ><i class="material-icons">search</i> Buscar</button>
-   
+    
+      <button (click) = limpiarFormRut() class="mdl-button tgr-button-limpiar"><i class="material-icons">close</i> Limpiar Campos</button>        
+      <button class="mdl-button tgr-button-action" (click) = setDataRut();  [disabled] = !botonBuscar ><i class="material-icons">search</i> Buscar</button>
+
     <div *ngIf = botonDatosIncompletos>
       Para consultar por este filtro debe ingresar Rut y/o Folio
     </div>
@@ -139,7 +139,7 @@
         </mat-form-field>
             
         </form>
-         <button (click) = limpiarFormFolio() >Limpiar Campos</button>    
+         <button (click) = limpiarFormFolio() class="mdl-button tgr-button-limpiar"><i class="material-icons">close</i> Limpiar Campos</button>    
         <button class="mdl-button tgr-button-action" (click) = setDataFolio(); [disabled] = !botonBuscarFolio ><i class="material-icons">search</i> Buscar</button>
     <div *ngIf = botonDatosIncompletos>
       Para consultar por este filtro debe ingresar Rut y/o Folio

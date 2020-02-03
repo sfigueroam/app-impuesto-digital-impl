@@ -41,4 +41,18 @@
         opacity: 0.6;
       }
   }
+  
+  &.tgr-button-limpiar {
+      margin-top:5px;
+      border-radius:4px;
+      font-weight:600;
+      background-color: white;
+      color: #545455;
+      border: #545455 solid 1px;
+      margin-left: 0 !important;
+  }
+}
+
+.tgr-botones{
+    justify-content:space-evenly;
 }
