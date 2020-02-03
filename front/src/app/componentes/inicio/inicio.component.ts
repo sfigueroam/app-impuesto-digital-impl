@@ -37,7 +37,6 @@ export class InicioComponent implements OnInit {
   @Output()
   tipoConsulta = new EventEmitter<{}>();
   
-
   constructor(rutValidator: RutValidator, fb: FormBuilder, private cdRef:ChangeDetectorRef) {
     
     this.forma = fb.group({
@@ -45,7 +44,7 @@ export class InicioComponent implements OnInit {
       formulario: ['', [Validators.maxLength(3), Validators.pattern('^[0-9]*$')]],
       fechaDesde : [''],
       fechaHasta: [''],
-      saldo:['',]
+      saldo:[]
     });
     
       this.formaFolio = fb.group({
@@ -53,7 +52,7 @@ export class InicioComponent implements OnInit {
       formulario: ['', [Validators.maxLength(3), Validators.required, Validators.pattern('^[0-9]*$')]],
       fechaDesde : [''],
       fechaHasta: [''],
-      saldo:['',]
+      saldo:[]
     });
     
     this.forma.statusChanges.subscribe(data =>{
