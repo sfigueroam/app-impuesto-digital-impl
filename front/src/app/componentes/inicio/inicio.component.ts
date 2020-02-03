@@ -45,7 +45,7 @@ export class InicioComponent implements OnInit {
       formulario: ['', [Validators.maxLength(3), Validators.pattern('^[0-9]*$')]],
       fechaDesde : [''],
       fechaHasta: [''],
-      saldo:['']
+      saldo:['',]
     });
     
       this.formaFolio = fb.group({
@@ -158,45 +158,36 @@ pruebainputRut(){
 }
 
 avisoInput(){
+  
+  if(this.forma.get('fechaDesde').dirty && this.forma.get('fechaHasta').dirty && this.forma.get('identificacion').untouched){
+      this.botonBuscar = false;
+      this.botonDatosIncompletos = true;
+  }
+  if(this.forma.get('saldo').dirty && this.forma.get('identificacion').untouched){
+        this.botonBuscar = false;
+        this.botonDatosIncompletos = true;
+  }
+  
+  if(this.forma.get('formulario').dirty && this.forma.get('identificacion').untouched){
+        this.botonBuscar = false;
+        this.botonDatosIncompletos = true;
+  }
+  // FOLIO //
+  if(this.formaFolio.get('formulario').dirty && this.formaFolio.get('folio').untouched){
+        this.botonBuscar = false;
+        this.botonDatosIncompletos = true;
+  }
+  
+  if(this.formaFolio.get('fechaDesde').dirty && this.formaFolio.get('fechaHasta').dirty && this.formaFolio.get('folio').untouched){
+        this.botonBuscar = false;
+        this.botonDatosIncompletos = true;
+  }
+  
+  if(this.formaFolio.get('saldo').dirty && this.formaFolio.get('folio').untouched){
+        this.botonBuscar = false;
+        this.botonDatosIncompletos = true;
+  }
 
-    this.forma.statusChanges.subscribe(data =>{
-      if(data == 'VALID'){
-        this.botonBuscar = true;
-        this.botonDatosIncompletos = false
-      }
-      else{
-        this.botonBuscar = false;
-        this.botonDatosIncompletos = true;
-      }
-    })
-    
-    
-    this.formaFolio.statusChanges.subscribe(data =>{
-      if(data == 'VALID'){
-        this.botonBuscar = true;
-        this.botonDatosIncompletos = false
-      }
-      // else if((this.formaFolio.get('folio').dirty && data == 'INVALID') || (this.formaFolio.get('formulario').dirty && data == 'INVALID') ){
-      //   this.botonBuscar = false;
-        
-      // }
-      else if(this.formaFolio.get('formulario').dirty && this.formaFolio.get('folio').untouched){
-        this.botonBuscar = false;
-        this.botonDatosIncompletos = true;
-      }
-      
-      else if(this.formaFolio.get('folio').invalid && this.formaFolio.get('formulario').valid){
-        this.botonBuscar = false;
-        this.botonDatosIncompletos = false;
-        
-      }
-      
-      // else if(this.formaFolio.get('folio').invalid && this.formaFolio.get('formulario').valid && this.formaFolio.get('folio').dirty){
-      //   this.botonBuscar = false;
-      //   this.botonDatosIncompletos = false;
-        
-      // }
-    })
 }
 
 comprobarRut(value:string){
@@ -217,4 +208,14 @@ comprobarRut(value:string){
     return true;
   }
   
+  limpiarFormRut(){
+    console.log('limpiare el form');
+    this.forma.reset();
+    this.botonDatosIncompletos = false;
+}
+
+limpiarFormFolio(){
+  this.formaFolio.reset();
+  this.botonDatosIncompletos = false;
+}
 }

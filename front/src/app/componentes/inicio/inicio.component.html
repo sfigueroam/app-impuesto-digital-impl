@@ -37,15 +37,16 @@
             <h4>Fecha de vencimiento</h4>
             
             <mat-form-field>
-              <input matInput readonly [matDatepicker]="pickerhasta" placeholder="Hasta" formControlName = "fechaHasta" (dateChange) = "pruebainputRut()">
+              <input matInput readonly [matDatepicker]="pickerhasta" placeholder="Hasta" formControlName = "fechaHasta" (dateChange) = "pruebainputRut()" (dateChange) = "avisoInput()">
               <!--<mat-error *ngIf="forma?.get('fechaHasta').hasError('required')">Debe Ingresar una fecha</mat-error>-->
-              <!--<mat-error *ngIf="forma?.get('fechaHasta').hasError('incorrect')">Debe Ingresar una fecha menor a la anterior</mat-error>-->
+              <mat-error *ngIf="forma?.get('fechaHasta').hasError('incorrect')">Debe Ingresar una fecha menor a la anterior</mat-error>
               <mat-datepicker-toggle matSuffix [for]="pickerhasta"></mat-datepicker-toggle>
               <mat-datepicker #pickerhasta></mat-datepicker>
             </mat-form-field>
+           
             
             <mat-form-field>
-              <input matInput readonly [matDatepicker]="pickerdesde" placeholder="Desde" formControlName = "fechaDesde" data-date-format="YYYY MMMM DD" >
+              <input matInput readonly [matDatepicker]="pickerdesde" placeholder="Desde" formControlName = "fechaDesde" data-date-format="YYYY MMMM DD" (dateChange) = "avisoInput()" >
               <!--<mat-error *ngIf="forma?.get('fechaDesde').hasError('required')">Debe Ingresar una fecha</mat-error>-->
               <mat-datepicker-toggle matSuffix [for]="pickerdesde"></mat-datepicker-toggle>
               <mat-datepicker #pickerdesde ></mat-datepicker>
@@ -53,18 +54,29 @@
       
       </div>
             
-      <mat-form-field>
-        <mat-label>Saldo</mat-label>
-        <mat-select formControlName = "saldo" (selectionChange) = "avisoInput()">
-          <mat-option value = "deudor">Deudor</mat-option>
-          <mat-option value = "acreedor">Acreedor</mat-option>
-          <mat-option value = "0">0</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label>Saldo</mat-label>
+            <mat-select formControlName = "saldo" (selectionChange) = "avisoInput()">
+            <mat-option value = "deudor">
+              Deudor
+            </mat-option>
+            <mat-option value = "acreedor">
+              Acreedor
+            </mat-option>
+            <mat-option value = "0">
+              0
+            </mat-option>
+             <mat-option value = "">
+              Sin Especificar
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       
     </form>
-            
+     
+    <button (click) = limpiarFormRut()>Limpiar Campos </button>        
     <button class="mdl-button tgr-button-action" (click) = setDataRut();  [disabled] = !botonBuscar ><i class="material-icons">search</i> Buscar</button>
+   
     <div *ngIf = botonDatosIncompletos>
       Para consultar por este filtro debe ingresar Rut y/o Folio
     </div>
@@ -92,7 +104,7 @@
           <h4>Fecha de vencimiento</h4>
           
           <mat-form-field>
-            <input matInput readonly [matDatepicker]="pickerhastafolio" placeholder="Hasta" formControlName = "fechaHasta" (dateChange) = "pruebainput()" >
+            <input matInput readonly [matDatepicker]="pickerhastafolio" placeholder="Hasta" formControlName = "fechaHasta" (dateChange) = "pruebainput()" (dateChange) = "avisoInput()" >
             <!--<mat-error *ngIf="forma?.get('fechaHasta').hasError('required')">Debe Ingresar una fecha</mat-error>-->
             <mat-error *ngIf="formaFolio?.get('fechaHasta').hasError('incorrect')">Debe Ingresar una fecha menor a la anterior</mat-error>
             <mat-datepicker-toggle matSuffix [for]="pickerhastafolio" ></mat-datepicker-toggle>
@@ -111,7 +123,7 @@
         <mat-form-field>
           <mat-label>Saldo</mat-label>
             <mat-select formControlName = "saldo" (selectionChange) = "avisoInput()">
-            <mat-option value = "deudor">
+            <mat-option value = "deudor" (selectionChange) = "avisoInput()">
               Deudor
             </mat-option>
             <mat-option value = "acreedor">
@@ -120,11 +132,14 @@
             <mat-option value = "0">
               0
             </mat-option>
+            <mat-option value = "">
+              Sin Especificar
+            </mat-option>
           </mat-select>
         </mat-form-field>
             
         </form>
-            
+         <button (click) = limpiarFormFolio() >Limpiar Campos</button>    
         <button class="mdl-button tgr-button-action" (click) = setDataFolio(); [disabled] = !botonBuscarFolio ><i class="material-icons">search</i> Buscar</button>
     <div *ngIf = botonDatosIncompletos>
       Para consultar por este filtro debe ingresar Rut y/o Folio
