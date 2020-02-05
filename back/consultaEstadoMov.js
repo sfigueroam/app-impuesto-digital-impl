@@ -28,8 +28,43 @@ module.exports.handler = async (event, context, callback) => {
         console.log('Error al generar token nube', err);
     }
     
+    let dummy = [
+ {
+   "idCta": 115685,
+   "clienteTipo": 1,
+   "rutRol": 90160000,
+   "formTipo": 21,
+   "formFolio": 3561357,
+   "fechaVcto": "2017-02-28",
+   "montoNeto": 126063.07,
+   "intereses": 68074.06,
+   "multas": 75637.84,
+   "reajustes": 0,
+   "condonacion": 0,
+   "montoTotal": 269774.97,
+   "liquidable": "S",
+   "codigoBarra": "0205010000062002290211201K"
+ },
+ {
+   "idCta": 115687,
+   "clienteTipo": 1,
+   "rutRol": 90160000,
+   "formTipo": 21,
+   "formFolio": 3561403,
+   "fechaVcto": "2017-05-30",
+   "montoNeto": 719781.41,
+   "intereses": 367088.52,
+   "multas": 431868.85,
+   "reajustes": 0,
+   "condonacion": 0,
+   "montoTotal": 1518738.78,
+   "liquidable": "S",
+   "codigoBarra": "02050100000720022902111215"
+ }
+]
+    
     let salida = {
-        respuesta : 'hola',
+        respuesta : dummy,
         codeStatus: 200
     }
     console.log("Resultado Final:", salida);

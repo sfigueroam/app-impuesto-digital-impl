@@ -2,19 +2,19 @@
     <app-header></app-header>
     
       <main class="mdl-layout__content">
-        <div *ngIf="!ocultarForm && !verTablaDatos && !verMov && !verDetalleItem && !cargaDatos">
+        <div *ngIf="!ocultarForm && !verTablaDatos && !verMov && !verDetalleItem && !cargaDatos && !verEstadoLiquidables">
         <app-inicio (mostrarTabla) = "estadoMostrarTabla($event)" (datosForm) = "getDatosForm($event)"  
         (datosFormFolio) = "getDatosFormFolio($event)" (tipoConsulta) = "tipoConsulta($event)" ></app-inicio>
         </div>
         
-        <div *ngIf = "ocultarForm && !verTablaDatos && !verMov && !verDetalleItem && !cargaDatos">
+        <div *ngIf = "ocultarForm && !verTablaDatos && !verMov && !verDetalleItem && !cargaDatos && !verEstadoLiquidables">
           <app-tabla-datos [datosPrincipal] = "movParaTabla" [ocultarCheck] = "ocultarCheck"  
           (fila) ="getDatosTable($event)"  (volverForm) = "volverForm($event)" [tipoConsulta] = "consultaTipo"
           (idsMovimientos) = "getIdMovimientos($event)" (datosSwiftPrincipal) = "getDatosSwift($event)"> </app-tabla-datos>
         </div>
         
         
-        <div *ngIf = "!ocultarForm && verTablaDatos && !verMov  && !verDetalleItem && !cargaDatos ">
+        <div *ngIf = "!ocultarForm && verTablaDatos && !verMov  && !verDetalleItem && !cargaDatos && !verEstadoLiquidables ">
           <app-tabla-movimiento [filaTabla] = "detalleMovParaTabla" (volverTablaDatos) = "volverTablaDatos($event)" 
           (movimientoSeleccionado) = "getMovimientoSeleccionado($event)"  ></app-tabla-movimiento>
         </div>
@@ -23,8 +23,8 @@
           <app-ver-item [movConsultado] = "detalleItem" (volverSeleccioMov) = "volverTablaMovimientos($event)"></app-ver-item>
         </div>
         
-        <div *ngIf = "true">
-          <app-procesar-transaccion  ></app-procesar-transaccion>
+        <div *ngIf = "verEstadoLiquidables && !cargaDatos && ocultarForm">
+          <app-procesar-transaccion [idsGiros] = "estadoLiquidables" [datosSwiftT] = "detallesSwift"  ></app-procesar-transaccion>
         </div>
         
         <div *ngIf = "cargaDatos && !ocultarForm">

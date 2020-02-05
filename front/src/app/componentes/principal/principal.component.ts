@@ -20,13 +20,15 @@ export class PrincipalComponent implements OnInit {
   verTablaDatos:boolean;
   verMov:boolean;
   verDetalleItem:boolean;
+  verEstadoLiquidables:boolean;
   movSeleccionado;
   movParaTabla;
   detalleMovParaTabla;
   detalleItem;
   consultaTipo:string;
   ocultarCheck: boolean = false;
-  
+  estadoLiquidables;
+  detallesSwift;
   
   
   constructor(private detalleCuentas: DetalleCuentasService, private cdRef:ChangeDetectorRef, public dialog: MatDialog, private usuario: UsuarioService) { }
@@ -199,11 +201,24 @@ export class PrincipalComponent implements OnInit {
   }
   
   getIdMovimientos(obj:{}){
-    console.log('id movimientos en principal', obj)
+    this.cargaDatos = true
+    this.ocultarForm = false;
+    //
+    this.estadoLiquidables = obj;
+    //CAMBIAR POR LLAMADO 
+    setTimeout(()=>{
+      console.log('estoy esperando')
+      this.verEstadoLiquidables = true;
+      this.cargaDatos = false;
+      this.ocultarForm = true;
+      console.log('esatdos de los ocultar CARGADATOS OCULTARFORM VERMOV TABLAD DETALLE', this.cargaDatos, this.ocultarForm, this.verMov, this.verTablaDatos, this.detalleItem)
+ }, 3000);
+    console.log('id movimientos en principal', this.estadoLiquidables)
   }
   
   getDatosSwift(obj:{}){
-    console.log('datos del swift en principal', obj )
+    this.detallesSwift = obj;
+    console.log('datos del swift en principal', this.detallesSwift )
     
   }
   
