@@ -42,6 +42,7 @@ export class TablaDatosComponent implements OnInit {
   rutContribuyente;
   dvContribuyente;
   listaIds = '';
+  sinAplicarT = true;
   constructor(private cdRef:ChangeDetectorRef, private usuario: UsuarioService) { }
   @Input() datosPrincipal:{};
   @Input() tipoConsulta:string;

@@ -9,6 +9,7 @@ import {FooterComponent} from 'src/app/componentes/footer/footer.component';
 import { AutenticaComponent } from './componentes/autentica/autentica.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { LogoutComponent } from './componentes/logout/logout.component';
+import {ProcesarTransaccionComponent} from './componentes/procesar-transaccion/procesar-transaccion.component'
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
  {path:"autentica", component:AutenticaComponent},
  {path:"login", component:LoginComponent},
  {path:"logout", component:LogoutComponent},
+ {path:"procesar", component:ProcesarTransaccionComponent},
   ];
 
 @NgModule({

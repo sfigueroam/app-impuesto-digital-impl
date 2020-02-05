@@ -51,6 +51,8 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     
   volverTabla(){
     this.volverTablaDatos.emit(true);
+    console.log('volvere a tabla datos');
   }
+  
 
 }

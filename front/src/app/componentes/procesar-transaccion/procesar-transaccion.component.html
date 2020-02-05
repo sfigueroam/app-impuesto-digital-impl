@@ -1,4 +1,4 @@
-<button > VOLVER</button>
+<button (click) = "volverTabla()" > VOLVER</button>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
@@ -31,4 +31,11 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+suma total a pagar : 12
+monto para aplicar: la suma de la columna
+diferencia: estamos trabajando para usted
+<div>
+    <app-footer (volverTablaMovsFooter) = "volverTabla()"></app-footer>
+</div>
 

@@ -171,7 +171,20 @@ export class PrincipalComponent implements OnInit {
     this.verTablaDatos = false;
     this.verMov = false;
     this.verDetalleItem = false;
+    console.log('esatdos de los ocultar CARGADATOS OCULTARFORM VERMOV TABLAD DETALLE', this.cargaDatos, this.ocultarForm, this.verMov, this.verTablaDatos, this.verDetalleItem)
   }
+  
+    volverTablaDatosProcesar(volver:boolean){
+    console.log('llegue a tsabla datos principal')
+    
+    this.ocultarForm = true;
+    this.verTablaDatos = false;
+    this.verMov = false;
+    this.verDetalleItem = false;
+    this.verEstadoLiquidables = false;
+    console.log('esatdos de los ocultar CARGADATOS OCULTARFORM VERMOV TABLAD DETALLE', this.cargaDatos, this.ocultarForm, this.verMov, this.verTablaDatos, this.verDetalleItem)
+  }
+
   
   volverTablaMovimientos(volver:boolean){
     this.ocultarForm = false;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Inject, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -19,12 +19,15 @@ export interface DialogData {
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit, OnChanges {
   
 
   @Input() idGiros:[{}];
   girosDesdeTabla = false;
   @Input() Ngiros:number;
+  @Input() sinAplicar:boolean;
+  @Output()
+  volverTablaMovsFooter = new EventEmitter<boolean>();
   botonGiros;
   arregloFinal;
   montoSwift;
@@ -46,8 +49,8 @@ export class FooterComponent implements OnInit {
 
   }
   
-  ngAfterViewChecked(){
-  if( this.Ngiros != 0){
+  ngOnChanges(changes: SimpleChanges) {
+      if( this.Ngiros != 0){
   
     this.botonGiros = false;
 
@@ -55,9 +58,7 @@ export class FooterComponent implements OnInit {
   else{
     this.botonGiros = true
   }
-  this.cdRef.detectChanges();
-  
-}
+    }
   
   aplicarGiro(){
     this.arregloFinal = this.cleanArray(this.idGiros)
@@ -65,6 +66,12 @@ export class FooterComponent implements OnInit {
     console.log('array limpio', this.arregloFinal);
     this.openDialog();
   }
+  
+  volverAtrasFooter(){
+    //con esto vuelvo atras desde el footer
+    this.volverTablaMovsFooter.emit(true)
+  }
+  
   
   
   
@@ -133,6 +140,7 @@ export class DialogOverviewExampleDialog {
     this.dialogRef.close();
   }
   
+
     validate_fechaMayorQue(fechaInicial,fechaFinal){
             
       const valuesStart=fechaInicial.split("-");
