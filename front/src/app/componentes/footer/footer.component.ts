@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -8,7 +8,8 @@ export interface DialogData {
   montoSwift;
   fechaOrdenPago;
   fechaDeposito;
-  descripcion;
+  ordenante;
+  descripcionRemesa;
   bancoCorresponsal;
   nOrdenPago;
 }
@@ -29,10 +30,15 @@ export class FooterComponent implements OnInit {
   montoSwift;
   fechaOrdenPago;
   fechaDeposito;
-  descripcion;
+  descripcionRemesa;
   bancoCorresponsal;
   nOrdenPago;
+  ordenante;
   datosModal:{};
+  @Output()
+ listaMovimientos = new EventEmitter<[{}]>()
+  @Output()
+ datosMovimiento = new EventEmitter<{}>()
 
   constructor(private cdRef:ChangeDetectorRef, public dialog: MatDialog) { }
 
@@ -55,6 +61,7 @@ export class FooterComponent implements OnInit {
   
   aplicarGiro(){
     this.arregloFinal = this.cleanArray(this.idGiros)
+   
     console.log('array limpio', this.arregloFinal);
     this.openDialog();
   }
@@ -75,13 +82,17 @@ export class FooterComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
       data: {montoSwift: this.montoSwift, fechaOrdenPago: this.fechaOrdenPago, fechaDeposito: this.fechaDeposito,
-       descripcion: this.descripcion, bancocorresponsal: this.bancoCorresponsal, nOrdenPago: this.nOrdenPago}
+       ordenante : this.ordenante, descripcionRemesa: this.descripcionRemesa,bancoCorresponsal: this.bancoCorresponsal, nOrdenPago: this.nOrdenPago}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-          
+      console.log('The dialog was closed',result);
       this.datosModal = result;
+      if(this.datosModal){
+        console.log('entre al if')
+        this.listaMovimientos.emit(this.arregloFinal);
+        this.datosMovimiento.emit(this.datosModal);
+      }
     });
   }
 
@@ -97,12 +108,12 @@ export class DialogOverviewExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    public formDialog: FormBuilder,) {
+    public formDialog: FormBuilder) {
       
       this.formGiro = formDialog.group({
         montoSwift : [''],
-        fechaOrdenPago: [{disable:true, value: ''}],
-        fechaDeposito: [{disable:true, value: ''}],
+        // fechaOrdenPago: [{disable:true, value: ''}],
+        // fechaDeposito: [{disable:true, value: ''}],
         ordenante :[''],
         descripcionRemesa: [''],
         bancoCorresponsal: [''],
@@ -118,6 +129,7 @@ export class DialogOverviewExampleDialog {
   
   getDatosForm(){
     console.log(this.formGiro.value);
+    this.data = this.formGiro.value;
     this.dialogRef.close();
   }
   
@@ -147,6 +159,6 @@ pruebainput(){
     };
   
 }
-  
+
 
 }

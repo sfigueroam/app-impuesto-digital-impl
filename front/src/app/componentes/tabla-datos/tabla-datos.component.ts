@@ -41,13 +41,15 @@ export class TablaDatosComponent implements OnInit {
   nombreContribuyente;
   rutContribuyente;
   dvContribuyente;
-  
+  listaIds = '';
   constructor(private cdRef:ChangeDetectorRef, private usuario: UsuarioService) { }
   @Input() datosPrincipal:{};
   @Input() tipoConsulta:string;
   @Input() ocultarCheck:string;
-  // @Output()
-  // datosPrimeraTabla = new EventEmitter<boolean>();
+  @Output()
+  datosSwiftPrincipal = new EventEmitter<{}>();
+  @Output()
+  idsMovimientos = new EventEmitter<{}>();
   @Output()
   fila = new EventEmitter<{}>();
   @Output()
@@ -144,8 +146,19 @@ export class TablaDatosComponent implements OnInit {
     this.volverForm.emit(true);
   }
   
+   listaMovimientos(obj: [{}]){
+    obj.forEach(element =>{
+      this.listaIds += element['formFolio'] + ','
+    })
+    this.listaIds = this.listaIds.substring(0, this.listaIds.length - 1);
+    this.idsMovimientos.emit(this.listaIds);
+    console.log('listaiIDs',this.listaIds)
+  }
   
-  
+  datosSwift(obj:{}){
+    this.datosSwiftPrincipal.emit(obj);
+    console.log(obj)
+  }
   
   
   

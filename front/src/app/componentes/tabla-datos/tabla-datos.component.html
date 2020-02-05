@@ -256,7 +256,7 @@
 </div>
 
 <div>
-     <app-footer [idGiros] = "datosFooter" [Ngiros] = "numeroSelec" ></app-footer>
+     <app-footer (listaMovimientos) = "listaMovimientos($event)" (datosMovimiento) = "datosSwift($event)" [idGiros] = "datosFooter" [Ngiros] = "numeroSelec" ></app-footer>
 </div>
 
 

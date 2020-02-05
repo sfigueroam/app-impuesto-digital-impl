@@ -198,6 +198,14 @@ export class PrincipalComponent implements OnInit {
  
   }
   
+  getIdMovimientos(obj:{}){
+    console.log('id movimientos en principal', obj)
+  }
+  
+  getDatosSwift(obj:{}){
+    console.log('datos del swift en principal', obj )
+    
+  }
   
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog2, {

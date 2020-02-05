@@ -3,20 +3,28 @@
     
       <main class="mdl-layout__content">
         <div *ngIf="!ocultarForm && !verTablaDatos && !verMov && !verDetalleItem && !cargaDatos">
-        <app-inicio (mostrarTabla) = "estadoMostrarTabla($event)" (datosForm) = "getDatosForm($event)"  (datosFormFolio) = "getDatosFormFolio($event)" (tipoConsulta) = "tipoConsulta($event)" ></app-inicio>
+        <app-inicio (mostrarTabla) = "estadoMostrarTabla($event)" (datosForm) = "getDatosForm($event)"  
+        (datosFormFolio) = "getDatosFormFolio($event)" (tipoConsulta) = "tipoConsulta($event)" ></app-inicio>
         </div>
         
         <div *ngIf = "ocultarForm && !verTablaDatos && !verMov && !verDetalleItem && !cargaDatos">
-          <app-tabla-datos [datosPrincipal] = "movParaTabla" [ocultarCheck] = "ocultarCheck"  (fila) ="getDatosTable($event)"  (volverForm) = "volverForm($event)" [tipoConsulta] = "consultaTipo" > </app-tabla-datos>
+          <app-tabla-datos [datosPrincipal] = "movParaTabla" [ocultarCheck] = "ocultarCheck"  
+          (fila) ="getDatosTable($event)"  (volverForm) = "volverForm($event)" [tipoConsulta] = "consultaTipo"
+          (idsMovimientos) = "getIdMovimientos($event)" (datosSwiftPrincipal) = "getDatosSwift($event)"> </app-tabla-datos>
         </div>
         
         
         <div *ngIf = "!ocultarForm && verTablaDatos && !verMov  && !verDetalleItem && !cargaDatos ">
-          <app-tabla-movimiento [filaTabla] = "detalleMovParaTabla" (volverTablaDatos) = "volverTablaDatos($event)" (movimientoSeleccionado) = "getMovimientoSeleccionado($event)"  ></app-tabla-movimiento>
+          <app-tabla-movimiento [filaTabla] = "detalleMovParaTabla" (volverTablaDatos) = "volverTablaDatos($event)" 
+          (movimientoSeleccionado) = "getMovimientoSeleccionado($event)"  ></app-tabla-movimiento>
         </div>
         
-          <div *ngIf ="verDetalleItem && !cargaDatos ">
+        <div *ngIf ="verDetalleItem && !cargaDatos ">
           <app-ver-item [movConsultado] = "detalleItem" (volverSeleccioMov) = "volverTablaMovimientos($event)"></app-ver-item>
+        </div>
+        
+        <div *ngIf = "true">
+          <app-procesar-transaccion  ></app-procesar-transaccion>
         </div>
         
         <div *ngIf = "cargaDatos && !ocultarForm">

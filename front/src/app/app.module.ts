@@ -26,6 +26,7 @@ import { AutenticaComponent } from './componentes/autentica/autentica.component'
 import { LoginComponent } from './componentes/login/login.component';
 import { LogoutComponent } from './componentes/logout/logout.component';
 import { LeadingZeroPipe } from './pipes/leading-zero.pipe';
+import { ProcesarTransaccionComponent } from './componentes/procesar-transaccion/procesar-transaccion.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -43,7 +44,8 @@ registerLocaleData(localeEs, 'es');
     AutenticaComponent,
     LoginComponent,
     LogoutComponent,
-    LeadingZeroPipe
+    LeadingZeroPipe,
+    ProcesarTransaccionComponent
     
   ],
   
