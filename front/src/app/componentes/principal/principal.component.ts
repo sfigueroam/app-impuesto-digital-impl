@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef, Inject } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef, Inject, SimpleChanges } from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {DetalleCuentasService} from '../../servicios/detalle-cuentas.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -6,6 +6,11 @@ import { DialogData } from '../footer/footer.component';
 import {UsuarioService}from '../../servicios/usuario.service';
 import * as moment from 'moment';
 
+export interface DialogData{
+  rutnoEncontrado;
+  errorServidor;
+  
+}
 
 @Component({
   selector: 'app-principal',
@@ -29,6 +34,8 @@ export class PrincipalComponent implements OnInit {
   ocultarCheck: boolean = false;
   estadoLiquidables;
   detallesSwift;
+  rutnoEncontrado;
+  errorServidor;
   
   
   constructor(private detalleCuentas: DetalleCuentasService, private cdRef:ChangeDetectorRef, public dialog: MatDialog, private usuario: UsuarioService) { }
@@ -83,12 +90,26 @@ export class PrincipalComponent implements OnInit {
        
       },(error) =>{
          if(error.status == 404){
-            this.openDialog();
+            
             this.ocultarForm  = false;
             this.verTablaDatos = false;
             this.verMov = false;
             this.verDetalleItem = false
             this.cargaDatos = false;
+            this.rutnoEncontrado = true;
+            this.errorServidor = false;
+            this.openDialog(this.rutnoEncontrado,this.errorServidor);
+          }
+          else if(error.status == 500 || error.status == 502 || error.status == 504){
+            // this.openDialog();
+            this.ocultarForm  = false;
+            this.verTablaDatos = false;
+            this.verMov = false;
+            this.verDetalleItem = false
+            this.cargaDatos = false;
+            this.rutnoEncontrado = false;
+            this.errorServidor = true;
+            this.openDialog(this.rutnoEncontrado,this.errorServidor);
           }
         
       })
@@ -124,12 +145,25 @@ export class PrincipalComponent implements OnInit {
        
       },(error) =>{
         if(error.status == 404){
-            this.openDialog();
             this.ocultarForm  = false;
             this.verTablaDatos = false;
             this.verMov = false;
             this.verDetalleItem = false
             this.cargaDatos = false;
+            this.rutnoEncontrado = true;
+            this.rutnoEncontrado = true;
+            this.errorServidor = false;
+            this.openDialog(this.rutnoEncontrado,this.errorServidor);
+          }
+            else if(error.status == 500 || error.status == 502 || error.status == 504){
+            this.ocultarForm  = false;
+            this.verTablaDatos = false;
+            this.verMov = false;
+            this.verDetalleItem = false
+            this.cargaDatos = false;
+            this.rutnoEncontrado = false;
+            this.errorServidor = true;
+            this.openDialog(this.rutnoEncontrado,this.errorServidor);
           }
         
       })
@@ -235,9 +269,13 @@ export class PrincipalComponent implements OnInit {
     
   }
   
-  openDialog(): void {
+  openDialog(rutNoencontrado, errorServidor): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog2, {
       width: '250px',
+      data :{
+        rutnoEncontrado: rutNoencontrado,
+        erroServidor: errorServidor
+      }
 
     });
 
@@ -256,9 +294,12 @@ export class PrincipalComponent implements OnInit {
   templateUrl: 'dialog-overview-example-dialog2.html',
 })
 export class DialogOverviewExampleDialog2 {
+  codigoRut;
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog2>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+      
+      
       
     }
 
@@ -266,10 +307,13 @@ export class DialogOverviewExampleDialog2 {
     this.dialogRef.close();
   }
   
-
-
-
+ ngOnChanges(changes: SimpleChanges) {
+   console.log(JSON.stringify(this.data))
+    }
   
+  ngOnInit() {
+}
+    
 
 }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Inject, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {FormGroup, FormControl, Validators, FormBuilder, FormGroupDirective, NgForm} from '@angular/forms';
 import * as moment from 'moment';
 
 export interface DialogData {
@@ -112,15 +112,16 @@ export class FooterComponent implements OnInit, OnChanges {
 })
 export class DialogOverviewExampleDialog {
   formGiro: FormGroup;
+  botonHabilitarForm;
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public formDialog: FormBuilder) {
       
       this.formGiro = formDialog.group({
-        montoSwift : [''],
-        // fechaOrdenPago: [{disable:true, value: ''}],
-        // fechaDeposito: [{disable:true, value: ''}],
+        montoSwift : ['', Validators.required],
+        fechaOrdenPago: [{disable:true, value: ''}],
+        fechaDeposito: [{disable:true, value: ''}],
         ordenante :[''],
         descripcionRemesa: [''],
         bancoCorresponsal: [''],
@@ -128,7 +129,13 @@ export class DialogOverviewExampleDialog {
       })
       
     }
-
+    
+    
+    
+    ngOnChanges(changes: SimpleChanges) {
+   console.log('dataswift', this.data.montoSwift);
+    }
+  
   onNoClick(): void {
 
     this.dialogRef.close();
@@ -136,10 +143,11 @@ export class DialogOverviewExampleDialog {
   
   getDatosForm(){
     console.log(this.formGiro.value);
-    this.data = this.formGiro.value;
+    this.data.montoSwift = this.formGiro.get('montoSwift').value;
     this.dialogRef.close();
   }
   
+ 
 
     validate_fechaMayorQue(fechaInicial,fechaFinal){
             
@@ -166,6 +174,17 @@ pruebainput(){
       this.formGiro.controls['fechaHasta'].setErrors({'incorrect' : true})
     };
   
+}
+
+habilitarBoton(){
+  console.log(this.data.montoSwift)
+  if(this.data.montoSwift != ''){
+    this.botonHabilitarForm = true;
+  }
+else{
+  this.botonHabilitarForm = false;
+  console.log('vacio')
+}
 }
 
 

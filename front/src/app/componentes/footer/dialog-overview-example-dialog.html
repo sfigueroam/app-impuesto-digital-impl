@@ -2,7 +2,7 @@
 <div mat-dialog-content>
  <h1 mat-dialog-title>Aplicar Giro</h1>
   <mat-form-field>
-    <input matInput placeholder="Monto Swift" [(ngModel)]="data.montoSwift">
+    <input matInput placeholder="Monto Swift" [(ngModel)]="data.montoSwift" required (keyup)="habilitarBoton()">
   </mat-form-field>
      <mat-form-field>
     <input matInput  [matDatepicker]="fechaOrdenPago" placeholder="Fecha Orden de Pago" [(ngModel)]="data.fechaDeposito" data-date-format="DD MMMM YYYY">
@@ -31,5 +31,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cerrar</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Procesar</button>
+  <button mat-button [mat-dialog-close]="data"  [disabled] = "!botonHabilitarForm">Procesar</button>
 </div>

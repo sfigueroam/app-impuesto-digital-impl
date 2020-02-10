@@ -1,16 +1,20 @@
+
+<div *ngIf = "data.rutnoEncontrado == true">
 <h1 mat-dialog-title>No se encuentra información para los datos consultado </h1>
 <div mat-dialog-content>
-  
- 
-
-    
-    <!--<button class="mdl-button mdl-js-button mdl-button--colored tgr_float-right tgr-buttom-azul" type="submit" (click)="getDatosForm()" [disabled]="formGiro.invalid"  >Confirmar </button>-->
-    <!--<button mat-button (click)="onNoClick()">Cancelar</button>-->
-
-    
-  
-
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Entendido</button>
+</div>
+</div>
+
+
+
+<div *ngIf = "data.errorServidor == true">
+<h1 mat-dialog-title>En estos minutos no podemos procesar la consulta </h1>
+<div mat-dialog-content>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Entendido</button>
+</div>
 </div>
