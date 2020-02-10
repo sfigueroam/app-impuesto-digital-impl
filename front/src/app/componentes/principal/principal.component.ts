@@ -96,9 +96,8 @@ export class PrincipalComponent implements OnInit {
             this.verMov = false;
             this.verDetalleItem = false
             this.cargaDatos = false;
-            this.rutnoEncontrado = true;
-            this.errorServidor = false;
-            this.openDialog(this.rutnoEncontrado,this.errorServidor);
+  
+            this.openDialog();
           }
           else if(error.status == 500 || error.status == 502 || error.status == 504){
             // this.openDialog();
@@ -107,9 +106,8 @@ export class PrincipalComponent implements OnInit {
             this.verMov = false;
             this.verDetalleItem = false
             this.cargaDatos = false;
-            this.rutnoEncontrado = false;
-            this.errorServidor = true;
-            this.openDialog(this.rutnoEncontrado,this.errorServidor);
+ 
+            this.openDialog();
           }
         
       })
@@ -151,9 +149,8 @@ export class PrincipalComponent implements OnInit {
             this.verDetalleItem = false
             this.cargaDatos = false;
             this.rutnoEncontrado = true;
-            this.rutnoEncontrado = true;
-            this.errorServidor = false;
-            this.openDialog(this.rutnoEncontrado,this.errorServidor);
+
+            this.openDialog();
           }
             else if(error.status == 500 || error.status == 502 || error.status == 504){
             this.ocultarForm  = false;
@@ -161,9 +158,8 @@ export class PrincipalComponent implements OnInit {
             this.verMov = false;
             this.verDetalleItem = false
             this.cargaDatos = false;
-            this.rutnoEncontrado = false;
-            this.errorServidor = true;
-            this.openDialog(this.rutnoEncontrado,this.errorServidor);
+
+            this.openDialog();
           }
         
       })
@@ -269,14 +265,9 @@ export class PrincipalComponent implements OnInit {
     
   }
   
-  openDialog(rutNoencontrado, errorServidor): void {
+  openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog2, {
       width: '250px',
-      data :{
-        rutnoEncontrado: rutNoencontrado,
-        erroServidor: errorServidor
-      }
-
     });
 
     dialogRef.afterClosed().subscribe(result => {
