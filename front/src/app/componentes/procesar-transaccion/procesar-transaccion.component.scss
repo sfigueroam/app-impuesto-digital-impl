@@ -1,0 +1,12 @@
+.tgr-card--procesar {
+    .mat-card-header {
+        flex-direction: row-reverse;
+        align-items: baseline;
+        button {
+            position: absolute;
+            top: 9px;
+            left: 16px;
+            color: #AAAAAA;
+        }
+    }
+}
