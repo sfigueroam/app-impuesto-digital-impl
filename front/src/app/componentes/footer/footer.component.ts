@@ -88,6 +88,7 @@ export class FooterComponent implements OnInit, OnChanges {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
+      panelClass: 'tgr-dialog--aplicar-giro',
       data: {montoSwift: this.montoSwift, fechaOrdenPago: this.fechaOrdenPago, fechaDeposito: this.fechaDeposito,
        ordenante : this.ordenante, descripcionRemesa: this.descripcionRemesa,bancoCorresponsal: this.bancoCorresponsal, nOrdenPago: this.nOrdenPago}
     });
