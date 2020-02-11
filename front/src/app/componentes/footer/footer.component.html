@@ -13,12 +13,13 @@
 
 </div>
 
-<div *ngIf = "!sinAplicar">
-    <button (click) = "volverAtrasFooter()">
-        volver
+<div class="footer tgr-footer--procesar" *ngIf = "!sinAplicar">
+    <button mat-button (click) = "volverAtrasFooter()">
+        <i class="material-icons">keyboard_arrow_left</i>
+        VOLVER
     </button>
     
-    <button>
-        Aplicar
+    <button mat-raised-button>
+        APLICAR
     </button>
 </div>

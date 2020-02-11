@@ -21,6 +21,16 @@ h1{
     margin-top:10px !important;
 }
 
+/* LAYOUT */
+
+.mdl-layout__content {
+    margin-top: 64px;
+    padding-bottom: 120px;
+    @media (max-width: 1024px) {
+        margin-top: 56px;
+    }
+}
+
 /* Estilos TGR */
 
 .mat-card-title{
@@ -81,7 +91,7 @@ h1{
 // }
 
 .tgr-center{
-    margin:0 auto;
+    margin:0 auto !important;
 }
 
 .tgr-content-center{
@@ -96,3 +106,33 @@ h1{
   background: #fff;
 }
 
+// FOOTERS
+.footer {
+    background: #fff;
+    bottom: 0;
+    box-shadow: 0 3px 26px 0 #a8a8a8;
+    display: block;
+    left: 0;
+    min-height: 60px;
+    position: fixed;
+    right: 0;
+    z-index: 900;
+    &.tgr-footer--procesar {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center;
+        button {
+            height: fit-content;
+            margin-right: 14px;
+            margin-left: 14px;
+            &:first-of-type {
+                background-color: #E6E6E6;
+                color: #757575;
+            }
+            &:last-of-type {
+                background-color: #00b344;
+                color: #FFFFFF;
+            }
+        }
+    }
+}
