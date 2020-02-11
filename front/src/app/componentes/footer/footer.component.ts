@@ -177,8 +177,9 @@ pruebainput(){
 }
 
 habilitarBoton(){
+  const re = new RegExp("^[0-9]*$");
   console.log(this.data.montoSwift)
-  if(this.data.montoSwift != ''){
+  if(re.test(this.data.montoSwift)){
     this.botonHabilitarForm = true;
   }
 else{
@@ -186,6 +187,7 @@ else{
   console.log('vacio')
 }
 }
+
 
 
 }

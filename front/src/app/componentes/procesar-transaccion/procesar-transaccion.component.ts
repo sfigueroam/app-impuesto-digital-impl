@@ -46,6 +46,7 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if(this.idsGiros != undefined && this.datosSwiftT != undefined){
       console.log('valores cambiaron!')
+      console.log(this.idsGiros, this.datosSwiftT)
     }
     }
     
@@ -53,6 +54,8 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     this.volverTablaDatos.emit(true);
     console.log('volvere a tabla datos');
   }
+  
+
   
 
 }
