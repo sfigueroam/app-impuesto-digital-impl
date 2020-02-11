@@ -1,4 +1,3 @@
-
 process.env.REST_TOKEN_CLIENT_ID= "4i65ld3cq12ddnp2th47g359os";
 process.env.REST_TOKEN_SCOPE= "tgr-dev-api-servicios-cut/all";
 process.env.REST_TOKEN_CLIENT_SECRET= "67gpaamp8fp5387o6gfke7op4nt11dpfll94portn907sh6fpa";
@@ -11,6 +10,6 @@ const crear = require('../consultaEstadoMov');
 
 
 console.log('Inicio de funcion');
-let event = {"body": "{\"inIdConsulta\": \"1\", \"inListaIds\": \"15,5,502\"}"};
+let event = {"body": "{\"inIdConsulta\": \"1\", \"inListaIds\": \"115687,115685,502\"}"};
 
 crear.handler(event, null, ()=>{});

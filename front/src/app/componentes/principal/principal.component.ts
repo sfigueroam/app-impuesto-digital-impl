@@ -246,16 +246,18 @@ export class PrincipalComponent implements OnInit {
   getIdMovimientos(obj:{}){
     this.cargaDatos = true
     this.ocultarForm = false;
-    //
-    this.estadoLiquidables = obj;
-    //CAMBIAR POR LLAMADO 
-    setTimeout(()=>{
-      console.log('estoy esperando')
-      this.verEstadoLiquidables = true;
-      this.cargaDatos = false;
-      this.ocultarForm = true;
-      console.log('esatdos de los ocultar CARGADATOS OCULTARFORM VERMOV TABLAD DETALLE', this.cargaDatos, this.ocultarForm, this.verMov, this.verTablaDatos, this.detalleItem)
- }, 3000);
+    var objConsulta = {
+      "inIdConsulta" : "1",
+      "inListaIds" : obj
+    }
+      this.detalleCuentas.estadoLiquidables(objConsulta).subscribe(
+        data =>{
+          console.log(data)
+          this.estadoLiquidables = data;  
+          this.verEstadoLiquidables = true;
+          this.cargaDatos = false;
+          this.ocultarForm = true;
+      })
     console.log('id movimientos en principal', this.estadoLiquidables)
   }
   

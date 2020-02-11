@@ -37,4 +37,9 @@ export class DetalleCuentasService {
       const urlTramite = environment.apiNube + '/impdigital/consultaPerfil/' + idUsuario;
       return this.http.get(urlTramite);
     }
+    
+    estadoLiquidables(dataJson): Observable <any> {
+      const urlTramite = environment.apiNube + '/impdigital/presentaCuentasME/estadoMov';
+      return this.http.post(urlTramite, JSON.stringify(dataJson));
+    }
 }

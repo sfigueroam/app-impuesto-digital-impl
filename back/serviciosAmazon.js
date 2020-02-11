@@ -287,6 +287,61 @@ function consultaPerfil(idApp, idUsuario, token) {
         });
 }
 
+function consultaEstadoLiquidables (token, json) {
+  
+  console.log('este es el json en servicios nube' + JSON.stringify(json));
+ 
+  return new Promise((resolve, reject) => {
+    
+    var respServicio = {
+      codeStatus: "",
+      respuesta: ""
+    };
+    
+    let options = {
+      hostname: hostService,
+      port: 443,
+      path: '/' + process.env.ENV + '/servicios-recaudacion/v1/monex-liquidacion/liquidacuentas', //PARAMETRIZAR v1
+      method: 'POST',
+      rejectUnauthorized: false,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+token,
+        "Content-Length": JSON.stringify(json).length
+      }
+    };
+
+    let respuesta='';
+    let estadoHttp='';
+    let req = https.request(options, (res) => {
+      
+      console.log('statusCode:', res.statusCode);
+      
+      estadoHttp=res.statusCode;
+      respServicio.codeStatus = res.statusCode;
+      //guardado de dato obtenidos en respuesta
+      res.on('data', (d) => {
+        respuesta+=d;
+        
+      });
+      
+    }).on('error', (error) => {
+      console.error(error);
+      reject(error);
+    });
+    
+    //terminado el request parsear la respuesta y entra al primer if donde lo devuelve a la promesa
+    req.on('close', () => {
+        respuesta = JSON.parse(respuesta);
+        respServicio.respuesta = respuesta;
+        console.log('respuesta en nube', respuesta);
+        resolve(respServicio);
+    });
+    req.write(JSON.stringify(json));
+    req.end();
+  });
+}
+
 
 
 
@@ -296,4 +351,5 @@ exports.consultaMovimiento = consultaMovimiento;
 exports.consultaItem = consultaItem;
 exports.consultaCuentaMonexFolio = consultaCuentaMonexFolio;
 exports.consultaPerfil = consultaPerfil;
+exports.consultaEstadoLiquidables = consultaEstadoLiquidables;
 
