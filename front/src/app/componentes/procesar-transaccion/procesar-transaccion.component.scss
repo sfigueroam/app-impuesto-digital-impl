@@ -9,4 +9,77 @@
             color: #AAAAAA;
         }
     }
+    .mat-card-content {
+        .tgr-table--procesar {
+            width: 100%;
+            margin-top: 12px;
+            margin-bottom: 26px;
+            .mat-header-row {
+                background-color: #2F3C89;
+                height: 35px;
+                th.mat-header-cell {
+                    text-align: center;
+                    color: #FFFFFF;
+                }
+            }
+            tr.mat-row {
+                height: 48px !important;
+                td.mat-cell {
+                    color: #757575;
+                    &:first-of-type {
+                        font-weight: 700 !important;
+                    }
+                    &:last-of-type {
+                        font-weight: 700 !important;
+                        color: #2F3C89 !important;
+                    }
+                    //ESTO ALINEARÁ LAS COLUMNAS 6, 7, 8 Y 9 A LA DERECHA PORQUE SON MONTOS
+                    &:nth-of-type(6),
+                    &:nth-of-type(7),
+                    &:nth-of-type(8),
+                    &:nth-of-type(9){
+                        text-align: right;
+                    }
+                }
+            }
+        
+        }
+        .tgr-montos--procesar {
+            border: 1px solid #C0C0C0;
+            border-radius: 2px;
+            padding: 10px 14px;
+            @media (max-width: 1200px) {
+                width: 80%;
+            }
+            .tgr-detalle-monto--procesar {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin-left: auto;
+                margin-right: auto;
+                p {
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                }
+                &:nth-child(1) {
+                    color: #757575;
+                    :last-of-type {
+                        font-weight: 700;
+                    }
+                }
+                &:nth-child(2) {
+                    color: #2f3c89;
+                    :last-of-type {
+                        font-weight: 700;
+                    }
+                }
+                &:nth-child(3) {
+                    color: #00b344;
+                    :last-of-type {
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
 }
