@@ -21,7 +21,7 @@ phases:
             - sed -i "s;BUILD_INFO_PERFILES_SCOPE;${BUILD_INFO_PERFILES_SCOPE};g"                             ${CODEBUILD_SRC_DIR}/back/config.yml
             - sed -i "s;BUILD_INFO_PERFILES_HOST;${BUILD_INFO_PERFILES_HOST};g"                             ${CODEBUILD_SRC_DIR}/back/config.yml
             - echo Installing serverless...
-            - npm install -g serverless
+            - npm install -g serverless@1.48.0
             - echo Installing source NPM dependencies...
             - npm install
     build:

@@ -84,6 +84,7 @@ functions:
         path: impdigital/consultaPerfil/{idUsuario}
         method: get
         cors: true
+  
   getEstadoMov:
     name: tgr-${self:custom.env}-${self:service}-consultaEstadoMov
     handler: consultaEstadoMov.handler
