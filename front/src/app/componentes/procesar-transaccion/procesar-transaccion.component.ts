@@ -30,10 +30,12 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
   
   displayedColumns: string[] = ['rut', 'formulario', 'folio', 'liquidable', 'fechaVcto', 'saldoNeto', 'intereses','multas', 'totalPagar'];
   dataSource = new MatTableDataSource<tablaMovimientos>(this.ELEMENT_DATA);
-  @Input() idsGiros:{};
-  @Input() datosSwiftT:{};
+  @Input() idsGiros;
+  @Input() datosSwiftT;
   @Output() 
   volverTablaDatos = new EventEmitter<boolean>();
+  listaSinTotal=[];
+  totalLiquidable;
 
   constructor() { }
 
@@ -42,8 +44,20 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
   
   ngOnChanges(changes: SimpleChanges) {
     if(this.idsGiros != undefined && this.datosSwiftT != undefined){
+      this.datosSwiftT = JSON.stringify(this.datosSwiftT)
+      this.datosSwiftT =JSON.parse(this.datosSwiftT)
       console.log('valores cambiaron!')
-      this.llenarTablaMov(this.idsGiros);
+      this.idsGiros.forEach(element =>{
+        console.log(element.totalLiquidable);
+        if(element.totalLiquidable == undefined){
+          this.listaSinTotal.push(element);
+        }
+      else{
+        this.totalLiquidable = element.totalLiquidable;
+      }
+      })
+      console.log('lista sin total y total',this.listaSinTotal, this.totalLiquidable)
+      this.llenarTablaMov(this.listaSinTotal);
       console.log(this.idsGiros, this.datosSwiftT)
     }
     }
@@ -63,6 +77,10 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     }
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
     console.log(this.dataSource);
+  }
+  
+  aplicarGiros(){
+    console.log('aplicalos!')
   }
   
 

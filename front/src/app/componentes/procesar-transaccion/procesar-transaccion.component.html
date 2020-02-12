@@ -79,11 +79,11 @@
           <div class="mdl-cell mdl-cell--7-col mdl-cell--10-col-tablet tgr-center tgr-montos--procesar">
             <div class="tgr-detalle-monto--procesar">
               <p>Suma total a pagar:</p>
-              <p>$ 12</p>
+              <p>$ {{datosSwiftT.montoSwift}}</p>
             </div>
             <div class="tgr-detalle-monto--procesar">
               <p>Monto para aplicar:</p>
-              <p>$ la suma de la columna</p>
+              <p>$ {{totalLiquidable}} </p>
             </div>
             <div class="tgr-detalle-monto--procesar">
               <p>Diferencia:</p>
@@ -96,5 +96,5 @@
       </mat-card>
     </div>
   </main>
-  <app-footer (volverTablaMovsFooter) = "volverTabla()"></app-footer>
+  <app-footer (volverTablaMovsFooter) = "volverTabla()" (aplicarGiros) = "aplicarGiros()"></app-footer>
 </div>

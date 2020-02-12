@@ -257,9 +257,21 @@ export class PrincipalComponent implements OnInit {
           this.verEstadoLiquidables = true;
           this.cargaDatos = false;
           this.ocultarForm = true;
-      })
-    console.log('id movimientos en principal', this.estadoLiquidables)
-  }
+      },(error)=>{
+        if(error.status == 404){
+          console.log('entre al error')
+             this.ocultarForm = true;
+              this.verTablaDatos = false;
+              this.verMov = false;
+              this.verDetalleItem = false;
+              this.verEstadoLiquidables = false;
+              this.cargaDatos = false;
+              this.openDialog();
+  
+        }
+        
+      }
+  )}
   
   getDatosSwift(obj:{}){
     this.detallesSwift = obj;
