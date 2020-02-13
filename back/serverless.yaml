@@ -94,3 +94,13 @@ functions:
         path: impdigital/presentaCuentasME/estadoMov
         method: post
         cors: true
+  
+  aplicarGiros:
+    name: tgr-${self:custom.env}-${self:service}-aplicarGiros
+    handler: aplicarGiros.handler
+    timeout: 30
+    events:
+    - http:
+        path: impdigital/presentaCuentasME/aplicarGiro
+        method: post
+        cors: true

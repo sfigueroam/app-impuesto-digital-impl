@@ -36,6 +36,7 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
   volverTablaDatos = new EventEmitter<boolean>();
   listaSinTotal=[];
   totalLiquidable;
+  listaIds = '';
 
   constructor() { }
 
@@ -46,7 +47,7 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     if(this.idsGiros != undefined && this.datosSwiftT != undefined){
       this.datosSwiftT = JSON.stringify(this.datosSwiftT)
       this.datosSwiftT =JSON.parse(this.datosSwiftT)
-      console.log('valores cambiaron!')
+      console.log('datosSwift', this.datosSwiftT)
       this.idsGiros.forEach(element =>{
         console.log(element.totalLiquidable);
         if(element.totalLiquidable == undefined){
@@ -80,7 +81,24 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
   }
   
   aplicarGiros(){
-    console.log('aplicalos!')
+    //armar objeto y consultar
+    this.listaSinTotal.forEach(element =>{
+      this.listaIds += element['formFolio'] + ','
+    })
+    this.listaIds = this.listaIds.substring(0, this.listaIds.length - 1);
+    let objConsulta = {
+      "inMontoSwift": this.datosSwiftT['montoSwift'],
+      "inFechaOrdenPago": this.datosSwiftT['fechaOrdenPago'] ? this.datosSwiftT['fechaOrdenPago'] : '' ,
+      "inFechaDeposito": this.datosSwiftT['fechaDeposito'] ? this.datosSwiftT['fechaDeposito'] : '',
+      "inOrdenante": this.datosSwiftT['ordenante'] ?  this.datosSwiftT['ordenante'] : '',
+      "inRemesa": this.datosSwiftT['descripcionRemesa'] ? this.datosSwiftT['descripcionRemesa'] : '',
+      "inBanco": this.datosSwiftT['bancoCorresponsal'] ? this.datosSwiftT['bancoCorresponsal'] : '',
+      "inNroOrdenPago": this.datosSwiftT['nOrdenPago'] ? this.datosSwiftT['nOrdenPago']: '' ,
+      "inListaArs": this.listaIds,
+      "inMontoAplicar": this.totalLiquidable
+    }
+    
+    console.log('objeto consulta',objConsulta)
   }
   
 
