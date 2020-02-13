@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-const rut = require('validar-rut')
+import {DetalleCuentasService} from '../../servicios/detalle-cuentas.service';
 
 
 export interface tablaMovimientos {
@@ -38,7 +38,7 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
   totalLiquidable;
   listaIds = '';
 
-  constructor() { }
+  constructor(private detalleCuentas: DetalleCuentasService) { }
 
   ngOnInit() {
   }
@@ -83,7 +83,7 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
   aplicarGiros(){
     //armar objeto y consultar
     this.listaSinTotal.forEach(element =>{
-      this.listaIds += element['formFolio'] + ','
+      this.listaIds += element['formFolio'] + ';'
     })
     this.listaIds = this.listaIds.substring(0, this.listaIds.length - 1);
     let objConsulta = {
@@ -99,9 +99,21 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     }
     
     console.log('objeto consulta',objConsulta)
+         this.detalleCuentas.aplicarLiquidacion(objConsulta).subscribe(
+        data =>{
+          console.log(data)
+      },(error)=>{
+        if(error.status == 404){
+          console.log('entre al error')
+        }
+        
+      }
+  )}
+    
+    
   }
   
 
   
 
-}
+

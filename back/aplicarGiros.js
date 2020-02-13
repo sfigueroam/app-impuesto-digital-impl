@@ -28,7 +28,7 @@ module.exports.handler = async (event, context, callback) => {
         console.log('Error al generar token nube', err);
     }
     
-    let salida = await servAmazon.consultaEstadoLiquidables(token,Ids);
+    let salida = await servAmazon.liquidaDeudas(token,Ids);
     console.log('resultado invocacion',salida)
 
     console.log("Resultado Final:", salida);
