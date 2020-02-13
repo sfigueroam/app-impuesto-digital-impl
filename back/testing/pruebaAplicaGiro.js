@@ -10,6 +10,6 @@ const crear = require('../aplicarGiros');
 
 
 console.log('Inicio de funcion');
-let event = {"body": "{\"inMontoSwift\": 798798,\r\n   \"inFechaOrdenPago\": \"\",\r\n    \"inFechaDeposito\": \"\",\r\n    \"inOrdenante\": \"\",\r\n    \"inRemesa\": \"\",\r\n    \"inBanco\": \"\",\r\n    \"inNroOrdenPago\": \"\",\r\n    \"inListaArs\": \"400633,410116,410120,410122,410468\",\r\n    \"inMontoAplicar\": 0\r\n}"};
+let event = {"body": "{\"inMontoSwift\": 798798,\r\n \"inFechaOrdenPago\": \"\",\r\n\"inFechaDeposito\": \"\",\r\n\"inOrdenante\": \"\",\r\n\"inRemesa\": \"\",\r\n\"inBanco\": \"\",\r\n\"inNroOrdenPago\": \"\",\r\n    \"inListaArs\": \"400633;410116;410120;410122;410468\",\r\n    \"inMontoAplicar\": 0\r\n}"};
 
 crear.handler(event, null, ()=>{});

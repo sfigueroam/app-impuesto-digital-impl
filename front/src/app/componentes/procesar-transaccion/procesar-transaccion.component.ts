@@ -1,6 +1,24 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter, Inject } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import {DetalleCuentasService} from '../../servicios/detalle-cuentas.service';
+import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
+
+export interface DialogData {
+  rut
+  montoPagado;
+  MontoSwift;
+  fechaOrdenPago;
+  fechaPago;
+  fechaDeposito;
+  ordenandte;
+  descripcionRemesa;
+  bancoCorresponsal;
+  NordenPago;
+  outLote;
+  outFolio;
+  obj:{};
+  ocultaSpinner;
+}
 
 
 export interface tablaMovimientos {
@@ -37,11 +55,28 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
   listaSinTotal=[];
   totalLiquidable;
   listaIds = '';
+  objetoConsulta;
+  resultadoAplicacion: any;
+ 
 
-  constructor(private detalleCuentas: DetalleCuentasService) { }
+  constructor(private detalleCuentas: DetalleCuentasService, public dialog: MatDialog) { }
 
   ngOnInit() {
   }
+  
+    openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog3, {
+      width: '250px',
+      data: {objetoConsulta: this.objetoConsulta, resultadoAplicacion: this.resultadoAplicacion}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    
+    });
+  }
+
+
   
   ngOnChanges(changes: SimpleChanges) {
     if(this.idsGiros != undefined && this.datosSwiftT != undefined){
@@ -61,6 +96,8 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
       this.llenarTablaMov(this.listaSinTotal);
       console.log(this.idsGiros, this.datosSwiftT)
     }
+    console.log(this.objetoConsulta);
+    console.log(this.resultadoAplicacion);
     }
     
   volverTabla(){
@@ -82,11 +119,12 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
   
   aplicarGiros(){
     //armar objeto y consultar
+  
     this.listaSinTotal.forEach(element =>{
       this.listaIds += element['formFolio'] + ';'
     })
     this.listaIds = this.listaIds.substring(0, this.listaIds.length - 1);
-    let objConsulta = {
+    this.objetoConsulta = {
       "inMontoSwift": this.datosSwiftT['montoSwift'],
       "inFechaOrdenPago": this.datosSwiftT['fechaOrdenPago'] ? this.datosSwiftT['fechaOrdenPago'] : '' ,
       "inFechaDeposito": this.datosSwiftT['fechaDeposito'] ? this.datosSwiftT['fechaDeposito'] : '',
@@ -98,10 +136,13 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
       "inMontoAplicar": this.totalLiquidable
     }
     
-    console.log('objeto consulta',objConsulta)
-         this.detalleCuentas.aplicarLiquidacion(objConsulta).subscribe(
+    console.log('objeto consulta',this.objetoConsulta)
+         this.detalleCuentas.aplicarLiquidacion(this.objetoConsulta).subscribe(
         data =>{
+          this.resultadoAplicacion = data;
+          this.openDialog();
           console.log(data)
+          
       },(error)=>{
         if(error.status == 404){
           console.log('entre al error')
@@ -112,6 +153,49 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     
     
   }
+  
+  @Component({
+  selector: 'dialog-overview-example-dialog3',
+  templateUrl: 'dialog-overview-example-dialog3.html',
+})
+export class DialogOverviewExampleDialog3 {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog3>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  
+  ocultaSpinner = false;
+  casoA = false;
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+
+  ngOnInit() {
+     console.log(this.data['resultadoAplicacion'])
+    if(this.data['resultadoAplicacion']){
+    console.log(this.data);
+    this.casoA = true;
+      
+      this.ocultaSpinner = true;
+    }
+  }
+  
+    ngOnChanges(changes: SimpleChanges) {
+     
+    if(this.data['resultadoAplicacion'] != undefined){
+      this.ocultaSpinner = true;
+    }
+    }
+    
+  // ngAfterViewInit() {
+  //   console.log(this.data)
+  //   console.log('spinner', this.ocultaSpinner)
+  //   this.ocultaSpinner;
+  // }
+
+
+}
   
 
   

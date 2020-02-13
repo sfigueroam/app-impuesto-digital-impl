@@ -1,0 +1,9 @@
+<div *ngIf = "casoA" >
+<div *ngFor = "let a of data.resultadoAplicacion">
+Operacion realizada con exito
+Revisar en lote {{a.outLote}}
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cerrar</button>
+</div>
+</div>
+</div>
