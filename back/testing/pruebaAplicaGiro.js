@@ -6,14 +6,10 @@ process.env.HOST_TOKEN = "id-dev.tegere.info";
 process.env.HOSTNUBE = "jx1wukpm36.execute-api.us-east-1.amazonaws.com"
 // process.env.BUCKET_NAME="tgr-dev-api-certificados-data";
 process.env.ENV = "dev";
-const crear = require('../consultaEstadoMov');
+const crear = require('../aplicarGiros');
 
 
 console.log('Inicio de funcion');
-<<<<<<< HEAD
-let event = {"body": "{\"inIdConsulta\": \"1\", \"inListaIds\": \"87687689,500,502\"}"};
-=======
-let event = {"body": "{\"inIdConsulta\": \"1\", \"inListaIds\": \"4800,4801,4802\"}"};
->>>>>>> 5911d1a37264a39aca58ad9336d716b7703c336c
+let event = {"body": "{\"inMontoSwift\": 798798,\r\n \"inFechaOrdenPago\": \"\",\r\n\"inFechaDeposito\": \"\",\r\n\"inOrdenante\": \"\",\r\n\"inRemesa\": \"\",\r\n\"inBanco\": \"\",\r\n\"inNroOrdenPago\": \"\",\r\n    \"inListaArs\": \"400633;410116;410120;410122;410468\",\r\n    \"inMontoAplicar\": 0\r\n}"};
 
 crear.handler(event, null, ()=>{});

@@ -28,6 +28,8 @@ export class FooterComponent implements OnInit, OnChanges {
   @Input() sinAplicar:boolean;
   @Output()
   volverTablaMovsFooter = new EventEmitter<boolean>();
+  @Output()
+  aplicarGiros = new EventEmitter<boolean>();
   botonGiros;
   arregloFinal;
   montoSwift;
@@ -71,6 +73,11 @@ export class FooterComponent implements OnInit, OnChanges {
     //con esto vuelvo atras desde el footer
     this.volverTablaMovsFooter.emit(true)
   }
+  
+  botonAplicarGiro(){
+  this.aplicarGiros.emit(true)
+}
+
   
   
   

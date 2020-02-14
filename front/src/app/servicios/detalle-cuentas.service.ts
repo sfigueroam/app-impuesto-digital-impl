@@ -42,4 +42,9 @@ export class DetalleCuentasService {
       const urlTramite = environment.apiNube + '/impdigital/presentaCuentasME/estadoMov';
       return this.http.post(urlTramite, JSON.stringify(dataJson));
     }
+    
+    aplicarLiquidacion(dataJson): Observable <any>{
+        const urlTramite = environment.apiNube + '/impdigital/presentaCuentasME/aplicarGiro';
+        return this.http.post(urlTramite, JSON.stringify(dataJson));
+    }
 }

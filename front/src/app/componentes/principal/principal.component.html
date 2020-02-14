@@ -24,10 +24,12 @@
         </div>
         
         <div *ngIf = "verEstadoLiquidables && !cargaDatos && ocultarForm">
-          <app-procesar-transaccion [idsGiros] = "estadoLiquidables" [datosSwiftT] = "detallesSwift" (volverTablaDatos) = "volverTablaDatosProcesar($event)"></app-procesar-transaccion>
+          <app-procesar-transaccion [idsGiros] = "estadoLiquidables" [datosSwiftT] = "detallesSwift" (volverTablaDatos) = "volverTablaDatosProcesar($event)"
+          (volverFormulario) = "volverFormApGiro($event)" ></app-procesar-transaccion>
         </div>
         
         <div *ngIf = "cargaDatos && !ocultarForm">
+          <mat-spinner></mat-spinner>
           cargando datos espere
         </div>
         
