@@ -61,6 +61,7 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
   resultadoAplicacion: any;
   diferencia;
   tipoCaso;
+  errorAplicar;
  
 
   constructor(private detalleCuentas: DetalleCuentasService, public dialog: MatDialog) { }
@@ -71,12 +72,12 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog3, {
       width: '250px',
-      data: {objetoConsulta: this.objetoConsulta, resultadoAplicacion: this.resultadoAplicacion, tipoCaso: this.tipoCaso}
+      data: {objetoConsulta: this.objetoConsulta, resultadoAplicacion: this.resultadoAplicacion, tipoCaso: this.tipoCaso, errorCase: this.errorAplicar}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.volverTabla();
+      this.volverForm();
     
     });
   }
@@ -165,8 +166,9 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
           console.log(data)
           
       },(error)=>{
-        if(error.status == 404){
-          console.log('entre al error')
+        if(error.status == 400 || error.status == 404){
+          this.errorAplicar = true;
+          this.openDialog();
         }
         
       }
@@ -187,6 +189,7 @@ export class DialogOverviewExampleDialog3 {
   
   ocultaSpinner = false;
   tipoCaso;
+  errorCase;
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -194,12 +197,17 @@ export class DialogOverviewExampleDialog3 {
 
   ngOnInit() {
      console.log(this.data['tipoCaso'])
-    if(this.data['tipoCaso'] == 'A'){
+     console.log(this.data['errorCase'])
+    if(this.data['tipoCaso'] == 'A' && this.data['errorCase'] != true){
     console.log(this.data);
     this.tipoCaso = 'A';
     }
-    else if(this.data['tipoCaso'] == 'B'){
+    else if(this.data['tipoCaso'] == 'B' && this.data['errorCase'] != true){
       this.tipoCaso = 'B'
+    }
+    else if(this.data['errorCase']){
+      console.log(this.data['errorCase'])
+      this.errorCase = true;
     }
   }
   

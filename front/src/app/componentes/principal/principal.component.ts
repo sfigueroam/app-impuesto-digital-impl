@@ -196,6 +196,18 @@ export class PrincipalComponent implements OnInit {
     this.verDetalleItem = false
   }
   
+  
+  volverFormApGiro(volver:boolean){
+    this.ocultarForm  = false;
+    this.verTablaDatos = false;
+    this.verMov = false;
+    this.verDetalleItem = false
+    this.verEstadoLiquidables = false;
+    console.log('esatdos de los ocultar CARGADATOS OCULTARFORM VERMOV TABLAD DETALLE estado LIq', this.cargaDatos, this.ocultarForm, this.verMov, this.verTablaDatos, this.verDetalleItem, this.verEstadoLiquidables)
+  }
+  
+  
+  
   volverTablaDatos(volver:boolean){
     this.ocultarForm = true;
     this.verTablaDatos = false;

@@ -25,7 +25,7 @@
         
         <div *ngIf = "verEstadoLiquidables && !cargaDatos && ocultarForm">
           <app-procesar-transaccion [idsGiros] = "estadoLiquidables" [datosSwiftT] = "detallesSwift" (volverTablaDatos) = "volverTablaDatosProcesar($event)"
-          (volverFormulario) = "volverForm($event)" ></app-procesar-transaccion>
+          (volverFormulario) = "volverFormApGiro($event)" ></app-procesar-transaccion>
         </div>
         
         <div *ngIf = "cargaDatos && !ocultarForm">
