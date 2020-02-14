@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   
- // apiNube: 'https://wnrssq4u4c.execute-api.us-east-1.amazonaws.com/dev', 
+ //apiNube: 'https://wnrssq4u4c.execute-api.us-east-1.amazonaws.com/dev', 
  apiNube: 'BUILD_API_ENDPOINT',
   
   cognito: { 

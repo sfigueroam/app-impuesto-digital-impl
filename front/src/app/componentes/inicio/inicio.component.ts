@@ -193,7 +193,11 @@ comprobarRut(value:string){
   if(value.charAt(value.length-1) == 'k'){
    value =  value.replace(/\k/g, 'K');
   }
-  if(!rut.validar(value)){
+  let aux = value.substring(value.length - 1, value.length);
+  if(aux == '0'){
+    
+  }
+  else if(!rut.validar(value)){
     this.forma.controls['identificacion'].setErrors({'incorrect': true})
   }
   

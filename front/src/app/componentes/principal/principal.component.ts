@@ -258,7 +258,7 @@ export class PrincipalComponent implements OnInit {
           this.cargaDatos = false;
           this.ocultarForm = true;
       },(error)=>{
-        if(error.status == 404){
+        if(error){
           console.log('entre al error')
              this.ocultarForm = true;
               this.verTablaDatos = false;

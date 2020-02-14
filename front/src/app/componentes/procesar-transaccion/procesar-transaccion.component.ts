@@ -52,11 +52,15 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
   @Input() datosSwiftT;
   @Output() 
   volverTablaDatos = new EventEmitter<boolean>();
+  @Output()
+  volverFormulario = new EventEmitter<boolean>();
   listaSinTotal=[];
   totalLiquidable;
   listaIds = '';
   objetoConsulta;
   resultadoAplicacion: any;
+  diferencia;
+  tipoCaso;
  
 
   constructor(private detalleCuentas: DetalleCuentasService, public dialog: MatDialog) { }
@@ -67,11 +71,12 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog3, {
       width: '250px',
-      data: {objetoConsulta: this.objetoConsulta, resultadoAplicacion: this.resultadoAplicacion}
+      data: {objetoConsulta: this.objetoConsulta, resultadoAplicacion: this.resultadoAplicacion, tipoCaso: this.tipoCaso}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.volverTabla();
     
     });
   }
@@ -96,13 +101,27 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
       this.llenarTablaMov(this.listaSinTotal);
       console.log(this.idsGiros, this.datosSwiftT)
     }
-    console.log(this.objetoConsulta);
-    console.log(this.resultadoAplicacion);
+   
+   console.log(this.datosSwiftT)
+    if(this.datosSwiftT['montoSwift'] <= this.totalLiquidable){
+      this.diferencia = this.totalLiquidable - this.datosSwiftT['montoSwift']
+      this.tipoCaso = 'A'
+    }
+    else{
+      this.diferencia = this.datosSwiftT['montoSwift'] - this.totalLiquidable
+      this.tipoCaso = 'B'
+    }
+    
+    
     }
     
   volverTabla(){
     this.volverTablaDatos.emit(true);
     console.log('volvere a tabla datos');
+  }
+  
+  volverForm(){
+    this.volverFormulario.emit(true);
   }
   
   
@@ -137,6 +156,8 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     }
     
     console.log('objeto consulta',this.objetoConsulta)
+      
+
          this.detalleCuentas.aplicarLiquidacion(this.objetoConsulta).subscribe(
         data =>{
           this.resultadoAplicacion = data;
@@ -165,19 +186,20 @@ export class DialogOverviewExampleDialog3 {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
   
   ocultaSpinner = false;
-  casoA = false;
+  tipoCaso;
   onNoClick(): void {
     this.dialogRef.close();
   }
 
 
   ngOnInit() {
-     console.log(this.data['resultadoAplicacion'])
-    if(this.data['resultadoAplicacion']){
+     console.log(this.data['tipoCaso'])
+    if(this.data['tipoCaso'] == 'A'){
     console.log(this.data);
-    this.casoA = true;
-      
-      this.ocultaSpinner = true;
+    this.tipoCaso = 'A';
+    }
+    else if(this.data['tipoCaso'] == 'B'){
+      this.tipoCaso = 'B'
     }
   }
   
