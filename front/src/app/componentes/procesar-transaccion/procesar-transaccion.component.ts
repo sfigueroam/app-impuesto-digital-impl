@@ -141,7 +141,7 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     //armar objeto y consultar
   
     this.listaSinTotal.forEach(element =>{
-      this.listaIds += element['formFolio'] + ';'
+      this.listaIds += element['idCta'] + ';'
     })
     this.listaIds = this.listaIds.substring(0, this.listaIds.length - 1);
     this.objetoConsulta = {
