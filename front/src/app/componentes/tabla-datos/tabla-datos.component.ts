@@ -153,12 +153,10 @@ export class TablaDatosComponent implements OnInit {
     })
     this.listaIds = this.listaIds.substring(0, this.listaIds.length - 1);
     this.idsMovimientos.emit(this.listaIds);
-    console.log('listaiIDs',this.listaIds)
   }
   
   datosSwift(obj:{}){
     this.datosSwiftPrincipal.emit(obj);
-    console.log(obj)
   }
   
   

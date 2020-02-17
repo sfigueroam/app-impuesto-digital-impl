@@ -61,7 +61,6 @@ export class FooterComponent implements OnInit, OnChanges {
   else{
     this.botonGiros = true
   }
-   console.log('boton habilitado:' + this.habilitarBotonGiros)
   
   if(this.habilitarBotonGiros == false){
     this.habilitarBotonGiros= false
@@ -69,14 +68,11 @@ export class FooterComponent implements OnInit, OnChanges {
   else{
     this.habilitarBotonGiros = true;
   }
-  console.log('boton habilitado:' + this.habilitarBotonGiros)
  
     }
   
   aplicarGiro(){
     this.arregloFinal = this.cleanArray(this.idGiros)
-   
-    console.log('array limpio', this.arregloFinal);
     this.openDialog();
   }
   
@@ -108,10 +104,8 @@ export class FooterComponent implements OnInit, OnChanges {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed',result);
       this.datosModal = result;
       if(this.datosModal){
-        console.log('entre al if')
         this.listaMovimientos.emit(this.arregloFinal);
         this.datosMovimiento.emit(this.datosModal);
       }
@@ -148,7 +142,6 @@ export class DialogOverviewExampleDialog {
     
     
     ngOnChanges(changes: SimpleChanges) {
-   console.log('dataswift', this.data.montoSwift);
     }
   
   onNoClick(): void {
@@ -157,7 +150,6 @@ export class DialogOverviewExampleDialog {
   }
   
   getDatosForm(){
-    console.log(this.formGiro.value);
     this.data.montoSwift = this.formGiro.get('montoSwift').value;
     this.dialogRef.close();
   }
@@ -168,7 +160,6 @@ export class DialogOverviewExampleDialog {
             
       const valuesStart=fechaInicial.split("-");
       const valuesEnd=fechaFinal.split("-");
-      console.log('valores Start End', valuesStart,valuesEnd)
             // Verificamos que la fecha no sea posterior a la actual
             var dateStart=new Date(valuesStart[2],(valuesStart[1]-1),valuesStart[0]);
             var dateEnd=new Date(valuesEnd[2],(valuesEnd[1]-1),valuesEnd[0]);
@@ -185,7 +176,6 @@ pruebainput(){
   data.fechaDesde = moment(data.fechaDesde).locale('en-ca').format('L');
   data.fechaHasta = moment(data.fechaHasta).locale('en-ca').format('L');
       if(!this.validate_fechaMayorQue(data.fechaDesde, data.fechaHasta)){
-      console.log('entre a poner el boton en false');
       this.formGiro.controls['fechaHasta'].setErrors({'incorrect' : true})
     };
   
@@ -193,13 +183,11 @@ pruebainput(){
 
 habilitarBoton(){
   const re = new RegExp("^[0-9]*$");
-  console.log(this.data.montoSwift)
   if(re.test(this.data.montoSwift)){
     this.botonHabilitarForm = true;
   }
 else{
   this.botonHabilitarForm = false;
-  console.log('vacio')
 }
 }
 

@@ -68,7 +68,6 @@ export class TablaMovimientoComponent implements OnInit {
   verItem(element){
     this.itemConsultado = element;
     this.usuario.datosItem = element;
-    console.log('verIOtem tabla movimiento', this.itemConsultado);
     this.movimientoSeleccionado.emit(element);
   }
   
@@ -80,13 +79,11 @@ export class TablaMovimientoComponent implements OnInit {
   llenarTablaMov(obj:{}){
     let largoob = Object.keys(obj).length
     for(var i = 0; i < largoob; i++){
-      console.log(obj[Object.keys(obj)[i]]);
       let objInter =  obj[Object.keys(obj)[i]];
       objInter['position'] = i+1;
       this.ELEMENT_DATA.push(objInter); 
     }
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-    console.log('datos en element data', this.ELEMENT_DATA)
     
     
     

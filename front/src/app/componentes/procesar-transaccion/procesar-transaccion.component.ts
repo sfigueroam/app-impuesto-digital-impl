@@ -88,9 +88,7 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     if(this.idsGiros != undefined && this.datosSwiftT != undefined){
       this.datosSwiftT = JSON.stringify(this.datosSwiftT)
       this.datosSwiftT =JSON.parse(this.datosSwiftT)
-      console.log('datosSwift', this.datosSwiftT)
       this.idsGiros.forEach(element =>{
-        console.log(element.totalLiquidable);
         if(element.totalLiquidable == undefined){
           this.listaSinTotal.push(element);
         }
@@ -98,12 +96,8 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
         this.totalLiquidable = element.totalLiquidable;
       }
       })
-      console.log('lista sin total y total',this.listaSinTotal, this.totalLiquidable)
       this.llenarTablaMov(this.listaSinTotal);
-      console.log(this.idsGiros, this.datosSwiftT)
     }
-   
-   console.log(this.datosSwiftT)
     if(this.datosSwiftT['montoSwift'] <= this.totalLiquidable){
       this.diferencia = this.totalLiquidable - this.datosSwiftT['montoSwift']
       this.tipoCaso = 'A'
@@ -121,7 +115,6 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     
   volverTabla(){
     this.volverTablaDatos.emit(true);
-    console.log('volvere a tabla datos');
   }
   
   volverForm(){
@@ -137,7 +130,6 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
       this.ELEMENT_DATA.push(objInter); 
     }
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-    console.log(this.dataSource);
   }
   
   aplicarGiros(){
@@ -158,10 +150,6 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
       "inListaArs": this.listaIds,
       "inMontoAplicar": this.totalLiquidable
     }
-    
-    console.log('objeto consulta',this.objetoConsulta)
-      
-
          this.detalleCuentas.aplicarLiquidacion(this.objetoConsulta).subscribe(
         data =>{
           this.resultadoAplicacion = data;
@@ -199,17 +187,13 @@ export class DialogOverviewExampleDialog3 {
 
 
   ngOnInit() {
-     console.log(this.data['tipoCaso'])
-     console.log(this.data['errorCase'])
     if(this.data['tipoCaso'] == 'A' && this.data['errorCase'] != true){
-    console.log(this.data);
     this.tipoCaso = 'A';
     }
     else if(this.data['tipoCaso'] == 'B' && this.data['errorCase'] != true){
       this.tipoCaso = 'B'
     }
     else if(this.data['errorCase']){
-      console.log(this.data['errorCase'])
       this.errorCase = true;
     }
   }

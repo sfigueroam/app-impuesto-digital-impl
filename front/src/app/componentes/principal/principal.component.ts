@@ -66,7 +66,6 @@ export class PrincipalComponent implements OnInit {
           element.fechaVcto = moment(element.fechaVcto).format()
           if(element.formTipo != '21'){
             this.ocultarCheck = true;
-            console.log(this.ocultarCheck);
             element['excluded'] = true
           }
         })
@@ -203,7 +202,6 @@ export class PrincipalComponent implements OnInit {
     this.verMov = false;
     this.verDetalleItem = false
     this.verEstadoLiquidables = false;
-    console.log('esatdos de los ocultar CARGADATOS OCULTARFORM VERMOV TABLAD DETALLE estado LIq', this.cargaDatos, this.ocultarForm, this.verMov, this.verTablaDatos, this.verDetalleItem, this.verEstadoLiquidables)
   }
   
   
@@ -213,18 +211,14 @@ export class PrincipalComponent implements OnInit {
     this.verTablaDatos = false;
     this.verMov = false;
     this.verDetalleItem = false;
-    console.log('esatdos de los ocultar CARGADATOS OCULTARFORM VERMOV TABLAD DETALLE', this.cargaDatos, this.ocultarForm, this.verMov, this.verTablaDatos, this.verDetalleItem)
   }
   
     volverTablaDatosProcesar(volver:boolean){
-    console.log('llegue a tsabla datos principal')
-    
     this.ocultarForm = true;
     this.verTablaDatos = false;
     this.verMov = false;
     this.verDetalleItem = false;
     this.verEstadoLiquidables = false;
-    console.log('esatdos de los ocultar CARGADATOS OCULTARFORM VERMOV TABLAD DETALLE', this.cargaDatos, this.ocultarForm, this.verMov, this.verTablaDatos, this.verDetalleItem)
   }
 
   
@@ -247,9 +241,6 @@ export class PrincipalComponent implements OnInit {
             this.verTablaDatos = true;
             this.ocultarForm = false;
             this.cargaDatos = false;
-            
-            
-        
       })
     this.usuario.datosMov = this.detalleItem;
  
@@ -264,14 +255,12 @@ export class PrincipalComponent implements OnInit {
     }
       this.detalleCuentas.estadoLiquidables(objConsulta).subscribe(
         data =>{
-          console.log(data)
           this.estadoLiquidables = data;  
           this.verEstadoLiquidables = true;
           this.cargaDatos = false;
           this.ocultarForm = true;
       },(error)=>{
         if(error){
-          console.log('entre al error')
              this.ocultarForm = true;
               this.verTablaDatos = false;
               this.verMov = false;
@@ -287,8 +276,6 @@ export class PrincipalComponent implements OnInit {
   
   getDatosSwift(obj:{}){
     this.detallesSwift = obj;
-    console.log('datos del swift en principal', this.detallesSwift )
-    
   }
   
   openDialog(): void {
@@ -297,7 +284,6 @@ export class PrincipalComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 
@@ -325,7 +311,6 @@ export class DialogOverviewExampleDialog2 {
   }
   
  ngOnChanges(changes: SimpleChanges) {
-   console.log(JSON.stringify(this.data))
     }
   
   ngOnInit() {

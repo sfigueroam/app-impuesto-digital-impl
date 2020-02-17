@@ -80,7 +80,6 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.forma.status);
   }
   
   
@@ -212,7 +211,6 @@ comprobarRut(value:string){
   }
   
   limpiarFormRut(){
-    console.log('limpiare el form');
     this.forma.reset();
     this.botonDatosIncompletos = false;
 }
