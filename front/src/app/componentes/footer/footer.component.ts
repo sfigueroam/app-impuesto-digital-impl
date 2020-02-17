@@ -30,6 +30,7 @@ export class FooterComponent implements OnInit, OnChanges {
   volverTablaMovsFooter = new EventEmitter<boolean>();
   @Output()
   aplicarGiros = new EventEmitter<boolean>();
+  @Input() habilitarBotonGiros;
   botonGiros;
   arregloFinal;
   montoSwift;
@@ -60,6 +61,16 @@ export class FooterComponent implements OnInit, OnChanges {
   else{
     this.botonGiros = true
   }
+   console.log('boton habilitado:' + this.habilitarBotonGiros)
+  
+  if(this.habilitarBotonGiros == false){
+    this.habilitarBotonGiros= false
+  }
+  else{
+    this.habilitarBotonGiros = true;
+  }
+  console.log('boton habilitado:' + this.habilitarBotonGiros)
+ 
     }
   
   aplicarGiro(){
@@ -78,10 +89,6 @@ export class FooterComponent implements OnInit, OnChanges {
   this.aplicarGiros.emit(true)
 }
 
-  
-  
-  
-  
   cleanArray( actual ){
   var newArray = new Array();
   for( var i = 0, j = actual.length; i < j; i++ ){
@@ -94,7 +101,7 @@ export class FooterComponent implements OnInit, OnChanges {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
+      width: '350px',
       panelClass: 'tgr-dialog--aplicar-giro',
       data: {montoSwift: this.montoSwift, fechaOrdenPago: this.fechaOrdenPago, fechaDeposito: this.fechaDeposito,
        ordenante : this.ordenante, descripcionRemesa: this.descripcionRemesa,bancoCorresponsal: this.bancoCorresponsal, nOrdenPago: this.nOrdenPago}

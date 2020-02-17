@@ -19,7 +19,7 @@
         VOLVER
     </button>
     
-    <button mat-raised-button (click) = "botonAplicarGiro()">
+    <button mat-raised-button [disabled] = !habilitarBotonGiros (click) = "botonAplicarGiro()" class="mdl-button tgr-button-action">
         APLICAR
     </button>
 </div>

@@ -179,7 +179,8 @@
       <mat-checkbox (click)="$event.stopPropagation()"
                     (change)="$event ? selection.toggle(row) : null"
                     [checked]="selection.isSelected(row)"
-                    [disabled]="row.excluded">
+                    [disabled]="row.excluded"
+                    color="primary">
       </mat-checkbox>
     </td>
   </ng-container>

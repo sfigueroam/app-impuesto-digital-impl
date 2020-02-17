@@ -28,9 +28,9 @@
           (volverFormulario) = "volverFormApGiro($event)" ></app-procesar-transaccion>
         </div>
         
-        <div *ngIf = "cargaDatos && !ocultarForm">
+        <div *ngIf = "cargaDatos && !ocultarForm" class="tgr_spinner">
           <mat-spinner></mat-spinner>
-          cargando datos espere
+          <div>Cargando datos...</div>
         </div>
         
     </main>

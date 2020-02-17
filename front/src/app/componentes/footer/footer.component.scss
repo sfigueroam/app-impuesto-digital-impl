@@ -22,9 +22,13 @@
     color:#c0c0c0;
 }
 
+.mdl-button:focus:not(:active){
+  background-color: #4CAF50;
+}
+
 .mdl-button {
   &.tgr-button-action {
-      margin-top:5px;
+      // margin-top:5px;
       border-radius:4px;
       font-weight:600;
       background-color: #4CAF50;

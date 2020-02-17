@@ -106,12 +106,32 @@ h1{
   background: #fff;
 }
 
+//Spinner
+
+.tgr_spinner{
+    position:absolute;
+    left:48%;
+    top:45%;
+    
+    div{
+        width:100%;
+        margin-top:10px;
+        color:#2f3c89;
+        font-size:14px;
+        text-align:center;
+    }
+}
+
 // DIÁLOGOS Y MODALES
 .tgr-dialog--aplicar-giro {
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
+    }
+    
+    .mat-form-field{
+        width:100% !important;
     }
 }
 

@@ -62,7 +62,7 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
   diferencia;
   tipoCaso;
   errorAplicar;
- 
+  habilitarBoton;
 
   constructor(private detalleCuentas: DetalleCuentasService, public dialog: MatDialog) { }
 
@@ -113,6 +113,9 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
       this.tipoCaso = 'B'
     }
     
+    if(this.totalLiquidable == 0){
+      this.habilitarBoton = false;
+    }
     
     }
     
@@ -139,9 +142,9 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
   
   aplicarGiros(){
     //armar objeto y consultar
-  
+    this.habilitarBoton= false;
     this.listaSinTotal.forEach(element =>{
-      this.listaIds += element['idCta'] + ';'
+      this.listaIds += element['codigoBarra'] + ';'
     })
     this.listaIds = this.listaIds.substring(0, this.listaIds.length - 1);
     this.objetoConsulta = {
