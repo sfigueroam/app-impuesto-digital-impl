@@ -11,7 +11,8 @@ Revisar en lote {{a.outLote}}
 <div *ngIf = "tipoCaso == 'B' && !errorCase " >
 <div *ngFor = "let a of data.resultadoAplicacion">
 Operacion realizada con exito
-Revisar en lote {{a.outLote}}
+Revisar en lote {{a.outLote}} 
+Esta operación creo un Formulario 10 con el folio <strong> {{a.outFolioF10}}</strong>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cerrar</button>
 </div>

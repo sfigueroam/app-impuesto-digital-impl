@@ -100,11 +100,9 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     }
     if(this.datosSwiftT['montoSwift'] <= this.totalLiquidable){
       this.diferencia = this.totalLiquidable - this.datosSwiftT['montoSwift']
-      this.tipoCaso = 'A'
     }
     else{
       this.diferencia = this.datosSwiftT['montoSwift'] - this.totalLiquidable
-      this.tipoCaso = 'B'
     }
     
     if(this.totalLiquidable == 0){
@@ -159,6 +157,7 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
       },(error)=>{
         if(error.status == 400 || error.status == 404){
           this.errorAplicar = true;
+          console.log(error);
           this.openDialog();
         }
         
@@ -181,16 +180,19 @@ export class DialogOverviewExampleDialog3 {
   ocultaSpinner = false;
   tipoCaso;
   errorCase;
+  resultadoAplicacion;
   onNoClick(): void {
     this.dialogRef.close();
   }
 
 
   ngOnInit() {
-    if(this.data['tipoCaso'] == 'A' && this.data['errorCase'] != true){
+    console.log(this.data);
+    this.resultadoAplicacion = this.data['resultadoAplicacion']
+    if(this.resultadoAplicacion['outFolioF10'] == null && this.data['errorCase'] != true){
     this.tipoCaso = 'A';
     }
-    else if(this.data['tipoCaso'] == 'B' && this.data['errorCase'] != true){
+    else if(this.resultadoAplicacion['outFolioF10'] != null && this.data['errorCase'] != true){
       this.tipoCaso = 'B'
     }
     else if(this.data['errorCase']){

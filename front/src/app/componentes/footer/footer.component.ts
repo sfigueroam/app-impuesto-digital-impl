@@ -182,7 +182,7 @@ pruebainput(){
 }
 
 habilitarBoton(){
-  const re = new RegExp("^[0-9]*$");
+  const re = new RegExp("^[0-9]+([.][0-9]+)?$");
   if(re.test(this.data.montoSwift)){
     this.botonHabilitarForm = true;
   }
