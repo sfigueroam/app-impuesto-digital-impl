@@ -1,9 +1,11 @@
 
 <div *ngIf = "!esperaResultado && !casoCorrecto">
-<h1 mat-dialog-title>Aplicacion<strong> Sin Giro</strong></h1>
-Para generar el formulario 10 debe ingresar el monto swift, los otros datos
-ya fueron cargador previamente en sistema
-<input type="text" placeholder= "Monto Swift" [(ngModel)] = "montoSwift" (keyup)="habilitarBoton()"/>
+<h1 mat-dialog-title>APLICACÓN<strong> SIN GIRO</strong></h1>
+ <p>Para generar el formulario 10 debe ingresar el monto swift, los otros datos
+ya fueron cargados previamente en el sistema.</p>
+<mat-form-field>
+<input  matInput  placeholder= "Monto Swift" [(ngModel)] = "montoSwift" (keyup)="habilitarBoton()"/>
+</mat-form-field>
 <div mat-dialog-content>
 </div>
 <div mat-dialog-actions>

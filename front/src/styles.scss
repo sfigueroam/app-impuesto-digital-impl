@@ -135,6 +135,47 @@ h1{
     }
 }
 
+
+.tgr-dialog--inicio {
+ 
+     .mat-dialog-title{
+         text-align:center;
+     }
+     
+     p{
+         color:#757575;
+     }
+     
+     .mat-dialog-actions{
+         justify-content: flex-end;
+     }
+    
+    .mat-form-field{
+        width:100% !important;
+    }
+}
+
+.tgr-dialog--procesar {
+ 
+     .mat-dialog-title{
+         text-align:center;
+     }
+     
+    p{
+         text-align:center;
+         color:#757575;
+     }
+     
+     
+     .mat-dialog-actions{
+         justify-content: flex-end;
+     }
+    .mat-form-field{
+        width:100% !important;
+    }
+}
+
+
 // FOOTERS
 .footer {
     background: #fff;

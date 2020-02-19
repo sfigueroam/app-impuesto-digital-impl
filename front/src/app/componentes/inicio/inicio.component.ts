@@ -231,7 +231,8 @@ limpiarFormFolio(){
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog4, {
-      width: '250px',
+      width: '420px',
+      panelClass: 'tgr-dialog--inicio',
       data: {}
     });
 

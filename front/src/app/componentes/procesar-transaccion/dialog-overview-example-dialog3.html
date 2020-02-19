@@ -1,6 +1,6 @@
 <div *ngIf = "tipoCaso == 'A' && !errorCase" >
-Operacion realizada con exito
-Revisar en lote {{resultadoAplicacion.outLote}}
+<h1 mat-dialog-title>Operación realizada <strong>con éxito</strong></h1>
+<p>Revisar en  <strong>LOTE {{resultadoAplicacion.outLote}} </strong></p>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cerrar</button>
 </div>
@@ -8,17 +8,22 @@ Revisar en lote {{resultadoAplicacion.outLote}}
 </div>
 
 <div *ngIf = "tipoCaso == 'B' && !errorCase " >
-Operacion realizada con exito
-Revisar en lote {{resultadoAplicacion.outLote}} 
-Esta operación creo un Formulario 10 con el folio <strong> {{resultadoAplicacion.outFolioF10}}</strong>
+<h1 mat-dialog-title>Operación realizada <strong>con éxito</strong></h1>
+<p aling = "center">Revisar en  <strong>LOTE {{resultadoAplicacion.outLote}} </strong> </p>
+<p>Esta operación creo un formulario 10 con el <strong> FOLIO {{resultadoAplicacion.outFolioF10}}</strong> </p>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cerrar</button>
 </div>
 </div>
 
 <div *ngIf = "errorCase" >
-En estos momentos no podemos procesar su solicitud de aplicación
+  <h1 mat-dialog-title> <strong>Error</strong></h1>
+<p>En estos momentos no podemos procesar su solicitud de aplicación </p>
 <div mat-dialog-actions>
 <button mat-button (click)="onNoClick()">Cerrar</button>
 </div>
+</div>
+
+<div *ngIf = spinnerOn>
+  <mat-spinner></mat-spinner>
 </div>

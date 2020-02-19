@@ -71,7 +71,8 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
   
     openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog3, {
-      width: '250px',
+      width: '420px',
+      panelClass: 'tgr-dialog--procesar',
       data: {objetoConsulta: this.objetoConsulta, resultadoAplicacion: this.resultadoAplicacion, tipoCaso: this.tipoCaso, errorCase: this.errorAplicar}
     });
 
@@ -134,7 +135,8 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     //armar objeto y consultar
     this.habilitarBoton= false;
     this.listaSinTotal.forEach(element =>{
-      this.listaIds += element['codigoBarra'] + ';'
+      if(element['liquidable'] == 'S'){
+      this.listaIds += element['codigoBarra'] + ';' }
     })
     this.listaIds = this.listaIds.substring(0, this.listaIds.length - 1);
     this.objetoConsulta = {
@@ -152,12 +154,10 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
         data =>{
           this.resultadoAplicacion = data;
           this.openDialog();
-          console.log(data)
           
       },(error)=>{
-        if(error.status == 400 || error.status == 404){
+        if(error.status == 400 || error.status == 404 || error.status == 401){
           this.errorAplicar = true;
-          console.log(error);
           this.openDialog();
         }
         
@@ -180,6 +180,7 @@ export class DialogOverviewExampleDialog3 {
   ocultaSpinner = false;
   tipoCaso;
   errorCase;
+  spinnerOn;
   resultadoAplicacion;
   onNoClick(): void {
     this.dialogRef.close();
@@ -187,16 +188,20 @@ export class DialogOverviewExampleDialog3 {
 
 
   ngOnInit() {
-    console.log(this.data);
+    this.spinnerOn = true;
     this.resultadoAplicacion = this.data['resultadoAplicacion']
-    if(this.resultadoAplicacion['outFolioF10'] == null && this.data['errorCase'] != true){
+    if(this.resultadoAplicacion != undefined){
+    if(this.resultadoAplicacion['outFolioF10']  == null && this.data['errorCase'] != true){
     this.tipoCaso = 'A';
+    this.spinnerOn = false;
     }
-    else if(this.resultadoAplicacion['outFolioF10'] != null && this.data['errorCase'] != true){
+    else if(this.resultadoAplicacion['outFolioF10']  != null && this.data['errorCase'] != true){
       this.tipoCaso = 'B'
+      this.spinnerOn = false;
     }
-    else if(this.data['errorCase']){
+    }else{
       this.errorCase = true;
+      this.spinnerOn = false;
     }
   }
   
