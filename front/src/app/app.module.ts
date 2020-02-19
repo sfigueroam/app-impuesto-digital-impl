@@ -19,7 +19,8 @@ import { VerItemComponent } from './componentes/ver-item/ver-item.component';
 import { FooterComponent } from './componentes/footer/footer.component'
 import {DialogOverviewExampleDialog} from './componentes/footer/footer.component';
 import {DialogOverviewExampleDialog2} from './componentes/principal/principal.component';
-import {DialogOverviewExampleDialog3} from './componentes/procesar-transaccion/procesar-transaccion.component'
+import {DialogOverviewExampleDialog3} from './componentes/procesar-transaccion/procesar-transaccion.component';
+import {DialogOverviewExampleDialog4} from './componentes/inicio/inicio.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import {MatDialogModule} from '@angular/material';
 import { CookieService } from 'ngx-cookie-service';
@@ -43,6 +44,7 @@ registerLocaleData(localeEs, 'es');
     DialogOverviewExampleDialog,
     DialogOverviewExampleDialog2,
     DialogOverviewExampleDialog3,
+    DialogOverviewExampleDialog4,
     AutenticaComponent,
     LoginComponent,
     LogoutComponent,
@@ -54,7 +56,8 @@ registerLocaleData(localeEs, 'es');
     entryComponents: [ 
     DialogOverviewExampleDialog,
     DialogOverviewExampleDialog2,
-    DialogOverviewExampleDialog3
+    DialogOverviewExampleDialog3,
+    DialogOverviewExampleDialog4
   ], 
   imports: [
     BrowserModule,

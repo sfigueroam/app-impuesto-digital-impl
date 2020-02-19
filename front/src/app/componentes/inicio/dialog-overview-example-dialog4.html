@@ -1,0 +1,29 @@
+
+<div *ngIf = "!esperaResultado && !casoCorrecto">
+<h1 mat-dialog-title>Aplicacion<strong> Sin Giro</strong></h1>
+Para generar el formulario 10 debe ingresar el monto swift, los otros datos
+ya fueron cargador previamente en sistema
+<input type="text" placeholder= "Monto Swift" [(ngModel)] = "montoSwift" (keyup)="habilitarBoton()"/>
+<div mat-dialog-content>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Volver</button>
+  <button mat-button (click)="procesarSwift()" [disabled] = !habilitaBoton>Procesar</button>
+</div>
+</div>
+
+<div *ngIf = esperaResultado>
+  <mat-spinner></mat-spinner>
+</div>
+
+
+<div *ngIf = "!esperaResultado && casoCorrecto">
+<h1 mat-dialog-title>Operación realizada<strong> con éxito</strong></h1>
+Revisar el <strong>LOTE</strong> {{resultadoAplicacion.outLote}}
+Esta Operacion creo un Formulario 10 con el folio {{resultadoAplicacion.outFolioF10}}
+<div mat-dialog-content>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Entendido</button>
+</div>
+</div>

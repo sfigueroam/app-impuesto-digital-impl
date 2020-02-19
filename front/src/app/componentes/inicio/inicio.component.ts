@@ -1,9 +1,15 @@
-import { Component, OnInit, EventEmitter, Output, ChangeDetectorRef  } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ChangeDetectorRef, Inject, SimpleChanges  } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder, FormGroupDirective, NgForm} from '@angular/forms';
 import { RutValidator } from 'ng2-rut/dist/rut.validator';
 import * as moment from 'moment';
 import {ErrorStateMatcher} from '@angular/material/core';
+import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
+import { DetalleCuentasService } from 'src/app/servicios/detalle-cuentas.service';
 const rut = require('validar-rut')
+
+export interface DialogData {
+  montoSwift;
+}
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -22,6 +28,7 @@ export class InicioComponent implements OnInit {
    forma:FormGroup;
    formaFolio: FormGroup;
    botonBuscar:boolean;
+   montoSwift;
    botonBuscarFolio:boolean;
    botonDatosIncompletos:boolean = false;
    matcher = new MyErrorStateMatcher();
@@ -37,7 +44,7 @@ export class InicioComponent implements OnInit {
   @Output()
   tipoConsulta = new EventEmitter<{}>();
   
-  constructor(rutValidator: RutValidator, fb: FormBuilder, private cdRef:ChangeDetectorRef) {
+  constructor(rutValidator: RutValidator, fb: FormBuilder, private cdRef:ChangeDetectorRef, public dialog: MatDialog) {
     
     this.forma = fb.group({
       identificacion: ['', [Validators.required, rutValidator, Validators.maxLength(10)]],
@@ -219,4 +226,88 @@ limpiarFormFolio(){
   this.formaFolio.reset();
   this.botonDatosIncompletos = false;
 }
+
+
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog4, {
+      width: '250px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.montoSwift = result;
+    });
+  }
+
+
+}
+
+
+
+  @Component({
+  selector: 'dialog-overview-example-dialog4',
+  templateUrl: 'dialog-overview-example-dialog4.html',
+})
+export class DialogOverviewExampleDialog4 {
+      casoCorrecto: boolean = false;
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog4>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, private detalleCuentas: DetalleCuentasService ) {}
+  montoSwift;
+  esperaResultado = false;
+  resultadoAplicacion;
+  habilitaBoton;
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+
+  ngOnInit() {
+    console.log(this.data);
+
+    }
+  
+  
+    ngOnChanges(changes: SimpleChanges) {
+     console.log(this.montoSwift)
+     console.log(this.resultadoAplicacion);
+    }
+    
+    
+    procesarSwift(){
+      this.esperaResultado = true
+      console.log('swift ingresado', this.montoSwift)
+      let obj = {
+        "inMontoSwift" : this.montoSwift
+      }
+      this.detalleCuentas.aplicarLiquidacion(obj).subscribe(
+        data =>{
+        this.resultadoAplicacion = data;
+        console.log('resultado aplicacion', this.resultadoAplicacion)
+        this.esperaResultado = false;
+        this.casoCorrecto = true;
+      },(error)=>{
+        console.log(error.status);
+      })
+      
+    }
+    
+    
+  habilitarBoton(){
+    console.log('testeando')
+  const re = new RegExp('^[0-9]+$');
+  if(re.test(this.montoSwift)){
+    this.habilitaBoton = true;
+  }
+else{
+  console.log('falso')
+  this.habilitaBoton = false;
+}
+}
+
+
 }
