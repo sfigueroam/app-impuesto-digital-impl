@@ -27,32 +27,15 @@ export class CognitoService {
 
   loginUrl(): string {
     
-    let provider = localStorage.getItem("provider") ? localStorage.getItem("provider") : null;
-    
-    if( provider == null){
       return environment.cognito.authorizeURL
       + '?response_type=token&client_id='
       + environment.cognito.clientId
       + '&redirect_uri='
       + environment.cognito.redirectUri;
-    }
-    else {
-      
-      console.log("provider:", provider);
-      return environment.cognito.authorizeURL
-      + '?response_type=token&client_id='
-      + environment.cognito.clientId
-      + '&redirect_uri='
-      + environment.cognito.redirectUri
-      + '&identity_provider='
-      + provider
-    }
-    
   }
 
   logoutUrl(): string {
     
-    localStorage.clear();
     return environment.cognito.logoutURL
       + '?client_id='
       + environment.cognito.clientId
