@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   loggeado: any;
   identityProvider;
   idUsuario;
+  usuario;
 
   constructor(private cognito: CognitoService, 
               private route: ActivatedRoute, 
@@ -38,20 +39,13 @@ export class LoginComponent implements OnInit {
         console.log(this.identity);
         this.idUsuario = this.identity["identities"][0]["userId"];
         this.exp = this.cognito.getExpirationDate();
-        var usuario = this.idUsuario.split('@');
+        this.usuario = this.idUsuario.split('@');
         this.user.setLogged(true)
-        this.user.setNombreUsuario(usuario[0]);
-        console.log('usuario logeado:', usuario);
-      }
-    );
+        this.user.setNombreUsuario(this.usuario[0]);
+        console.log('usuario logeado:', this.usuario);
+      });
    
-    
-    
-  } 
-
-  ngOnInit() {
-
-    this.detallecuentaservice.getPermisos(this.user.getNombreUsuario[0]).subscribe(
+      this.detallecuentaservice.getPermisos(this.usuario[0]).subscribe(
       data =>{
         // console.log('estos son los roles', data)
         this.user.setPermisos(data.data)
@@ -59,6 +53,12 @@ export class LoginComponent implements OnInit {
     },(error)=>{
       this.router.navigate(['noautorizado'])
     })
+    
+  } 
+
+  ngOnInit() {
+
+
    
   }
 
