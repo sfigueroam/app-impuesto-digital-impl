@@ -20,7 +20,7 @@ const routes: Routes = [
  {path: 'item', component: VerItemComponent},
  {path: 'footer', component: FooterComponent},
  {path:"autentica", component:AutenticaComponent},
- {path:"impuestos", component:InicioComponent},
+ {path:"impuestos", component:PrincipalComponent},
  {path:"logout", component:LogoutComponent},
  {path:"procesar", component:ProcesarTransaccionComponent},
  {path:"noautorizado", component:NoAutorizadoComponent},
