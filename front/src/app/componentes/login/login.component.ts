@@ -31,31 +31,40 @@ export class LoginComponent implements OnInit {
               private route: ActivatedRoute, 
               private router: Router, 
               private user: UserService,
-              private detallecuentaservice : DetalleCuentasService,
-              private userdataservice: UserDataService) {
-    this.cognito.login(route.snapshot.fragment).then(
-      value => {
-        this.identity = value;
-        console.log(this.identity);
-        this.idUsuario = this.identity["identities"][0]["userId"];
-        console.log('usuario logeado:', this.idUsuario);
-      }
-    );
+              private detallecuentaservice : DetalleCuentasService) {
+    // this.cognito.login(route.snapshot.fragment).then(
+    //   value => {
+    //     this.identity = value;
+    //     console.log(this.identity);
+    //     // this.idUsuario = this.identity["identities"][0]["userId"];
+    //     // this.idUsuario = 'vgallardog@tgr.cl'
+    //     // var usuario = this.idUsuario.split('@')
+    //     // console.log('usuario logeado:', usuario);
+    //   }
+    // );
    
     
     
   } 
 
   ngOnInit() {
-    
+
+            this.idUsuario = 'vgallardog@tgr.cl'
+        var usuario = this.idUsuario.split('@')
+        // console.log('usuario logeado:', usuario);
     this.exp = this.cognito.getExpirationDate();
-    this.userdataservice.loggeado = true;
-    this.detallecuentaservice.getPermisos('jmoraT').subscribe(
+    this.user.setLogged(true)
+    this.user.setNombreUsuario(usuario[0]);
+    
+    this.detallecuentaservice.getPermisos(usuario[0]).subscribe(
       data =>{
-        console.log('estos son los roles', data)
-      
+        // console.log('estos son los roles', data)
+        this.user.setPermisos(data.data)
+        this.router.navigate(['inicio']);
+    },(error)=>{
+      this.router.navigate(['noautorizado'])
     })
-    this.router.navigate(['']);
+   
   }
 
 }

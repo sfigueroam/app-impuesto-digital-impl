@@ -9,19 +9,21 @@ import {FooterComponent} from 'src/app/componentes/footer/footer.component';
 import { AutenticaComponent } from './componentes/autentica/autentica.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { LogoutComponent } from './componentes/logout/logout.component';
-import {ProcesarTransaccionComponent} from './componentes/procesar-transaccion/procesar-transaccion.component'
+import {ProcesarTransaccionComponent} from './componentes/procesar-transaccion/procesar-transaccion.component';
+import {NoAutorizadoComponent} from './componentes/no-autorizado/no-autorizado.component';
 
 
 const routes: Routes = [
- {path: '', component: PrincipalComponent},
+ {path: '', component: LoginComponent},
  {path: 'tabla', component: TablaDatosComponent},
  {path: 'tablamov', component: TablaMovimientoComponent},
  {path: 'item', component: VerItemComponent},
  {path: 'footer', component: FooterComponent},
  {path:"autentica", component:AutenticaComponent},
- {path:"login", component:LoginComponent},
+ {path:"inicio", component:PrincipalComponent},
  {path:"logout", component:LogoutComponent},
  {path:"procesar", component:ProcesarTransaccionComponent},
+ {path:"noautorizado", component:NoAutorizadoComponent},
   ];
 
 @NgModule({

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Inject, Output, EventEmitter, SimpleChanges, 
 import { ChangeDetectorRef } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {FormGroup, FormControl, Validators, FormBuilder, FormGroupDirective, NgForm} from '@angular/forms';
+import {UserService} from './../../servicios/user.service';
 import * as moment from 'moment';
 
 export interface DialogData {
@@ -45,10 +46,14 @@ export class FooterComponent implements OnInit, OnChanges {
  listaMovimientos = new EventEmitter<[{}]>()
   @Output()
  datosMovimiento = new EventEmitter<{}>()
-
-  constructor(private cdRef:ChangeDetectorRef, public dialog: MatDialog) { }
+  permisoAplicacion:boolean;
+  permisoConsulta:boolean;
+  constructor(private cdRef:ChangeDetectorRef, public dialog: MatDialog, private user: UserService) { }
 
   ngOnInit() {
+    
+    this.permisoAplicacion = this.user.getPermisoAplicacion();
+    this.permisoConsulta = this.user.getPermisoConsulta();
 
   }
   

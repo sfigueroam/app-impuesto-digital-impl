@@ -4,6 +4,7 @@ import { RutValidator } from 'ng2-rut/dist/rut.validator';
 import * as moment from 'moment';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
+import {UserService} from 'src/app/servicios/user.service';
 import { DetalleCuentasService } from 'src/app/servicios/detalle-cuentas.service';
 const rut = require('validar-rut')
 
@@ -34,7 +35,8 @@ export class InicioComponent implements OnInit {
    matcher = new MyErrorStateMatcher();
    @Output()
    mostrarTabla= new EventEmitter<boolean>();
-  
+   permisoAplicacion:boolean = false;
+   permisoConsulta:boolean = false;
    @Output()
    datosForm = new EventEmitter<{}>();
    
@@ -44,7 +46,7 @@ export class InicioComponent implements OnInit {
   @Output()
   tipoConsulta = new EventEmitter<{}>();
   
-  constructor(rutValidator: RutValidator, fb: FormBuilder, private cdRef:ChangeDetectorRef, public dialog: MatDialog) {
+  constructor(rutValidator: RutValidator, fb: FormBuilder, private cdRef:ChangeDetectorRef, public dialog: MatDialog, private user : UserService) {
     
     this.forma = fb.group({
       identificacion: ['', [Validators.required, rutValidator, Validators.maxLength(10)]],
@@ -87,6 +89,10 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit() {
+  
+    this.permisoAplicacion = this.user.getPermisoAplicacion();
+    this.permisoConsulta = this.user.getPermisoConsulta();
+    console.log('permsion aplicacion, permisoConsulta', this.user.getPermisoAplicacion(), this.user.getPermisoConsulta());
   }
   
   

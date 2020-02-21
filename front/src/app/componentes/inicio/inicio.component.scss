@@ -28,8 +28,8 @@
 }
 
 .mdl-button {
-    margin-left:46%;
   &.tgr-button-action {
+      margin-left:46%;
       margin-top:5px;
       border-radius:4px;
       font-weight:600;
@@ -67,4 +67,10 @@
     min-width:400px;
     margin-top:20px;
     cursor: pointer;
+    &[disabled] {
+        background-color: #F0F0F0;
+        color: #757575;
+        opacity: 0.6;
+        cursor: context-menu;
+      }
 }

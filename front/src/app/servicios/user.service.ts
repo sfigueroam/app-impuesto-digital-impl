@@ -9,10 +9,15 @@ export class UserService {
 
   rut: number;
   dv: string;
-  loggeado: boolean;
+  logeado: boolean;
 
   email: string;
   solicitarEmail = true;
+  nombreUsuario;
+  roles;
+  permisos;
+  permisoConsulta;
+  permisoAplicacion;
 
   isFirst = true;
   
@@ -24,9 +29,33 @@ export class UserService {
   }*/
 
   isLogged(): boolean {
-    return this.rut !== undefined;
+    return this.logeado
+  }
+  
+  setLogged(logeado:boolean){
+    this.logeado = true;
+  }
+  
+  setPermisos(permisos:[]){
+    permisos.forEach(element=>{
+      if(element['rol'] == "IDROLCONSMONEX"){
+        this.permisoConsulta = true;
+      }
+      else if(element['rol'] == "IDROLCONSAPLMONEX"){
+        this.permisoAplicacion = true;
+      }
+      
+    })
+  }
+  
+  getPermisoConsulta(){
+    return this.permisoConsulta;
   }
 
+ getPermisoAplicacion(){
+    return this.permisoAplicacion;
+  }
+  
   setRut(rut: string) {
     this.rut = +rut;
     this.dv = PitUtils.dv(this.rut);
@@ -34,5 +63,20 @@ export class UserService {
   }
 
 
+  setNombreUsuario(nombre:string){
+    this.nombreUsuario = nombre;
+  }
+
+  setRoles(roles:any){
+    this.roles = roles;
+  }
+  
+  getNombreUsuario(){
+    return this.nombreUsuario;
+  }
+  
+  getRoles(){
+  return this.roles;
+  }
 
 }

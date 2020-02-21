@@ -10,18 +10,23 @@ import {CognitoService} from '../../servicios/cognito.service';
 })
 export class HeaderComponent implements OnInit {
   estadoBotonLoggin;
+  nombreUsuario
+  indVer: boolean;
 
-  constructor(private router: Router, private userservice: UserService, private cognito: CognitoService, private cookieService: CookieService) { }
+  constructor(private router: Router, private user: UserService, private cognito: CognitoService, private cookieService: CookieService) { }
 
   ngOnInit() {
-    
-    if(!this.userservice.isLogged()){
+    console.log(this.user.isLogged());
+    if(this.user.isLogged()){
+      this.estadoBotonLoggin = true;
+    }
+    else{
       this.estadoBotonLoggin = false;
     }
     
-    if(this.userservice.isLogged()){
-      this.estadoBotonLoggin = true;
-    }
+    
+    this.nombreUsuario = this.user.getNombreUsuario();
+    
   }
   
   iniciarSesion(){
@@ -31,9 +36,14 @@ export class HeaderComponent implements OnInit {
   
   
   cerrarSesion(){
+    this.user.setLogged(false);
     this.cookieService.deleteAll('/');
     this.cognito.logout();
   }
+  
+  verMenu(){
+  this.indVer = !this.indVer;  
+}
 
 
 }
