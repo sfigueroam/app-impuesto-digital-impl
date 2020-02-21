@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   identityProvider;
   idUsuario;
   usuario;
+  usuarioConsulta;
 
   constructor(private cognito: CognitoService, 
               private route: ActivatedRoute, 
@@ -42,9 +43,11 @@ export class LoginComponent implements OnInit {
         this.usuario = this.idUsuario.split('@');
         this.user.setLogged(true)
         this.user.setNombreUsuario(this.usuario[0]);
-        console.log('usuario logeado:', this.usuario);
+        this.usuarioConsulta = this.usuario[0]
+        console.log('usuario logeado:', this.usuario[0]);
       });
-   
+      
+      console.log(this.user.getNombreUsuario());
       this.detallecuentaservice.getPermisos(this.usuario[0]).subscribe(
       data =>{
         // console.log('estos son los roles', data)
