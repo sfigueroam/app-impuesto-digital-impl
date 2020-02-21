@@ -1,0 +1,18 @@
+.tgr_alerta{
+    background-color:#ffe3ae;
+    width:fit-content;
+    padding:15px;
+    border-radius:5px;
+    border:#a77a23 2px solid;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:10%;
+    color:#a77a23;
+    display:flex;
+    align-content:center;
+    
+    span{
+        padding-left:5px;
+        font-weight:bold;
+    }
+}
