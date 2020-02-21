@@ -10,7 +10,7 @@ import {CognitoService} from '../../servicios/cognito.service';
 })
 export class HeaderComponent implements OnInit {
   estadoBotonLoggin;
-  nombreUsuario
+  nombre;
   indVer: boolean;
 
   constructor(private router: Router, private user: UserService, private cognito: CognitoService, private cookieService: CookieService) { }
@@ -25,16 +25,11 @@ export class HeaderComponent implements OnInit {
     }
     
     
-    this.nombreUsuario = this.user.getNombreUsuario();
+    this.nombre = this.user.getNombreUsuario();
     
   }
   
-  iniciarSesion(){
-    
-     this.router.navigate(['autentica']);
-  }
-  
-  
+
   cerrarSesion(){
     this.user.setLogged(false);
     this.cookieService.deleteAll('/');

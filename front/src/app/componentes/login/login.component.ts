@@ -32,16 +32,18 @@ export class LoginComponent implements OnInit {
               private router: Router, 
               private user: UserService,
               private detallecuentaservice : DetalleCuentasService) {
-    // this.cognito.login(route.snapshot.fragment).then(
-    //   value => {
-    //     this.identity = value;
-    //     console.log(this.identity);
-    //     // this.idUsuario = this.identity["identities"][0]["userId"];
-    //     // this.idUsuario = 'vgallardog@tgr.cl'
-    //     // var usuario = this.idUsuario.split('@')
-    //     // console.log('usuario logeado:', usuario);
-    //   }
-    // );
+    this.cognito.login(route.snapshot.fragment).then(
+      value => {
+        this.identity = value;
+        console.log(this.identity);
+        this.idUsuario = this.identity["identities"][0]["userId"];
+        this.exp = this.cognito.getExpirationDate();
+        var usuario = this.idUsuario.split('@');
+        this.user.setLogged(true)
+        this.user.setNombreUsuario(usuario[0]);
+        console.log('usuario logeado:', usuario);
+      }
+    );
    
     
     
@@ -49,18 +51,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-            this.idUsuario = 'vgallardog@tgr.cl'
-        var usuario = this.idUsuario.split('@')
-        // console.log('usuario logeado:', usuario);
-    this.exp = this.cognito.getExpirationDate();
-    this.user.setLogged(true)
-    this.user.setNombreUsuario(usuario[0]);
-    
-    this.detallecuentaservice.getPermisos(usuario[0]).subscribe(
+    this.detallecuentaservice.getPermisos(this.user.getNombreUsuario[0]).subscribe(
       data =>{
         // console.log('estos son los roles', data)
         this.user.setPermisos(data.data)
-        this.router.navigate(['inicio']);
+        this.router.navigate(['impuestos']);
     },(error)=>{
       this.router.navigate(['noautorizado'])
     })
