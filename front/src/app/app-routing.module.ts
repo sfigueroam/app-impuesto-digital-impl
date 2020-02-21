@@ -14,16 +14,17 @@ import {NoAutorizadoComponent} from './componentes/no-autorizado/no-autorizado.c
 
 
 const routes: Routes = [
- {path: '', component: LoginComponent},
+ {path: '', component: AutenticaComponent},
  {path: 'tabla', component: TablaDatosComponent},
  {path: 'tablamov', component: TablaMovimientoComponent},
  {path: 'item', component: VerItemComponent},
  {path: 'footer', component: FooterComponent},
  {path:"autentica", component:AutenticaComponent},
- {path:"inicio", component:PrincipalComponent},
+ {path:"impuestos", component:PrincipalComponent},
  {path:"logout", component:LogoutComponent},
  {path:"procesar", component:ProcesarTransaccionComponent},
  {path:"noautorizado", component:NoAutorizadoComponent},
+ {path:"login", component:LoginComponent},
   ];
 
 @NgModule({

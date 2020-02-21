@@ -26,44 +26,42 @@ export class LoginComponent implements OnInit {
   loggeado: any;
   identityProvider;
   idUsuario;
+  usuario;
+  usuarioConsulta;
 
   constructor(private cognito: CognitoService, 
               private route: ActivatedRoute, 
               private router: Router, 
               private user: UserService,
               private detallecuentaservice : DetalleCuentasService) {
-    // this.cognito.login(route.snapshot.fragment).then(
-    //   value => {
-    //     this.identity = value;
-    //     console.log(this.identity);
-    //     // this.idUsuario = this.identity["identities"][0]["userId"];
-    //     // this.idUsuario = 'vgallardog@tgr.cl'
-    //     // var usuario = this.idUsuario.split('@')
-    //     // console.log('usuario logeado:', usuario);
-    //   }
-    // );
-   
-    
+    this.cognito.login(route.snapshot.fragment).then(
+      value => {
+        this.identity = value;
+        console.log(this.identity);
+        this.idUsuario = this.identity["identities"][0]["userId"];
+        this.exp = this.cognito.getExpirationDate();
+        this.usuario = this.idUsuario.split('@');
+        this.user.setLogged(true)
+        this.user.setNombreUsuario(this.usuario[0]);
+        this.usuarioConsulta = this.usuario[0]
+        console.log('usuario logeado:', this.usuario[0]);
+      });
+      
+      console.log(this.user.getNombreUsuario());
+      this.detallecuentaservice.getPermisos(this.usuario[0]).subscribe(
+      data =>{
+        // console.log('estos son los roles', data)
+        this.user.setPermisos(data.data)
+        this.router.navigate(['impuestos']);
+    },(error)=>{
+      this.router.navigate(['noautorizado'])
+    })
     
   } 
 
   ngOnInit() {
 
-            this.idUsuario = 'vgallardog@tgr.cl'
-        var usuario = this.idUsuario.split('@')
-        // console.log('usuario logeado:', usuario);
-    this.exp = this.cognito.getExpirationDate();
-    this.user.setLogged(true)
-    this.user.setNombreUsuario(usuario[0]);
-    
-    this.detallecuentaservice.getPermisos(usuario[0]).subscribe(
-      data =>{
-        // console.log('estos son los roles', data)
-        this.user.setPermisos(data.data)
-        this.router.navigate(['inicio']);
-    },(error)=>{
-      this.router.navigate(['noautorizado'])
-    })
+
    
   }
 

@@ -51,47 +51,6 @@
 }
 
 
-header.mdl-layout__header {
-    background-color: #FFFFFF;
-    min-height: 56px;
-    position: static;
-    @media (max-width: 480px) {
-        position: fixed;
-    }
-    @media (max-width: 1024px) {
-        display: block;
-    }
-    .mdl-layout__header-row {
-        height: 56px;
-        padding: 0 16px 0 16px;
-        a {
-            z-index: 4;
-            margin-left: 8%;
-            @media (min-width: 1100px) {
-                margin-left: 0;
-            }
-            img {
-                height: 30px;
-                width: auto;
-            }
-        }
-        .tgr-header-user {
-            position: relative;
-            margin-top: -6px;
-            #tgr-header-user-button {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                cursor: pointer;
-                line-height: 6px;
-                color: #2F3C89
-                span {
-                    color: #2F3C89;
-                }
-            }
-        }
-    }
-}
 
 
 header.mdl-layout__header {
