@@ -20,10 +20,11 @@ const routes: Routes = [
  {path: 'item', component: VerItemComponent},
  {path: 'footer', component: FooterComponent},
  {path:"autentica", component:AutenticaComponent},
- {path:"impuestos", component:PrincipalComponent},
+ {path:"impuestos", component:InicioComponent},
  {path:"logout", component:LogoutComponent},
  {path:"procesar", component:ProcesarTransaccionComponent},
  {path:"noautorizado", component:NoAutorizadoComponent},
+ {path:"login", component:LoginComponent},
   ];
 
 @NgModule({
