@@ -45,8 +45,6 @@ export class LoginComponent implements OnInit {
         this.user.setNombreUsuario(this.usuario[0]);
         this.usuarioConsulta = this.usuario[0]
       });
-      
-      this.getPermisos();
       console.log('consulta fuera del request' + this.usuarioConsulta)
       console.log('usuario logeado fuera:', this.usuario[0]);} 
 
