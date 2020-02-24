@@ -48,11 +48,7 @@ export class LoginComponent implements OnInit {
       
       this.getPermisos();
       console.log('consulta fuera del request' + this.usuarioConsulta)
-      console.log('usuario logeado fuera:', this.usuario[0]);
-      console.log();
-
-    
-  } 
+      console.log('usuario logeado fuera:', this.usuario[0]);} 
 
   ngOnInit() {
    
@@ -60,6 +56,7 @@ export class LoginComponent implements OnInit {
   
   getPermisos(){
       var nombreUser = this.user.getNombreUsuario()
+      console.log(nombreUser);
       this.detallecuentaservice.getPermisos(nombreUser).subscribe(
       data =>{
         this.user.setPermisos(data.data)

@@ -4,7 +4,9 @@ import {DetalleCuentasService} from '../../servicios/detalle-cuentas.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DialogData } from '../footer/footer.component';
 import {UsuarioService}from '../../servicios/usuario.service';
+import {UserService} from '../../servicios/user.service';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 export interface DialogData{
   rutnoEncontrado;
@@ -38,10 +40,19 @@ export class PrincipalComponent implements OnInit {
   errorServidor;
   
   
-  constructor(private detalleCuentas: DetalleCuentasService, private cdRef:ChangeDetectorRef, public dialog: MatDialog, private usuario: UsuarioService) { }
+  constructor(private detalleCuentas: DetalleCuentasService, private cdRef:ChangeDetectorRef, public dialog: MatDialog, private usuario: UsuarioService,
+  private user: UserService, private router: Router) { }
 
   
   ngOnInit() {
+     var nombreUser = this.user.getNombreUsuario();
+      this.detalleCuentas.getPermisos(nombreUser).subscribe(
+      data =>{
+        this.user.setPermisos(data.data)
+    },(error)=>{
+      this.router.navigate(['noautorizado'])
+    })
+    
   }
   
   estadoMostrarTabla(mostrarpantalla:boolean){
