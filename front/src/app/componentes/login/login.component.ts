@@ -41,12 +41,13 @@ export class LoginComponent implements OnInit {
         this.idUsuario = this.identity["identities"][0]["userId"];
         this.exp = this.cognito.getExpirationDate();
         this.usuario = this.idUsuario.split('@');
+        console.log('usuario post split', this.usuario)
         this.user.setLogged(true)
         this.user.setNombreUsuario(this.usuario[0]);
         this.usuarioConsulta = this.usuario[0]
       });
       console.log('consulta fuera del request' + this.usuarioConsulta)
-      console.log('usuario logeado fuera:', this.usuario[0]);} 
+    } 
 
   ngOnInit() {
    
