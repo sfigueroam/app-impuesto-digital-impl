@@ -44,10 +44,11 @@ export class LoginComponent implements OnInit {
         console.log('usuario post split', this.usuario)
         this.user.setLogged(true)
         this.user.setNombreUsuario(this.usuario[0]);
-        this.usuarioConsulta = this.usuario[0]
+        this.usuarioConsulta =  this.user.getNombreUsuario();
+        console.log('consulta fuera del request' + this.usuarioConsulta)
       });
       this.getPermisos();
-      console.log('consulta fuera del request' + this.usuarioConsulta)
+      
     } 
 
   ngOnInit() {
