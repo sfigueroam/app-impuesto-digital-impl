@@ -46,12 +46,13 @@ export class PrincipalComponent implements OnInit {
   
   ngOnInit() {
      var nombreUser = this.user.getNombreUsuario();
-      this.detalleCuentas.getPermisos(nombreUser).subscribe(
-      data =>{
-        this.user.setPermisos(data.data)
-    },(error)=>{
-      this.router.navigate(['noautorizado'])
-    })
+     console.log('nombre usuario principal', nombreUser)
+    //   this.detalleCuentas.getPermisos(nombreUser).subscribe(
+    //   data =>{
+    //     this.user.setPermisos(data.data)
+    // },(error)=>{
+    //   this.router.navigate(['noautorizado'])
+    // })
     
   }
   

@@ -44,7 +44,6 @@ export class UserService {
       else if(element['rol'] == "IDROLCONSAPLMONEX"){
         this.permisoAplicacion = true;
       }
-      
     })
   }
   
