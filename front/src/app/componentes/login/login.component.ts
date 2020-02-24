@@ -45,9 +45,10 @@ export class LoginComponent implements OnInit {
         this.user.setLogged(true)
         this.user.setNombreUsuario(this.usuario[0]);
         this.usuarioConsulta =  this.user.getNombreUsuario();
-        console.log('consulta fuera del request' + this.usuarioConsulta)
+        console.log('usuario antes de permisos' + this.usuarioConsulta)
+        this.getPermisos(this.usuarioConsulta);
       });
-      this.getPermisos();
+    
       
     } 
 
@@ -55,10 +56,10 @@ export class LoginComponent implements OnInit {
    
   }
   
-  getPermisos(){
-      var nombreUser = this.user.getNombreUsuario()
-      console.log(nombreUser);
-      this.detallecuentaservice.getPermisos(nombreUser).subscribe(
+  getPermisos(usuario:string){
+
+      console.log('usuario en permisos', usuario);
+      this.detallecuentaservice.getPermisos(usuario).subscribe(
       data =>{
         this.user.setPermisos(data.data)
         this.router.navigate(['impuestos']);
