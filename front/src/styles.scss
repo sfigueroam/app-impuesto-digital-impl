@@ -109,12 +109,16 @@ h1{
 //Spinner
 
 .tgr_spinner{
-    position:absolute;
-    left:48%;
-    top:45%;
+    // position:absolute;
+    // left:48%;
+    // top:45%;
+    margin-top: 30%
+    padding-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
     
-    div{
-        width:100%;
+    p{
+        // width:100%;
         margin-top:10px;
         color:#2f3c89;
         font-size:14px;
