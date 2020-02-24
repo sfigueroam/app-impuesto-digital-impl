@@ -104,7 +104,16 @@ h1{
 
 .mat-checkbox{
   background: #fff;
+  border: #2f3c89 1px solid;
 }
+
+.mat-checkbox-checked{
+    background-color:#2f3c89;
+    color:white;
+}
+
+
+// .mat-checkbox mat-accent"
 
 //Spinner
 
@@ -112,7 +121,7 @@ h1{
     // position:absolute;
     // left:48%;
     // top:45%;
-    margin-top: 25%;
+    margin-top: 20%;
     padding-bottom: 50px;
     margin-left: auto;
     margin-right: auto;
