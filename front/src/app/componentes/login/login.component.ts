@@ -44,27 +44,30 @@ export class LoginComponent implements OnInit {
         this.user.setLogged(true)
         this.user.setNombreUsuario(this.usuario[0]);
         this.usuarioConsulta = this.usuario[0]
-        console.log('usuario logeado:', this.usuario[0]);
-        console.log('usuarioConsulta' + this.usuarioConsulta)
       });
+      
+      this.getPermisos();
       console.log('consulta fuera del request' + this.usuarioConsulta)
       console.log('usuario logeado fuera:', this.usuario[0]);
-      console.log(this.user.getNombreUsuario());
-      this.detallecuentaservice.getPermisos(this.usuarioConsulta).subscribe(
+      console.log();
+
+    
+  } 
+
+  ngOnInit() {
+   
+  }
+  
+  getPermisos(){
+      var nombreUser = this.user.getNombreUsuario()
+      this.detallecuentaservice.getPermisos(nombreUser).subscribe(
       data =>{
-        // console.log('estos son los roles', data)
         this.user.setPermisos(data.data)
         this.router.navigate(['impuestos']);
     },(error)=>{
       this.router.navigate(['noautorizado'])
     })
     
-  } 
-
-  ngOnInit() {
-
-
-   
   }
 
 }
