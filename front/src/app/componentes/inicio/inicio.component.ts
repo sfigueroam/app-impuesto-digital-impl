@@ -263,7 +263,14 @@ export class DialogOverviewExampleDialog4 {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog4>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData, private detalleCuentas: DetalleCuentasService ) {}
-  montoSwift;
+  montoSwift2;
+  rut2;
+  fechaOrdenPago2;
+  fechaDeposito2;
+  ordenante2;
+  descripcionRemesa2;
+  bancoCorresponsal2;
+  nOrdenPago2;
   esperaResultado = false;
   resultadoAplicacion;
   habilitaBoton;
@@ -280,17 +287,24 @@ export class DialogOverviewExampleDialog4 {
   
   
     ngOnChanges(changes: SimpleChanges) {
-     console.log(this.montoSwift)
+     console.log(this.montoSwift2)
      console.log(this.resultadoAplicacion);
     }
     
     
     procesarSwift(){
       this.esperaResultado = true
-      console.log('swift ingresado', this.montoSwift)
       let obj = {
-        "inMontoSwift" : this.montoSwift
+        "inMontoSwift" : this.montoSwift2,
+        "rut": this.rut2 ? this.rut2 : '',
+        "fechaOrdenPago" : this.fechaOrdenPago2 ? this.fechaOrdenPago2: '',
+        "fechaDeposito": this.fechaDeposito2 ? this.fechaDeposito2 : '',
+        "ordenante": this.ordenante2 ? this.ordenante2 : '',
+        "descripcionRemesa": this.descripcionRemesa2 ? this.descripcionRemesa2 : '',
+        "bancoCorresponsal2" : this.bancoCorresponsal2 ? this.bancoCorresponsal2 : '',
+        "nOrdenPago" : this.nOrdenPago2 ? this.nOrdenPago2 : ''
       }
+      console.log("objeto a mandar en la consulta " + JSON.stringify(obj));
       this.detalleCuentas.aplicarLiquidacion(obj).subscribe(
         data =>{
         this.resultadoAplicacion = data;
@@ -307,7 +321,7 @@ export class DialogOverviewExampleDialog4 {
   habilitarBoton(){
     console.log('testeando')
   const re = new RegExp('^[0-9]+$');
-  if(re.test(this.montoSwift)){
+  if(re.test(this.montoSwift2)){
     this.habilitaBoton = true;
   }
 else{
