@@ -25,7 +25,7 @@ public class SwaggerConfig {
 	        return new Docket(DocumentationType.SWAGGER_2)
 	          .apiInfo(apiInfo())
 	          .select()
-	          .apis(RequestHandlerSelectors.basePackage("api.impuestodigital.monex.controllers"))
+	          .apis(RequestHandlerSelectors.basePackage("api.liquidacioncut.monex.controllers"))
 	          .paths(paths())
 	          .build();                              
 	    }

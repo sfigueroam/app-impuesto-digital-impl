@@ -33,7 +33,7 @@ public class LiquidacionCutMonexController {
 		  @ApiResponse(code = 200, message = "", response=LiquidaCtasMonexOutCursorVO.class),
 		  @ApiResponse(code = 404, message = "Not Found") 
   })
-  @PostMapping(path = "/monex/v1/liquidacuentas", consumes = "application/json", produces = "application/json")
+  @PostMapping(path = "/monex-liquidacion/v1/liquidacuentas", consumes = "application/json", produces = "application/json")
   public Collection<LiquidaCtasMonexOutCursorVO> itemsmepost(@Valid @RequestBody LiquidaCtasMonexInVO inParams, HttpServletResponse res) throws IOException {
 	  CallableStatement stmt = null;
 	  Connection con = null;
@@ -41,20 +41,21 @@ public class LiquidacionCutMonexController {
 	  Collection<LiquidaCtasMonexOutCursorVO> lista  = new ArrayList<LiquidaCtasMonexOutCursorVO>();
   	  if ( isNumericAndCommaAndSpace(inParams.getInListaIds()) == false || inParams.getInListaIds().trim() == "") {
 		  res.sendError(400,"Datos insuficientes para la consulta.");
-		  System.out.println("InListaIds: " + inParams.getInListaIds());
 		  return lista;
 	  }else {
 		  try {
 			  LiquidaCtasMonexOutCursorVO vo;
 			  con = DBConnection.getConnection();
-			  stmt  = con.prepareCall("{call pkg_cut_monex_srv_api.liquida_ctas_monex(?,?)}");
-			  stmt.setString(1, inParams.getInListaIds());
-			  stmt.registerOutParameter(2, OracleTypes.CURSOR);
+			  stmt  = con.prepareCall("{call pkg_cut_monex_srv_api.liquida_ctas_monex(?,?,?)}");
+			  stmt.setString(1, inParams.getInIdConsulta());
+			  stmt.setString(2, inParams.getInListaIds());
+			  stmt.registerOutParameter(3, OracleTypes.CURSOR);
 			  stmt.execute();
 			  try {
-			      rs = (ResultSet) stmt.getObject(2);
+			      rs = (ResultSet) stmt.getObject(3);
 			      while (rs.next()) {
 			    	  vo = new LiquidaCtasMonexOutCursorVO();
+			    	  vo.setIdCta(rs.getBigDecimal("ID_CTA"));
 			    	  vo.setClienteTipo(rs.getBigDecimal("CLIENTE_TIPO"));
 			    	  vo.setRutRol(rs.getBigDecimal("RUT_ROL"));
 			    	  vo.setFormTipo(rs.getBigDecimal("FORM_TIPO"));
@@ -63,9 +64,10 @@ public class LiquidacionCutMonexController {
 			    	  vo.setMontoNeto(rs.getBigDecimal("MONTO_NETO"));
 			    	  vo.setIntereses(rs.getBigDecimal("INTERESES"));
 			    	  vo.setMultas(rs.getBigDecimal("MULTAS"));
-			      	  vo.setAsreajustes(rs.getBigDecimal("ASREAJUSTES"));
-			      	  vo.setAscondonacion(rs.getBigDecimal("ASCONDONACION"));
+			      	  vo.setReajustes(rs.getBigDecimal("REAJUSTES"));
+			      	  vo.setCondonacion(rs.getBigDecimal("CONDONACION"));
 			      	  vo.setMontoTotal(rs.getBigDecimal("MONTO_TOTAL"));
+			      	  vo.setLiquidable(rs.getString("LIQUIDABLE"));
 			      	  vo.setCodigoBarra(rs.getString("CODIGO_BARRA"));
 			    	  lista.add(vo);
 			      }
@@ -74,7 +76,6 @@ public class LiquidacionCutMonexController {
 			  } 
 		  } catch (SQLException e ) {
 			  e.printStackTrace();
-			  System.out.println("entre1");
 			  res.sendError(500, e.toString());
 		  } finally {
 			  if (stmt != null) {

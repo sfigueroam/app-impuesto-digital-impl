@@ -17,8 +17,8 @@ public class DBConnection {
 		Connection con = null;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-//			con = DriverManager.getConnection(System.getenv("URL"),System.getenv("USER"),System.getenv("PASSWORD"));
-			con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.7.150:1521/teso","reca_des2","desareca");	//Ambiente Desarrollo
+			con = DriverManager.getConnection(System.getenv("URL"),System.getenv("USER"),System.getenv("PASSWORD"));
+//			con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.7.150:1521/teso","reca_des2","desareca");	//Ambiente Desarrollo
 //			con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.24.150:1521/teso","reca","rkat_1114");	//Ambiente TEST
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

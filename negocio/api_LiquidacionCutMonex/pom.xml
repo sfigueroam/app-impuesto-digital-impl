@@ -8,11 +8,11 @@
 		<version>2.2.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>impuestodigital.monex</groupId>
-	<artifactId>api_impuestoDigital</artifactId>
+	<groupId>liquidacioncut.monex</groupId>
+	<artifactId>api_LiquidacionCutMonex</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>api_impuestoDigital</name>
-	<description>API impuesto digital monex</description>
+	<name>api_LiquidacionCutMonex</name>
+	<description>API impuesto digital liquidacion cut monex</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

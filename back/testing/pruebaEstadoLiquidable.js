@@ -10,10 +10,6 @@ const crear = require('../consultaEstadoMov');
 
 
 console.log('Inicio de funcion');
-<<<<<<< HEAD
-let event = {"body": "{\"inIdConsulta\": \"1\", \"inListaIds\": \"87687689,500,502\"}"};
-=======
 let event = {"body": "{\"inIdConsulta\": \"1\", \"inListaIds\": \"4800,4801,4802\"}"};
->>>>>>> 5911d1a37264a39aca58ad9336d716b7703c336c
 
 crear.handler(event, null, ()=>{});
