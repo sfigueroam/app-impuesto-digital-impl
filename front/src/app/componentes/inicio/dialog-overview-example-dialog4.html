@@ -1,5 +1,5 @@
 
-<div *ngIf = "!esperaResultado && !casoCorrecto">
+<div *ngIf = "!esperaResultado && !casoCorrecto && !error">
 <h1 mat-dialog-title>APLICACÓN<strong> SIN GIRO</strong></h1>
  <p>Para generar el formulario 10 debe ingresar el monto swift, los otros datos
 ya fueron cargados previamente en el sistema.</p>
@@ -8,7 +8,7 @@ ya fueron cargados previamente en el sistema.</p>
 </mat-form-field>
 
 <mat-form-field>
-<input  matInput  placeholder= "Rut" [(ngModel)] = "rut2" (keyup)="habilitarBoton()"/>
+<input  matInput  placeholder= "Rut" [(ngModel)] = "rut2" formatRut required (input) = 'comprobarRut($event.target.value)'/>
 </mat-form-field>
 
 <mat-form-field>
@@ -53,7 +53,7 @@ ya fueron cargados previamente en el sistema.</p>
 </div>
 
 
-<div *ngIf = "!esperaResultado && casoCorrecto">
+<div *ngIf = "!esperaResultado && casoCorrecto && !error">
 <h1 mat-dialog-title>Operación realizada<strong> con éxito</strong></h1>
 Revisar el <strong>LOTE</strong> {{resultadoAplicacion.outLote}}
 Esta Operacion creo un Formulario 10 con el folio {{resultadoAplicacion.outFolioF10}}
@@ -61,5 +61,13 @@ Esta Operacion creo un Formulario 10 con el folio {{resultadoAplicacion.outFolio
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Entendido</button>
+</div>
+</div>
+
+<div *ngIf = error >
+    <h1 mat-dialog-title>Error</h1>
+     <p>No se ha podido completar el procedimiento</p>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Volver</button>
 </div>
 </div>

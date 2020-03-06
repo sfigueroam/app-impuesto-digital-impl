@@ -95,16 +95,19 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
         }
       else{
         this.totalLiquidable = element.totalLiquidable;
+        this.totalLiquidable.toFixed(2);
       }
       })
       this.llenarTablaMov(this.listaSinTotal);
     }
     if(this.datosSwiftT['montoSwift'] <= this.totalLiquidable){
       this.diferencia = this.totalLiquidable - this.datosSwiftT['montoSwift']
+      this.diferencia  = Number(this.diferencia)
       this.diferencia.toFixed(2);
     }
     else{
       this.diferencia = this.datosSwiftT['montoSwift'] - this.totalLiquidable;
+      this.diferencia  = Number(this.diferencia)
       this.diferencia.toFixed(2);
     }
     

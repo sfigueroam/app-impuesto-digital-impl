@@ -257,7 +257,9 @@ limpiarFormFolio(){
   selector: 'dialog-overview-example-dialog4',
   templateUrl: 'dialog-overview-example-dialog4.html',
 })
+
 export class DialogOverviewExampleDialog4 {
+  
       casoCorrecto: boolean = false;
 
   constructor(
@@ -274,6 +276,9 @@ export class DialogOverviewExampleDialog4 {
   esperaResultado = false;
   resultadoAplicacion;
   habilitaBoton;
+  mantiza;
+  dv;
+  error = false;
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -296,13 +301,14 @@ export class DialogOverviewExampleDialog4 {
       this.esperaResultado = true
       let obj = {
         "inMontoSwift" : this.montoSwift2,
-        "rut": this.rut2 ? this.rut2 : '',
-        "fechaOrdenPago" : this.fechaOrdenPago2 ? this.fechaOrdenPago2: '',
-        "fechaDeposito": this.fechaDeposito2 ? this.fechaDeposito2 : '',
-        "ordenante": this.ordenante2 ? this.ordenante2 : '',
-        "descripcionRemesa": this.descripcionRemesa2 ? this.descripcionRemesa2 : '',
-        "bancoCorresponsal2" : this.bancoCorresponsal2 ? this.bancoCorresponsal2 : '',
-        "nOrdenPago" : this.nOrdenPago2 ? this.nOrdenPago2 : ''
+        "inFechaOrdenPago" : this.fechaOrdenPago2 ? this.fechaOrdenPago2: '',
+        "infechaDeposito": this.fechaDeposito2 ? this.fechaDeposito2 : '',
+        "inOrdenante": this.ordenante2 ? this.ordenante2 : '',
+        "inRemesa": this.descripcionRemesa2 ? this.descripcionRemesa2 : '',
+        "inBanco" : this.bancoCorresponsal2 ? this.bancoCorresponsal2 : '',
+        "inNroOrdenPago" : this.nOrdenPago2 ? this.nOrdenPago2 : '',
+        "inRutRol": this.mantiza ? this.mantiza: '',
+        "inRutDv": this.dv ? this.dv : ''
       }
       console.log("objeto a mandar en la consulta " + JSON.stringify(obj));
       this.detalleCuentas.aplicarLiquidacion(obj).subscribe(
@@ -312,10 +318,36 @@ export class DialogOverviewExampleDialog4 {
         this.esperaResultado = false;
         this.casoCorrecto = true;
       },(error)=>{
+        this.error = true;
+        this.esperaResultado = false;
         console.log(error.status);
       })
       
     }
+  
+ comprobarRut(value:string){
+  if(value.charAt(value.length-1) == 'k'){
+   value =  value.replace(/\k/g, 'K');
+  }
+  let aux = value.substring(value.length - 1, value.length);
+  if(aux == '0' && value.length > 7){
+     this.habilitaBoton = true;
+    this.mantiza = value.substring(0, value.length-1)
+    this.dv = value.substring(value.length -1 , value.length)
+  }
+  else if(!rut.validar(value)){
+    console.log('rut incorrecto');
+    this.habilitaBoton = false;
+  }
+  
+  else if(rut.validar(value)){
+    console.log('rut correcto')
+    this.mantiza = value.substring(0, value.length-1)
+    this.dv = value.substring(value.length -1 , value.length)
+    this.habilitaBoton = true;
+  }
+  
+}
     
     
   habilitarBoton(){
