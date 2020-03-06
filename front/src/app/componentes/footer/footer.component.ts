@@ -110,6 +110,7 @@ export class FooterComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed().subscribe(result => {
       this.datosModal = result;
+      console.log(this.datosModal);
       if(this.datosModal){
         this.listaMovimientos.emit(this.arregloFinal);
         this.datosMovimiento.emit(this.datosModal);
@@ -127,6 +128,7 @@ export class FooterComponent implements OnInit, OnChanges {
 export class DialogOverviewExampleDialog {
   formGiro: FormGroup;
   botonHabilitarForm;
+  sw;
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -186,9 +188,21 @@ pruebainput(){
   
 }
 
-habilitarBoton(){
+habilitarBoton(value:string){
+  var res = value.replace(/,/gi, ".");
   const re = new RegExp("^[0-9]+([.][0-9]+)?$");
-  if(re.test(this.data.montoSwift)){
+    if(re.test(res)){
+      if(res.indexOf('.') == -1){
+        res = res += '.00'
+        this.sw = res;
+        this.data.montoSwift= this.sw;
+        console.log(this.sw)
+      }
+      else{
+        this.sw = res;
+        this.data.montoSwift = this.sw
+        console.log(this.sw)
+      }
     this.botonHabilitarForm = true;
   }
 else{
