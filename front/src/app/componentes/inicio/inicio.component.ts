@@ -278,6 +278,7 @@ export class DialogOverviewExampleDialog4 {
   habilitaBoton;
   mantiza;
   dv;
+  sw;
   error = false;
 
   onNoClick(): void {
@@ -292,15 +293,13 @@ export class DialogOverviewExampleDialog4 {
   
   
     ngOnChanges(changes: SimpleChanges) {
-     console.log(this.montoSwift2)
-     console.log(this.resultadoAplicacion);
     }
     
     
     procesarSwift(){
       this.esperaResultado = true
       let obj = {
-        "inMontoSwift" : this.montoSwift2,
+        "inMontoSwift" : this.sw,
         "inFechaOrdenPago" : this.fechaOrdenPago2 ? this.fechaOrdenPago2: '',
         "infechaDeposito": this.fechaDeposito2 ? this.fechaDeposito2 : '',
         "inOrdenante": this.ordenante2 ? this.ordenante2 : '',
@@ -314,7 +313,6 @@ export class DialogOverviewExampleDialog4 {
       this.detalleCuentas.aplicarLiquidacion(obj).subscribe(
         data =>{
         this.resultadoAplicacion = data;
-        console.log('resultado aplicacion', this.resultadoAplicacion)
         this.esperaResultado = false;
         this.casoCorrecto = true;
       },(error)=>{
@@ -326,6 +324,7 @@ export class DialogOverviewExampleDialog4 {
     }
   
  comprobarRut(value:string){
+
   if(value.charAt(value.length-1) == 'k'){
    value =  value.replace(/\k/g, 'K');
   }
@@ -336,31 +335,38 @@ export class DialogOverviewExampleDialog4 {
     this.dv = value.substring(value.length -1 , value.length)
   }
   else if(!rut.validar(value)){
-    console.log('rut incorrecto');
     this.habilitaBoton = false;
   }
   
   else if(rut.validar(value)){
-    console.log('rut correcto')
+      if(this.sw == undefined || this.sw == ''){
+    this.habilitaBoton = false;
+  }
+  else{
     this.mantiza = value.substring(0, value.length-1)
     this.dv = value.substring(value.length -1 , value.length)
     this.habilitaBoton = true;
   }
-  
+  }
 }
-    
-    
-  habilitarBoton(){
-    console.log('testeando')
-  const re = new RegExp('^[0-9]+$');
-  if(re.test(this.montoSwift2)){
+
+comprobarPuntos(value:string){
+  var res = value.replace(/,/gi, ".");
+  const re = new RegExp("^[0-9]+([.][0-9]+)?$");
+    if(re.test(res)){
+      if(res.indexOf('.') == -1){
+        res = res += '.00'
+        this.sw = res;
+      }
+      else{
+        this.sw = res;
+      }
     this.habilitaBoton = true;
   }
 else{
-  console.log('falso')
   this.habilitaBoton = false;
 }
+ 
 }
-
 
 }
