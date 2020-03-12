@@ -59,9 +59,14 @@ export class LoginComponent implements OnInit {
   }
   
   async getPermisos(usuario:string){
+    try{
   this.permisos = await this.detallecuentaservice.getPermisos(usuario).toPromise();
    this.user.setPermisos(this.permisos.data);
    this.router.navigate(['impuestos']);
+    } catch(error){
+      this.router.navigate(['noautorizado'])
+    }
+    
   }
 
 }
