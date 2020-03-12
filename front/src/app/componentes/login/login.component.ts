@@ -63,6 +63,7 @@ export class LoginComponent implements OnInit {
       this.detallecuentaservice.getPermisos(usuario).subscribe(
       data =>{
         this.user.setPermisos(data.data)
+        console.log('permisos al momento de setearlos',data.data)
         this.router.navigate(['impuestos']);
     },(error)=>{
       this.router.navigate(['noautorizado'])
