@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
         this.usuarioConsulta =  this.user.getNombreUsuario();
         console.log('usuario antes de permisos' + this.usuarioConsulta)
         this.getPermisos(this.usuarioConsulta);
+        this.router.navigate(['impuestos']);
       });
     
       
@@ -59,8 +60,7 @@ export class LoginComponent implements OnInit {
   
   async getPermisos(usuario:string){
   this.permisos = await this.detallecuentaservice.getPermisos(usuario).toPromise();
-  console.log(this.permisos)
-
+  this.user.setPermisos(this.permisos.data);
   }
 
 }
