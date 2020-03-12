@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   idUsuario;
   usuario;
   usuarioConsulta;
+    permisos: any;
 
   constructor(private cognito: CognitoService, 
               private route: ActivatedRoute, 
@@ -56,19 +57,10 @@ export class LoginComponent implements OnInit {
    
   }
   
-  getPermisos(usuario:string){
+  async getPermisos(usuario:string){
+  this.permisos = await this.detallecuentaservice.getPermisos(usuario).toPromise();
+  console.log(this.permisos)
 
-      console.log('usuario en permisos', usuario);
-      this.router.navigate(['impuestos']);
-      this.detallecuentaservice.getPermisos(usuario).subscribe(
-      data =>{
-        this.user.setPermisos(data.data)
-        console.log('permisos al momento de setearlos',data.data)
-        this.router.navigate(['impuestos']);
-    },(error)=>{
-      this.router.navigate(['noautorizado'])
-    })
-    
   }
 
 }
