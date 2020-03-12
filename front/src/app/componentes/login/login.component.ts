@@ -60,13 +60,13 @@ export class LoginComponent implements OnInit {
 
       console.log('usuario en permisos', usuario);
       this.router.navigate(['impuestos']);
-    //   this.detallecuentaservice.getPermisos(usuario).subscribe(
-    //   data =>{
-    //     this.user.setPermisos(data.data)
-    //     this.router.navigate(['impuestos']);
-    // },(error)=>{
-    //   this.router.navigate(['noautorizado'])
-    // })
+      this.detallecuentaservice.getPermisos(usuario).subscribe(
+      data =>{
+        this.user.setPermisos(data.data)
+        this.router.navigate(['impuestos']);
+    },(error)=>{
+      this.router.navigate(['noautorizado'])
+    })
     
   }
 
