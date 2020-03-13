@@ -64,7 +64,8 @@ export class LoginComponent implements OnInit {
    this.user.setPermisos(this.permisos.data);
    this.router.navigate(['impuestos']);
     } catch(error){
-      this.router.navigate(['noautorizado'])
+      // this.router.navigate(['noautorizado'])
+      this.router.navigate(['impuestos']);
     }
     
   }
