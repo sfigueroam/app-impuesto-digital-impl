@@ -152,6 +152,7 @@ export class DialogOverviewExampleDialog {
     
     
     ngOnChanges(changes: SimpleChanges) {
+      console.log(this.formGiro.status)
     }
   
   onNoClick(): void {
