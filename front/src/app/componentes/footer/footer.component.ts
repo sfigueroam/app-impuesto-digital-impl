@@ -10,6 +10,7 @@ export interface DialogData {
   fechaOrdenPago;
   fechaDeposito;
   ordenante;
+  fechaPago;
   descripcionRemesa;
   bancoCorresponsal;
   nOrdenPago;
@@ -48,7 +49,7 @@ export class FooterComponent implements OnInit, OnChanges {
  datosMovimiento = new EventEmitter<{}>()
   permisoAplicacion:boolean;
   permisoConsulta:boolean;
-    fechaPago: any;
+  fechaPago: any;
   constructor(private cdRef:ChangeDetectorRef, public dialog: MatDialog, private user: UserService) { }
 
   ngOnInit() {
