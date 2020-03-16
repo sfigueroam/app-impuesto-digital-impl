@@ -48,6 +48,7 @@ export class FooterComponent implements OnInit, OnChanges {
  datosMovimiento = new EventEmitter<{}>()
   permisoAplicacion:boolean;
   permisoConsulta:boolean;
+    fechaPago: any;
   constructor(private cdRef:ChangeDetectorRef, public dialog: MatDialog, private user: UserService) { }
 
   ngOnInit() {
@@ -104,7 +105,7 @@ export class FooterComponent implements OnInit, OnChanges {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '350px',
       panelClass: 'tgr-dialog--aplicar-giro',
-      data: {montoSwift: this.montoSwift, fechaOrdenPago: this.fechaOrdenPago, fechaDeposito: this.fechaDeposito,
+      data: {montoSwift: this.montoSwift, fechaOrdenPago: this.fechaOrdenPago, fechaPago: this.fechaPago, fechaDeposito: this.fechaDeposito,
        ordenante : this.ordenante, descripcionRemesa: this.descripcionRemesa,bancoCorresponsal: this.bancoCorresponsal, nOrdenPago: this.nOrdenPago}
     });
 
@@ -136,12 +137,13 @@ export class DialogOverviewExampleDialog {
       
       this.formGiro = formDialog.group({
         montoSwift : ['', Validators.required],
-        fechaOrdenPago: [{disable:true, value: ''}],
+        fechaOrdenPago: [{disable:true, value: ''}, Validators.required],
+        fechaPago: [{disable:true, value: ''}, Validators.required],
         fechaDeposito: [{disable:true, value: ''}],
         ordenante :[''],
         descripcionRemesa: [''],
-        bancoCorresponsal: [''],
-        nOrdenPago:['']
+        bancoCorresponsal: ['', Validators.required],
+        nOrdenPago:['', Validators.required]
       })
       
     }

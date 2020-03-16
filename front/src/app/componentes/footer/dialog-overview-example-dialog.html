@@ -4,14 +4,21 @@
   <mat-form-field>
     <input matInput placeholder="Monto Swift" required (keyup)="habilitarBoton($event.target.value)" >
   </mat-form-field>
-     <mat-form-field>
-    <input matInput  [matDatepicker]="fechaOrdenPago" placeholder="Fecha Orden de Pago" [(ngModel)]="data.fechaDeposito" data-date-format="DD MMMM YYYY">
-    <mat-datepicker-toggle matSuffix [for]="fechaOrdenPago"></mat-datepicker-toggle>
+  
+  <mat-form-field>
+  <input matInput  [matDatepicker]="fechaOrdenPago" placeholder="Fecha Orden de Pago" [(ngModel)]="data.fechaDeposito" data-date-format="DD MMMM YYYY">
+  <mat-datepicker-toggle matSuffix [for]="fechaOrdenPago"></mat-datepicker-toggle>
   <mat-datepicker #fechaOrdenPago></mat-datepicker>
   </mat-form-field>
-    <mat-form-field>
-    <input matInput [matDatepicker]="fechaDeposito" placeholder="Fecha de Deposito" [(ngModel)]="data.fechaOrdenPago" data-date-format="DD MMMM YYYY">
-     <!--<mat-error *ngIf="formGiro?.get('fechaDeposito').hasError('required')">Debe Ingresar una fecha</mat-error>-->
+  
+  <mat-form-field>
+  <input matInput  [matDatepicker]="fechaPago" placeholder="Fecha de Pago" [(ngModel)]="data.fechaPago" data-date-format="DD MMMM YYYY">
+  <mat-datepicker-toggle matSuffix [for]="fechaPago"></mat-datepicker-toggle>
+  <mat-datepicker #fechaOrdenPago></mat-datepicker>
+  </mat-form-field>
+  
+  <mat-form-field>
+  <input matInput [matDatepicker]="fechaDeposito" placeholder="Fecha de Deposito" [(ngModel)]="data.fechaOrdenPago" data-date-format="DD MMMM YYYY">
   <mat-datepicker-toggle matSuffix [for]="fechaDeposito"></mat-datepicker-toggle>
   <mat-datepicker #fechaDeposito></mat-datepicker>
   </mat-form-field>
