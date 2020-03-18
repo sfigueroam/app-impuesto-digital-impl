@@ -344,6 +344,8 @@ export class DialogOverviewExampleDialog4 {
   }
   else{
     this.mantiza = value.substring(0, value.length-1)
+    this.mantiza = this.mantiza.replace(/-/, '');
+    console.log('mantiza sin el guion', this.mantiza);
     this.dv = value.substring(value.length -1 , value.length)
     this.habilitaBoton = true;
   }
