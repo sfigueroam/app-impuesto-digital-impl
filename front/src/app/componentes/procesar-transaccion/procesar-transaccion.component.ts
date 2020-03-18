@@ -148,6 +148,7 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
       "inMontoSwift": this.datosSwiftT['montoSwift'],
       "inFechaOrdenPago": this.datosSwiftT['fechaOrdenPago'] ? this.datosSwiftT['fechaOrdenPago'] : '' ,
       "inFechaDeposito": this.datosSwiftT['fechaDeposito'] ? this.datosSwiftT['fechaDeposito'] : '',
+      "inFechaPago": this.datosSwiftT['fechaPago'] ? this.datosSwiftT['fechaPago'] : '',
       "inOrdenante": this.datosSwiftT['ordenante'] ?  this.datosSwiftT['ordenante'] : '',
       "inRemesa": this.datosSwiftT['descripcionRemesa'] ? this.datosSwiftT['descripcionRemesa'] : '',
       "inBanco": this.datosSwiftT['bancoCorresponsal'] ? this.datosSwiftT['bancoCorresponsal'] : '',
