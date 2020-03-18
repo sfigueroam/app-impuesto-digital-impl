@@ -324,7 +324,8 @@ export class DialogOverviewExampleDialog4 {
     }
   
  comprobarRut(value:string){
-
+    value = value.replace(/\./g, '');
+    value = value.replace(/-/g, '');
   if(value.charAt(value.length-1) == 'k'){
    value =  value.replace(/\k/g, 'K');
   }
@@ -344,8 +345,7 @@ export class DialogOverviewExampleDialog4 {
   }
   else{
     this.mantiza = value.substring(0, value.length-1)
-    this.mantiza = this.mantiza.replace(/-/, '');
-    console.log('mantiza sin el guion', this.mantiza);
+    console.log(this.mantiza);
     this.dv = value.substring(value.length -1 , value.length)
     this.habilitaBoton = true;
   }

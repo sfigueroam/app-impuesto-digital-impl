@@ -4,7 +4,7 @@
  <p>Para generar el formulario 10 debe ingresar el monto swift, los otros datos
 ya fueron cargados previamente en el sistema.</p>
 <mat-form-field>
-<input  matInput  placeholder= "Monto Swift" [(ngModel)] = "montoSwift2"  (input) = 'comprobarPuntos($event.target.value)'/>
+<input  matInput  placeholder= "Monto Swift" [(ngModel)] = "montoSwift2" (paste)="comprobarPuntos($event.target.value)"  (input) = 'comprobarPuntos($event.target.value)'/>
 </mat-form-field>
 
 <mat-form-field>
