@@ -38,7 +38,7 @@ export class PrincipalComponent implements OnInit {
   detallesSwift;
   rutnoEncontrado;
   errorServidor;
-  listaIds = '';
+
   fechaPago;
   
   
@@ -261,22 +261,23 @@ export class PrincipalComponent implements OnInit {
   }
   
   getIdMovimientos(obj){
+    let listaIds = '';
     console.log('objeto que llega para hacer la consulta', obj )
       obj.forEach(element =>{
         if(element.hasOwnProperty('id')){
-          this.listaIds += element['id'] + ','
+          listaIds += element['id'] + ','
         }
         else{
           this.fechaPago = element;
         }
       
     })
-    this.listaIds = this.listaIds.substring(0, this.listaIds.length - 1);
+    listaIds = listaIds.substring(0, listaIds.length - 1);
     this.cargaDatos = true
     this.ocultarForm = false;
     var objConsulta = {
       "inIdConsulta" : "1",
-      "inListaIds" : this.listaIds,
+      "inListaIds" : listaIds,
       "inFechaLiquidacion" : this.fechaPago
     }
     console.log('este sera el objeto a consultar', objConsulta)
