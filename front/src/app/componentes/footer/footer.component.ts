@@ -113,10 +113,8 @@ export class FooterComponent implements OnInit, OnChanges {
     dialogRef.afterClosed().subscribe(result => {
       this.datosModal = result;
       if(this.datosModal){
-        console.log(this.datosModal)
         this.datosMovimiento.emit(this.datosModal);
         this.arregloFinal.push(this.datosModal['fechaPago'] ? this.datosModal['fechaPago'] : '');
-        console.log('esto es el arreglo final', this.arregloFinal)
         this.listaMovimientos.emit(this.arregloFinal);
       }
     });
@@ -136,7 +134,7 @@ export class DialogOverviewExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    public formDialog: FormBuilder) {
+    public formDialog: FormBuilder){
       
       this.formGiro = formDialog.group({
         montoSwift : ['', Validators.required],
@@ -151,10 +149,8 @@ export class DialogOverviewExampleDialog {
       
     }
     
-    
-    
     ngOnChanges(changes: SimpleChanges) {
-      console.log(this.formGiro.status)
+      console.log(this.formGiro.invalid);
     }
   
   onNoClick(): void {
@@ -165,6 +161,11 @@ export class DialogOverviewExampleDialog {
   getDatosForm(){
     this.data.montoSwift = this.formGiro.get('montoSwift').value;
     this.dialogRef.close();
+  }
+  
+  
+  checkFecha(value){
+    console.log('hola')
   }
   
  
@@ -194,6 +195,20 @@ pruebainput(){
   
 }
 
+
+
+checkCamposObligatorios(){
+if(this.data.montoSwift != undefined && this.data.fechaOrdenPago != undefined && this.data.fechaPago != undefined
+&& this.data.bancoCorresponsal != undefined && this.data.nOrdenPago != undefined){
+  this.botonHabilitarForm = true;
+}
+else{
+  
+}
+}
+
+
+
 habilitarBoton(value:string){
   var res = value.replace(/,/gi, ".");
   const re = new RegExp("^[0-9]+([.][0-9]+)?$");
@@ -202,14 +217,12 @@ habilitarBoton(value:string){
         res = res += '.00'
         this.sw = res;
         this.data.montoSwift= this.sw;
-        console.log(this.sw)
       }
       else{
         this.sw = res;
         this.data.montoSwift = this.sw
-        console.log(this.sw)
       }
-    this.botonHabilitarForm = true;
+   
   }
 else{
   this.botonHabilitarForm = false;

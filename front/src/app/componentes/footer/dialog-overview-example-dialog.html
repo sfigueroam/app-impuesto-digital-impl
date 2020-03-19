@@ -6,19 +6,23 @@
   </mat-form-field>
   
   <mat-form-field>
-  <input matInput   [matDatepicker]="fechaOrdenPago" required  placeholder="Fecha Orden de Pago" [(ngModel)]="data.fechaDeposito" data-date-format="DD MMMM YYYY">
+  <input matInput   [matDatepicker]="fechaOrdenPago" required  placeholder="Fecha Orden de Pago" 
+  (input) = checkCamposObligatorios() [(ngModel)]="data.fechaDeposito" data-date-format="DD MMMM YYYY">
   <mat-datepicker-toggle matSuffix [for]="fechaOrdenPago"></mat-datepicker-toggle>
   <mat-datepicker #fechaOrdenPago></mat-datepicker>
   </mat-form-field>
   
   <mat-form-field>
-  <input matInput  [matDatepicker]="fechaPago" required  placeholder="Fecha de Pago" [(ngModel)]="data.fechaPago" data-date-format="DD MMMM YYYY">
+  <input matInput  [matDatepicker]="fechaPago" required  placeholder="Fecha de Pago" 
+  (input) = checkCamposObligatorios() [(ngModel)]="data.fechaPago"
+  data-date-format="DD MMMM YYYY">
   <mat-datepicker-toggle matSuffix [for]="fechaPago"></mat-datepicker-toggle>
   <mat-datepicker #fechaPago></mat-datepicker>
   </mat-form-field>
   
   <mat-form-field>
-  <input matInput [matDatepicker]="fechaDeposito" required  placeholder="Fecha de Deposito" [(ngModel)]="data.fechaOrdenPago" data-date-format="DD MMMM YYYY">
+  <input matInput [matDatepicker]="fechaDeposito" required  placeholder="Fecha de Deposito" 
+  (input) = checkCamposObligatorios()  [(ngModel)]="data.fechaOrdenPago" data-date-format="DD MMMM YYYY">
   <mat-datepicker-toggle matSuffix [for]="fechaDeposito"></mat-datepicker-toggle>
   <mat-datepicker #fechaDeposito></mat-datepicker>
   </mat-form-field>
@@ -30,10 +34,10 @@
     <input matInput [(ngModel)]="data.descripcionRemesa" placeholder="Descripcion de remesa">
   </mat-form-field>
     <mat-form-field>
-    <input matInput  required [(ngModel)]="data.bancoCorresponsal" placeholder="Banco Corresponsal">
+    <input matInput  required [(ngModel)]="data.bancoCorresponsal" placeholder="Banco Corresponsal" (input) = checkCamposObligatorios() >
   </mat-form-field>
     <mat-form-field>
-    <input matInput required  [(ngModel)]="data.nOrdenPago" placeholder="N° Orden Pago">
+    <input matInput required  [(ngModel)]="data.nOrdenPago" placeholder="N° Orden Pago" (input) = checkCamposObligatorios() >
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

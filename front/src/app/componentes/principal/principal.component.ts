@@ -262,7 +262,6 @@ export class PrincipalComponent implements OnInit {
   
   getIdMovimientos(obj){
     let listaIds = '';
-    console.log('objeto que llega para hacer la consulta', obj )
       obj.forEach(element =>{
         if(element.hasOwnProperty('id')){
           listaIds += element['id'] + ','
@@ -280,7 +279,6 @@ export class PrincipalComponent implements OnInit {
       "inListaIds" : listaIds,
       "inFechaLiquidacion" : this.fechaPago
     }
-    console.log('este sera el objeto a consultar', objConsulta)
       this.detalleCuentas.estadoLiquidables(objConsulta).subscribe(
         data =>{
           this.estadoLiquidables = data;  
