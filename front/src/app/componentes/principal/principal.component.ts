@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef, Inject, Sim
 import {environment} from '../../../environments/environment';
 import {DetalleCuentasService} from '../../servicios/detalle-cuentas.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { DialogData } from '../footer/footer.component';
+//import { DialogData } from '../footer/footer.component';
 import {UsuarioService}from '../../servicios/usuario.service';
 import {UserService} from '../../servicios/user.service';
 import * as moment from 'moment';
@@ -38,6 +38,8 @@ export class PrincipalComponent implements OnInit {
   detallesSwift;
   rutnoEncontrado;
   errorServidor;
+  listaIds = '';
+  fechaPago;
   
   
   constructor(private detalleCuentas: DetalleCuentasService, private cdRef:ChangeDetectorRef, public dialog: MatDialog, private usuario: UsuarioService,
@@ -258,13 +260,26 @@ export class PrincipalComponent implements OnInit {
  
   }
   
-  getIdMovimientos(obj:{}){
+  getIdMovimientos(obj){
+    console.log('objeto que llega para hacer la consulta', obj )
+      obj.forEach(element =>{
+        if(element.hasOwnProperty('id')){
+          this.listaIds += element['id'] + ','
+        }
+        else{
+          this.fechaPago = element;
+        }
+      
+    })
+    this.listaIds = this.listaIds.substring(0, this.listaIds.length - 1);
     this.cargaDatos = true
     this.ocultarForm = false;
     var objConsulta = {
       "inIdConsulta" : "1",
-      "inListaIds" : obj
+      "inListaIds" : this.listaIds,
+      "inFechaLiquidacion" : this.fechaPago
     }
+    console.log('este sera el objeto a consultar', objConsulta)
       this.detalleCuentas.estadoLiquidables(objConsulta).subscribe(
         data =>{
           this.estadoLiquidables = data;  

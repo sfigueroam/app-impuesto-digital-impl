@@ -112,10 +112,12 @@ export class FooterComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed().subscribe(result => {
       this.datosModal = result;
-      console.log(this.datosModal);
       if(this.datosModal){
-        this.listaMovimientos.emit(this.arregloFinal);
+        console.log(this.datosModal)
         this.datosMovimiento.emit(this.datosModal);
+        this.arregloFinal.push(this.datosModal['fechaPago'] ? this.datosModal['fechaPago'] : '');
+        console.log('esto es el arreglo final', this.arregloFinal)
+        this.listaMovimientos.emit(this.arregloFinal);
       }
     });
   }

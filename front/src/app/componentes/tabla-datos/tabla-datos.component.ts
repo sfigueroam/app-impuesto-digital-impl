@@ -148,11 +148,7 @@ export class TablaDatosComponent implements OnInit {
   }
   
    listaMovimientos(obj: [{}]){
-    obj.forEach(element =>{
-      this.listaIds += element['id'] + ','
-    })
-    this.listaIds = this.listaIds.substring(0, this.listaIds.length - 1);
-    this.idsMovimientos.emit(this.listaIds);
+    this.idsMovimientos.emit(obj);
   }
   
   datosSwift(obj:{}){
