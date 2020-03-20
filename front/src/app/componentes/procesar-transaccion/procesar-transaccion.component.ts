@@ -103,12 +103,12 @@ export class ProcesarTransaccionComponent implements OnInit, OnChanges {
     if(this.datosSwiftT['montoSwift'] <= this.totalLiquidable){
       this.diferencia = this.totalLiquidable - this.datosSwiftT['montoSwift']
       this.diferencia  = Number(this.diferencia)
-      this.diferencia.toFixed(2);
+      this.diferencia = parseFloat(this.diferencia).toFixed(2);
     }
     else{
       this.diferencia = this.datosSwiftT['montoSwift'] - this.totalLiquidable;
       this.diferencia  = Number(this.diferencia)
-      this.diferencia.toFixed(2);
+      this.diferencia = parseFloat(this.diferencia).toFixed(2);
     }
     
     if(this.totalLiquidable == 0){
