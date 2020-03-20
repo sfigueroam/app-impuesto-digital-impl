@@ -149,6 +149,8 @@ export class DialogOverviewExampleDialog {
       
     }
     
+    maxDate = new Date();
+    
     ngOnChanges(changes: SimpleChanges) {
       console.log(this.formGiro.invalid);
     }

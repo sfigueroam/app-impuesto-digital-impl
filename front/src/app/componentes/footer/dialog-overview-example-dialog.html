@@ -13,7 +13,7 @@
   </mat-form-field>
   
   <mat-form-field>
-  <input matInput  [matDatepicker]="fechaPago" required  placeholder="Fecha de Pago" 
+  <input matInput  [matDatepicker]="fechaPago" required [max] = "maxDate"  placeholder="Fecha de Pago" 
   (input) = checkCamposObligatorios() [(ngModel)]="data.fechaPago"
   data-date-format="DD MMMM YYYY">
   <mat-datepicker-toggle matSuffix [for]="fechaPago"></mat-datepicker-toggle>
