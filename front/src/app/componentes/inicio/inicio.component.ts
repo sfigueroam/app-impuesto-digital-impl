@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, ChangeDetectorRef, Inject, SimpleChanges  } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder, FormGroupDirective, NgForm} from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RutValidator } from 'ng2-rut/dist/rut.validator';
 import * as moment from 'moment';
 import {ErrorStateMatcher} from '@angular/material/core';
@@ -30,6 +31,7 @@ export class InicioComponent implements OnInit {
    formaFolio: FormGroup;
    botonBuscar:boolean;
    montoSwift;
+   estadoLoggin;
    botonBuscarFolio:boolean;
    botonDatosIncompletos:boolean = false;
    matcher = new MyErrorStateMatcher();
@@ -46,7 +48,8 @@ export class InicioComponent implements OnInit {
   @Output()
   tipoConsulta = new EventEmitter<{}>();
   
-  constructor(rutValidator: RutValidator, fb: FormBuilder, private cdRef:ChangeDetectorRef, public dialog: MatDialog, private user : UserService) {
+  constructor(rutValidator: RutValidator, fb: FormBuilder, private cdRef:ChangeDetectorRef,
+  public dialog: MatDialog, private user : UserService, private router : Router) {
     
     this.forma = fb.group({
       identificacion: ['', [Validators.required, rutValidator, Validators.maxLength(10)]],
@@ -92,6 +95,11 @@ export class InicioComponent implements OnInit {
   
     this.permisoAplicacion = this.user.getPermisoAplicacion();
     this.permisoConsulta = this.user.getPermisoConsulta();
+    this.estadoLoggin = this.user.isLogged();
+    if(this.estadoLoggin == undefined || this.estadoLoggin == false){
+        this.router.navigate(['noautorizado'])
+    }
+    
     console.log('permsion aplicacion, permisoConsulta', this.user.getPermisoAplicacion(), this.user.getPermisoConsulta());
   }
   

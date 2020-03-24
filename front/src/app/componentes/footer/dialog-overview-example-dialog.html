@@ -2,7 +2,7 @@
 <div mat-dialog-content>
  <h1 mat-dialog-title>Aplicar Giro</h1>
   <mat-form-field>
-    <input matInput placeholder="Monto Swift" required (keyup)="habilitarBoton($event.target.value)" >
+    <input matInput placeholder="Monto Swift" required (keyup)="habilitarBoton($event.target.value)" (input) = checkCamposObligatorios() >
   </mat-form-field>
   
   <mat-form-field>
