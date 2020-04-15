@@ -27,10 +27,7 @@ function consultaCuentaMonex(id,formulario,fechaDesde,fechaHasta, saldo, dv, tok
                     'Authorization': 'Bearer ' + token
                 },
             };
-            console.log("process.env.ENV: ", process.env.ENV);
-            console.log("options.path: ", options.path);
-            console.log("options.hostname: ", options.hostname);
-            console.log("options: ", options);
+
             let respuesta = '';
             let req = https.request(options, (res) => {
                 
@@ -137,7 +134,6 @@ function consultaItem(id, token) {
                     'Authorization': 'Bearer ' + token
                 },
             };
-            console.log("options: ", options);
             let respuesta = '';
             let req = https.request(options, (res) => {
                 
@@ -193,7 +189,6 @@ function consultaCuentaMonexFolio(folio,formulario,fechaDesde,fechaHasta,saldo, 
                     'Authorization': 'Bearer ' + token
                 },
             };
-            console.log("options: ", options);
             let respuesta = '';
             let req = https.request(options, (res) => {
                 
@@ -247,7 +242,6 @@ function consultaPerfil(idApp, idUsuario, token) {
                     'Authorization': 'Bearer ' + token
                 },
             };
-            console.log("options: ", options);
             let respuesta = '';
             let req = https.request(options, (res) => {
                 
@@ -304,7 +298,6 @@ function consultaEstadoLiquidables (token, json) {
         "Content-Length": JSON.stringify(json).length
       }
     };
-    console.log("options: ", options);
     let respuesta='';
     let estadoHttp='';
     let req = https.request(options, (res) => {

@@ -21,14 +21,8 @@ module.exports.handler = async (event, context, callback) => {
     
     rut = rut.replace(/-/g , "");
     rut = rut.replace(/\./g , "");
-    rut = rut.substring(0,rut.length-1)
-    
-    console.log('el dv es ',dv);
-    console.log('tgr-consultaCuentaMonex . JSON de Entrada:' , In);
-    
+    rut = rut.substring(0,rut.length-1);
     console.log("[INICIO PROCESO] Iniciando consulta a servicios");
-
-    
     let clienteId = process.env.REST_TOKEN_CLIENT_ID;
     let scope = process.env.REST_TOKEN_SCOPE;
     let clientSecret = process.env.REST_TOKEN_CLIENT_SECRET;
@@ -43,10 +37,7 @@ module.exports.handler = async (event, context, callback) => {
     } catch(err){
         console.log('Error al generar token nube', err);
     }
-    console.log("servAmazon.consultaCuentaMonex(rut,formulario,fechaDesde,fechaHasta, saldo, dv, token): ", rut, " ", formulario, " ", fechaDesde, " " , fechaHasta, " ", saldo, " ", dv, " ", token);
     let salida = await servAmazon.consultaCuentaMonex(rut,formulario,fechaDesde,fechaHasta, saldo, dv, token);
-    console.log("Resultado Final:", salida);
-    console.log("[FIN PROCESO]");
     send(salida.codeStatus,salida.respuesta,callback)
     
 
