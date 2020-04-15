@@ -11,13 +11,12 @@ function consultaCuentaMonex(id,formulario,fechaDesde,fechaHasta, saldo, dv, tok
       codeStatus: "",
       respuesta: ""
     };
-
+            console.log("process.env.HOSTNUBE: ", process.env.HOSTNUBE);
+            console.log("process.env.HOSTNUBE_PERFILES: ", process.env.HOSTNUBE_PERFILES);
+            
             let options = {
-                //hostname: host,
                 hostname: hostService,
                 port: 443,
-                // path:  "/" + process.env.ENV + '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1' +
-                // '&in_id_sistema=1&in_cliente_tipo=1&in_rut_rol=' + id  ,
                 path:  "/" + process.env.ENV +  '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1&in_id_sistema=1' + 
                 '&in_cliente_tipo=1&in_rut_rol=' + id + '&in_rut_dv=' + dv + '&in_form_tipo=' + formulario +
                 '&in_saldo='+ saldo +'&in_fecha_vcto_desde=' + fechaDesde +'&in_fecha_vcto_hasta='+ fechaHasta,
@@ -28,7 +27,10 @@ function consultaCuentaMonex(id,formulario,fechaDesde,fechaHasta, saldo, dv, tok
                     'Authorization': 'Bearer ' + token
                 },
             };
-
+            console.log("process.env.ENV: ", process.env.ENV);
+            console.log("options.path: ", options.path);
+            console.log("options.hostname: ", options.hostname);
+            console.log("options: ", options);
             let respuesta = '';
             let req = https.request(options, (res) => {
                 
@@ -58,7 +60,7 @@ function consultaCuentaMonex(id,formulario,fechaDesde,fechaHasta, saldo, dv, tok
             req.end();
         })
         .catch((error) => {
-            console.log(error, 'Error en promesa validarCliente');
+            console.log(error, 'Error en promesa consultaCuentaMonex');
         });
 }
 
@@ -70,11 +72,9 @@ function consultaMovimiento(id, token) {
     };
 
             let options = {
-                //hostname: host,
                 hostname: hostService,
                 port: 443,
                 path:  "/" + process.env.ENV + '/servicios-recaudacion/v1/monex/movsme?idCta='+ id,
-                // path:  "/" + 'dev' + '/servicios-recaudacion/v1/monex/movsme?idCta='+ id,
                 method: 'GET',
                 rejectUnauthorized: false,
                 headers: {
@@ -82,7 +82,7 @@ function consultaMovimiento(id, token) {
                     'Authorization': 'Bearer ' + token
                 },
             };
-
+            console.log("options: ", options);
             let respuesta = '';
             let req = https.request(options, (res) => {
                 
@@ -111,7 +111,7 @@ function consultaMovimiento(id, token) {
             req.end();
         })
         .catch((error) => {
-            console.log(error, 'Error en promesa validarCliente');
+            console.log(error, 'Error en promesa consultaMovimiento');
         });
 }
 
@@ -127,11 +127,9 @@ function consultaItem(id, token) {
     };
 
             let options = {
-                //hostname: host,
                 hostname: hostService,
                 port: 443,
                 path:  "/" + process.env.ENV + '/servicios-recaudacion/v1/monex/itemsme?idMov='+ id,
-                // path:  "/" + 'dev' + '/servicios-recaudacion/v1/monex/movsme?idCta='+ id,
                 method: 'GET',
                 rejectUnauthorized: false,
                 headers: {
@@ -139,7 +137,7 @@ function consultaItem(id, token) {
                     'Authorization': 'Bearer ' + token
                 },
             };
-
+            console.log("options: ", options);
             let respuesta = '';
             let req = https.request(options, (res) => {
                 
@@ -168,7 +166,7 @@ function consultaItem(id, token) {
             req.end();
         })
         .catch((error) => {
-            console.log(error, 'Error en promesa validarCliente');
+            console.log(error, 'Error en promesa consultaItem');
         });
 }
 
@@ -182,11 +180,8 @@ function consultaCuentaMonexFolio(folio,formulario,fechaDesde,fechaHasta,saldo, 
     };
 
             let options = {
-                //hostname: host,
                 hostname: hostService,
                 port: 443,
-                // path:  "/" + process.env.ENV + '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1' +
-                // '&in_id_sistema=1&in_form_tipo=' + form + '&in_form_folio=' + folio,
                 path:  "/" + process.env.ENV +  '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1&in_id_sistema=1' + 
                 '&in_cliente_tipo=1&in_form_tipo=' + formulario + '&in_form_folio=' + folio + 
                 '&in_saldo='+ saldo +'&in_fecha_vcto_desde=' + fechaDesde +'&in_fecha_vcto_hasta='+ fechaHasta,
@@ -198,7 +193,7 @@ function consultaCuentaMonexFolio(folio,formulario,fechaDesde,fechaHasta,saldo, 
                     'Authorization': 'Bearer ' + token
                 },
             };
-
+            console.log("options: ", options);
             let respuesta = '';
             let req = https.request(options, (res) => {
                 
@@ -228,7 +223,7 @@ function consultaCuentaMonexFolio(folio,formulario,fechaDesde,fechaHasta,saldo, 
             req.end();
         })
         .catch((error) => {
-            console.log(error, 'Error en promesa validarCliente');
+            console.log(error, 'Error en promesa consultaCuentaMonexFolio');
         });
 }
 
@@ -242,7 +237,6 @@ function consultaPerfil(idApp, idUsuario, token) {
     };
 
             let options = {
-                //hostname: host,
                 hostname: hostServiceP,
                 port: 443,
                 path:  "/" + process.env.ENV +  '/info-perfiles/v1/roles/usuarios/' + idUsuario + '?aplicacion=' + idApp ,
@@ -253,7 +247,7 @@ function consultaPerfil(idApp, idUsuario, token) {
                     'Authorization': 'Bearer ' + token
                 },
             };
-
+            console.log("options: ", options);
             let respuesta = '';
             let req = https.request(options, (res) => {
                 
@@ -283,7 +277,7 @@ function consultaPerfil(idApp, idUsuario, token) {
             req.end();
         })
         .catch((error) => {
-            console.log(error, 'Error en promesa validarCliente');
+            console.log(error, 'Error en promesa consultaPerfil');
         });
 }
 
@@ -310,7 +304,7 @@ function consultaEstadoLiquidables (token, json) {
         "Content-Length": JSON.stringify(json).length
       }
     };
-
+    console.log("options: ", options);
     let respuesta='';
     let estadoHttp='';
     let req = https.request(options, (res) => {

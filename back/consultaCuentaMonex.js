@@ -43,7 +43,7 @@ module.exports.handler = async (event, context, callback) => {
     } catch(err){
         console.log('Error al generar token nube', err);
     }
-    
+    console.log("servAmazon.consultaCuentaMonex(rut,formulario,fechaDesde,fechaHasta, saldo, dv, token): ", rut, " ", formulario, " ", fechaDesde, " " , fechaHasta, " ", saldo, " ", dv, " ", token);
     let salida = await servAmazon.consultaCuentaMonex(rut,formulario,fechaDesde,fechaHasta, saldo, dv, token);
     console.log("Resultado Final:", salida);
     console.log("[FIN PROCESO]");
