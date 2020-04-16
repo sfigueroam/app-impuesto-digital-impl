@@ -17,7 +17,7 @@ function consultaCuentaMonex(id,formulario,fechaDesde,fechaHasta, saldo, dv, tok
             let options = {
                 hostname: hostService,
                 port: 443,
-                path:  "/" + process.env.ENV +  '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1&in_id_sistema=1' + 
+                path:  "/api-servicios-cut/" + process.env.ENV +  '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1&in_id_sistema=1' + 
                 '&in_cliente_tipo=1&in_rut_rol=' + id + '&in_rut_dv=' + dv + '&in_form_tipo=' + formulario +
                 '&in_saldo='+ saldo +'&in_fecha_vcto_desde=' + fechaDesde +'&in_fecha_vcto_hasta='+ fechaHasta,
                 method: 'GET',
@@ -71,7 +71,7 @@ function consultaMovimiento(id, token) {
             let options = {
                 hostname: hostService,
                 port: 443,
-                path:  "/" + process.env.ENV + '/servicios-recaudacion/v1/monex/movsme?idCta='+ id,
+                path:  "/api-servicios-cut/" + process.env.ENV + '/servicios-recaudacion/v1/monex/movsme?idCta='+ id,
                 method: 'GET',
                 rejectUnauthorized: false,
                 headers: {
@@ -126,7 +126,7 @@ function consultaItem(id, token) {
             let options = {
                 hostname: hostService,
                 port: 443,
-                path:  "/" + process.env.ENV + '/servicios-recaudacion/v1/monex/itemsme?idMov='+ id,
+                path:  "/api-servicios-cut/" + process.env.ENV + '/servicios-recaudacion/v1/monex/itemsme?idMov='+ id,
                 method: 'GET',
                 rejectUnauthorized: false,
                 headers: {
@@ -179,7 +179,7 @@ function consultaCuentaMonexFolio(folio,formulario,fechaDesde,fechaHasta,saldo, 
             let options = {
                 hostname: hostService,
                 port: 443,
-                path:  "/" + process.env.ENV +  '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1&in_id_sistema=1' + 
+                path:  "/api-servicios-cut/" + process.env.ENV +  '/servicios-recaudacion/v1/monex/cuentasme?in_usuario=1&in_id_sistema=1' + 
                 '&in_cliente_tipo=1&in_form_tipo=' + formulario + '&in_form_folio=' + folio + 
                 '&in_saldo='+ saldo +'&in_fecha_vcto_desde=' + fechaDesde +'&in_fecha_vcto_hasta='+ fechaHasta,
              
@@ -236,7 +236,7 @@ function consultaPerfil(idApp, idUsuario, token) {
             let options = {
                 hostname: hostServiceP,
                 port: 443,
-                path:  "/" + process.env.ENV +  '/info-perfiles/v1/roles/usuarios/' + idUsuario + '?aplicacion=' + idApp ,
+                path:  "/api-info-perfiles/" + process.env.ENV +  '/info-perfiles/v1/roles/usuarios/' + idUsuario + '?aplicacion=' + idApp ,
                 method: 'GET',
                 rejectUnauthorized: false,
                 headers: {
@@ -292,7 +292,7 @@ function consultaEstadoLiquidables (token, json) {
     let options = {
       hostname: hostService,
       port: 443,
-      path: '/' + process.env.ENV + '/servicios-recaudacion/v1/monex-liquidacion/liquidacuentas', //PARAMETRIZAR v1
+      path: '/api-servicios-cut/' + process.env.ENV + '/servicios-recaudacion/v1/monex-liquidacion/liquidacuentas', //PARAMETRIZAR v1
       method: 'POST',
       rejectUnauthorized: false,
       headers: {
@@ -348,7 +348,7 @@ function liquidaDeudas (token, json) {
     let options = {
       hostname: hostService,
       port: 443,
-      path: '/' + process.env.ENV + '/servicios-recaudacion/v1/monex/aplicapago', //PARAMETRIZAR v1
+      path: '/api-servicios-cut/' + process.env.ENV + '/servicios-recaudacion/v1/monex/aplicapago', //PARAMETRIZAR v1
       method: 'POST',
       rejectUnauthorized: false,
       headers: {
