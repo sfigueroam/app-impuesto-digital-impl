@@ -11,9 +11,7 @@ function consultaCuentaMonex(id,formulario,fechaDesde,fechaHasta, saldo, dv, tok
       codeStatus: "",
       respuesta: ""
     };
-            console.log("process.env.HOSTNUBE: ", process.env.HOSTNUBE);
-            console.log("process.env.HOSTNUBE_PERFILES: ", process.env.HOSTNUBE_PERFILES);
-            
+
             let options = {
                 hostname: hostService,
                 port: 443,
@@ -27,7 +25,6 @@ function consultaCuentaMonex(id,formulario,fechaDesde,fechaHasta, saldo, dv, tok
                     'Authorization': 'Bearer ' + token
                 },
             };
-            console.log("option: ", options);
             let respuesta = '';
             let req = https.request(options, (res) => {
                 
@@ -79,7 +76,6 @@ function consultaMovimiento(id, token) {
                     'Authorization': 'Bearer ' + token
                 },
             };
-            console.log("options: ", options);
             let respuesta = '';
             let req = https.request(options, (res) => {
                 
@@ -134,7 +130,6 @@ function consultaItem(id, token) {
                     'Authorization': 'Bearer ' + token
                 },
             };
-            console.log("option: ", options);
             let respuesta = '';
             let req = https.request(options, (res) => {
                 
@@ -190,7 +185,6 @@ function consultaCuentaMonexFolio(folio,formulario,fechaDesde,fechaHasta,saldo, 
                     'Authorization': 'Bearer ' + token
                 },
             };
-            console.log("option: ", options);
             let respuesta = '';
             let req = https.request(options, (res) => {
                 
@@ -244,7 +238,6 @@ function consultaPerfil(idApp, idUsuario, token) {
                     'Authorization': 'Bearer ' + token
                 },
             };
-            console.log("option: ", options);
             let respuesta = '';
             let req = https.request(options, (res) => {
                 
@@ -301,7 +294,6 @@ function consultaEstadoLiquidables (token, json) {
         "Content-Length": JSON.stringify(json).length
       }
     };
-    console.log("option: ", options);
     let respuesta='';
     let estadoHttp='';
     let req = https.request(options, (res) => {
@@ -357,7 +349,6 @@ function liquidaDeudas (token, json) {
         "Content-Length": JSON.stringify(json).length
       }
     };
-    console.log("option: ", options);
     let respuesta='';
     let estadoHttp='';
     let req = https.request(options, (res) => {

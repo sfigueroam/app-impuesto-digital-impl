@@ -38,15 +38,12 @@ export class LoginComponent implements OnInit {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
         this.identity = value;
-        console.log(this.identity);
         this.idUsuario = this.identity["identities"][0]["userId"];
         this.exp = this.cognito.getExpirationDate();
         this.usuario = this.idUsuario.split('@');
-        console.log('usuario post split', this.usuario)
         this.user.setLogged(true)
         this.user.setNombreUsuario(this.usuario[0]);
         this.usuarioConsulta =  this.user.getNombreUsuario();
-        console.log('usuario antes de permisos' + this.usuarioConsulta)
         this.getPermisos(this.usuarioConsulta);
         
       });
@@ -64,8 +61,8 @@ export class LoginComponent implements OnInit {
    this.user.setPermisos(this.permisos.data);
    this.router.navigate(['impuestos']);
     } catch(error){
-      // this.router.navigate(['noautorizado'])
-      this.router.navigate(['impuestos']);
+      this.router.navigate(['noautorizado'])
+      //this.router.navigate(['impuestos']);
     }
     
   }
