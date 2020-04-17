@@ -16,12 +16,7 @@ let data = {
              "client_id": clienteId,
              "scope": scope
 };
-        
-        console.log("data:",data)
         let postData = querystring.stringify(data);
-
-    
-
         let options = {
             hostname: host,
             port: 443,
