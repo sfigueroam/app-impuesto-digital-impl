@@ -55,7 +55,7 @@ export class PrincipalComponent implements OnInit {
     // },(error)=>{
     //   this.router.navigate(['noautorizado'])
     // })
-    
+    console.log('prueba')
   }
   
   estadoMostrarTabla(mostrarpantalla:boolean){
